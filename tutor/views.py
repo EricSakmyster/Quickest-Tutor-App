@@ -15,3 +15,10 @@ def schedule(request):
 
 def tutorsearch(request):
     return HttpResponse("Student Tab Tutor Search")
+
+def tutorProfile(request):
+    return HttpResponse("Tutor Tab Profile")
+
+def tutorSchedule(request):
+    return HttpResponse("Tutor Tab Schedule")
+
