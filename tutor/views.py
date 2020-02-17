@@ -16,8 +16,6 @@ def profile(request):
 def schedule(request):
     return HttpResponse("Student Tab Schedule")
 
-<<<<<<< HEAD
-=======
 def tutorsearch(request):
     return HttpResponse("Student Tab Tutor Search")
 
@@ -27,4 +25,3 @@ def tutorProfile(request):
 def tutorSchedule(request):
     return HttpResponse("Tutor Tab Schedule")
 
->>>>>>> master
