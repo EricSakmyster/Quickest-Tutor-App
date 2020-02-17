@@ -1,5 +1,5 @@
 {
-  "name": "quickest-tutor",
+  "name": "project-103-quickesttutor",
   "scripts": {
   },
   "env": {
