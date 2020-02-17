@@ -12,3 +12,6 @@ def profile(request):
 
 def schedule(request):
     return HttpResponse("Student Tab Schedule")
+
+def tutorsearch(request):
+    return HttpResponse("Student Tab Tutor Search")
