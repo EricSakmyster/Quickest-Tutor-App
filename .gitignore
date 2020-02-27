@@ -82,7 +82,8 @@ env/
 venv/ 
 ENV/ 
 env.bak/ 
-venv.bak/ 
+venv.bak/
+/abhienv/
 
 # mkdocs documentation 
 /site 
@@ -114,4 +115,4 @@ GitHub.sublime-settings
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
-/abhienv/
+
