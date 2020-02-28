@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from django.views import generic
 from django.http import HttpResponse
 
 # Create your views here.
@@ -11,7 +11,7 @@ def signup(request):
     return HttpResponse("Welcome to the Signup Page")
 
 def profile(request):
-    return HttpResponse("Student Tab Profile")
+    return render(request, 'home/studentProfile.html')
 
 def schedule(request):
     return HttpResponse("Student Tab Schedule")
@@ -23,6 +23,6 @@ def tutorProfile(request):
     return HttpResponse("Tutor Tab Profile")
 
 def tutorSchedule(request):
-    return HttpResponse("Tutor Tab Schedule")
+    return render(request, 'home/baseTutor.html')
 
 
