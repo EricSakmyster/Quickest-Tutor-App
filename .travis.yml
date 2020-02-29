@@ -1,10 +1,14 @@
 language: python
 python:
   - "3.8"
-deploy:
-    provider: heroku
-cache: pip
 install:
   - pip install -r requirements-travis.txt
 script:
   - python manage.py test
+deploy:
+    provider: heroku
+    api_key: 
+      secure: 
+    app: quickest-tutor-103
+    on: 
+      repo: uva-cs3240-s20/project-103-quickesttutor
