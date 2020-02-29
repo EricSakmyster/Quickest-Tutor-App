@@ -10,8 +10,7 @@ script:
 - python manage.py test
 deploy:
   provider: heroku
-  api_key:
-  pro:
+  api_key: --pro
     secure: Mc2Ye0N/vP4W4WcgPu5Y6ZF6yqoiz5mEgcdB6sPGUWJQBO1ZHgulrbD9nmQ/k5kf+kwzgqTZ1w4oLzVotmnwq86aUWKy4MQMdBxrp4Mf2a/JF0V/Z4K3LrzzMtoZjmlODMVSLPUKNNWlnJ1gW0BKoG2axOODtQON+/ixXGMHrKvRy4cOs1aG5K0a3oBcdd+sJhCaeXFpXiQvAchRfJoLyCJzRxefIQ4Nm4c4rGPwditxbT+4ibIVRkA07dS4bmB+LMKy+1y3pjk7qh1ZMH9jUUkGi4muMtA+F8GiLmrvSy0mIkvi7NBD456HEdrM6cpOm89J0RmJe2lkgmoIMO+Hj7z/szNaLzG3CBfIr7ltfw2LF1g+Y+STkNz6YfwdD+YFntNXRSIox34is2l8oD1Qvaxe8GXut9V2eJflJEgVbr+cL0CXWn8c8oa2LipdmndNoTGYHI+cJvX6J2zieFVJdvLkZqwez1OFIxSicWsoSd3/LSkdB7748xA1Unyfg0duQfPLQ0iAVpooGWg6X6oIfVv4Mv1AmFDDAy/0dsCqDfKl8FAMEdF9MJ5+xcP3vD7PSZC7TOsLSajQuUdsOCMsMGTnmSTzKtZ+jc3/P8IQeGPP72pJhyxAngQTwMiVlEilig63wr8DCbNp6cx/JGeyKcp1eTI90KH91/66sva1bcw=
   app: quickest-tutor-103
   on:
