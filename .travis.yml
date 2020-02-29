@@ -3,14 +3,11 @@ services:
 language: python
 python:
 - '3.8'
-env:
-- DJANGO=3.0
 install:
+- pip install django-heroku
 - pip install -r requirements-travis.txt
 before_script:
   - psql -c 'create database tutordatabase;' -U postgres
-  - python manage.py migrate --noinput
-  - python manage.py collectstatic
 script:
 - python manage.py test
 deploy:
