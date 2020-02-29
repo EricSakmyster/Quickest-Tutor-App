@@ -6,9 +6,6 @@ python:
 install:
 - pip install django-heroku
 - pip install -r requirements-travis.txt
-before_script:
-  - psql -c 'create database tutordatabase;' -U postgres
-  - psql -c 'create user quickesttutor;' -U postgres
 script:
 - python manage.py test
 deploy:
