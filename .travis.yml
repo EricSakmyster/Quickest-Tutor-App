@@ -5,7 +5,6 @@ python:
   - '3.8'
 install:
   - pip install django-heroku
-  - pip install allauth
   - pip install -r requirements-travis.txt
 before_script:
 - psql postgres -c "CREATE USER quickesttutor WITH PASSWORD 'qt3';"
