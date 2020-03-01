@@ -7,7 +7,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     </head>
     
-    <body>
+    <body style = "background-color: gray">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <a class="navbar-brand" href="#">Quickest Tutor</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,5 +30,50 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     </body>
+    <form>
+        <div class = "col-sm-3">
+        <div class="form-group">
+            <label for="username">Name</label>
+            <input type="text" class="form-control" id="username">
+        </div>
+        <div class="form-group">
+            <label for="useryear">Year</label>
+            <select class="form-control" id="useryear">
+                <option>1th</option>
+                <option>2th</option>
+                <option>3th</option>
+                <option>4th</option>
+                <option>5th</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="major">Major</label>
+            <input type="text" class="form-control" id="major">
+        </div>
+        <div class="form-group">
+            <label for="classes">Classes Taken</label>
+            <textarea class="form-control" id="classes" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Info</button>
+        
+        </div>
+        
+        <div class="form-group col-sm-7">
+            <label for="userpassword">Password</label>
+            <div class="form-row">
+                <div class="col">
+                    <input type="password" class="form-control" id="userpassword">
+                </div>
+                <div class="col">
+                    <input type="password" class="form-control" id="userpassword" placeholder="Repeat Password">
+                </div>
+            </div>
+            <div class="form-group">
+            <button type="submit" class="btn btn-primary">Update Password</button>
+            </div>
+        </div>
+        
+    </form>
+    
 </html>
 
