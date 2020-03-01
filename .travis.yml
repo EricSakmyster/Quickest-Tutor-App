@@ -4,12 +4,13 @@ language: python
 python:
   - '3.8'
 install:
-  - pip install django-heroku
   - pip install -r requirements-travis.txt
-#before_script:
-#  - psql -c "CREATE DATABASE tutordatabase"
-#  - psql -c "CREATE USER quickesttutor WITH PASSWORD 'qt3';" -U postgres
-#  - psql \c tutordatabase
+before_script:
+- psql postgres -c "CREATE USER quickesttutor WITH PASSWORD 'qt3';"
+- psql postgres -c "CREATE DATABASE tutordatabase WITH OWNER quickesttutor;"
+- psql postgres -c "ALTER USER quickesttutor SUPERUSER CREATEROLE CREATEDB REPLICATION;"
+- python manage.py makemigrations
+- python manage.py migrate
 script:
 - python manage.py test
 deploy:
