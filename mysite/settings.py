@@ -94,7 +94,7 @@ DATABASES = {
         'PASSWORD': 'qt3',
         'HOST': 'localhost',
         'PORT': '5432',
-    }
+}
 }
 
 
