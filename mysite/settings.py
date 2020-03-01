@@ -88,9 +88,9 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': '',
+        'NAME': 'tutordatabase',
         'USER': '',
-        'PASSWORD': 'qt3',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '5432',
     }
