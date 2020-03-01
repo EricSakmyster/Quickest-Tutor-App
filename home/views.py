@@ -8,7 +8,7 @@ def index(request):
     return HttpResponse("Welcome to the Tutor App!")
 
 def signup(request):
-    return HttpResponse("Welcome to the Signup Page")
+    return render(request, 'home/index.html')
 
 def profile(request):
     return render(request, 'home/studentProfile.html')
