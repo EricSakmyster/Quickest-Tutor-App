@@ -79,8 +79,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'tutordatabase',                      
-        'USER': '',
-        'PASSWORD': '',
+        'USER': 'quickesttutor',
+        'PASSWORD': 'qt3',
         'HOST': 'localhost',
         'PORT': '5432',
     }
