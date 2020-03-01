@@ -13,11 +13,11 @@ def signup(request):
 def profile(request):
     return render(request, 'home/studentProfile.html')
 
-def schedule(request):
-    return HttpResponse("Student Tab Schedule")
+def studentSchedule(request):
+    return render(request, 'home/studentSchedule.html')
 
 def tutorsearch(request):
-    return render(request, 'home/student/tutorSearch.html')
+    return render(request, 'home/tutorSearch.html')
 
 def tutorProfile(request):
     return HttpResponse("Tutor Tab Profile")
