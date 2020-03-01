@@ -1,17 +1,24 @@
 services:
-  - postgresql
+- postgresql
 language: python
 python:
-  - '3.8'
+- '3.8'
 install:
-  - pip install django-heroku
-  - pip install -r requirements-travis.txt
+- pip install django-heroku
+- pip install django-allauth
+- pip install -r requirements-travis.txt
+before_script:
+- psql postgres -c "CREATE USER quickesttutor WITH PASSWORD 'qt3';"
+- psql postgres -c "CREATE DATABASE tutordatabase WITH OWNER quickesttutor;"
+- psql postgres -c "ALTER USER quickesttutor SUPERUSER CREATEROLE CREATEDB REPLICATION;"
+- python manage.py makemigrations
+- python manage.py migrate
 script:
 - python manage.py test
 deploy:
   provider: heroku
-  api_key: 
-    secure: Mc2Ye0N/vP4W4WcgPu5Y6ZF6yqoiz5mEgcdB6sPGUWJQBO1ZHgulrbD9nmQ/k5kf+kwzgqTZ1w4oLzVotmnwq86aUWKy4MQMdBxrp4Mf2a/JF0V/Z4K3LrzzMtoZjmlODMVSLPUKNNWlnJ1gW0BKoG2axOODtQON+/ixXGMHrKvRy4cOs1aG5K0a3oBcdd+sJhCaeXFpXiQvAchRfJoLyCJzRxefIQ4Nm4c4rGPwditxbT+4ibIVRkA07dS4bmB+LMKy+1y3pjk7qh1ZMH9jUUkGi4muMtA+F8GiLmrvSy0mIkvi7NBD456HEdrM6cpOm89J0RmJe2lkgmoIMO+Hj7z/szNaLzG3CBfIr7ltfw2LF1g+Y+STkNz6YfwdD+YFntNXRSIox34is2l8oD1Qvaxe8GXut9V2eJflJEgVbr+cL0CXWn8c8oa2LipdmndNoTGYHI+cJvX6J2zieFVJdvLkZqwez1OFIxSicWsoSd3/LSkdB7748xA1Unyfg0duQfPLQ0iAVpooGWg6X6oIfVv4Mv1AmFDDAy/0dsCqDfKl8FAMEdF9MJ5+xcP3vD7PSZC7TOsLSajQuUdsOCMsMGTnmSTzKtZ+jc3/P8IQeGPP72pJhyxAngQTwMiVlEilig63wr8DCbNp6cx/JGeyKcp1eTI90KH91/66sva1bcw= 
+  api_key:
+    secure: Pxzl9UlYhcJVHIjPogMOytIEpHExNJkFADrLSl95YcAKLqEw+IUQNKhDFClqRAtnFxPUsSwIz25SGRy71YZ6tpt2VXWhQqAG5ZdFgcv/UnsxQJsoRFn9GQxg92aOJOcHs91IsZjXXZ5DNXWQt77VjuhHf/6HoDWo4Q7vNO4hJcBGZLp0JO6Js0NEOdWxP1gdt/ap3FmD7z+WN1noy4aSNEjLd3cLV3xA/4ClmJquMVfOYnRrYuxolUmzyawocTHiDrykRQCNMK358KxjoPjoTkkck4wyuVcALLwf0FoX7n/G5fMxtB8t15Mrcz6N4A+9U+MXmvDFCIIQ4TqzAn0rPZsQHJQl3cpOWTI58ylYDlPm4S+aKlP+R4SZc/zcG7i/NIvajphTGoQ8ml40nYx478fSPWrb5cxpn+Kt7n4uo/RyaKiaXib9QbUaFVayQHFvXE9fDcl1lrB1fS/53HxQ3ZW2sXtlzTmWnw7MAizclmjV3vGGGqTTu79cwydqr24dtyQdfysEMTWfiV0HSeOZ/YxT4FQH/xOAfyHw+uDDkSpqs4B9Y2yvPPWsG3ml2qvhV6E3Msa0Vo8UxhDfg9/feyZHI6Ig2vnKYqchX++CifC6IBBwR0wMyBrmCxJBCngd3uapN0UofVkBiTJfJ4vaFi6BxPUiDxJ8W5NuD2E/R1g=
   app: quickest-tutor-103
   on:
     repo: uva-cs3240-s20/project-103-quickesttutor
