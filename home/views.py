@@ -17,7 +17,7 @@ def schedule(request):
     return HttpResponse("Student Tab Schedule")
 
 def tutorsearch(request):
-    return HttpResponse("Student Tab Tutor Search")
+    return render(request, 'home/student/tutorSearch.html')
 
 def tutorProfile(request):
     return HttpResponse("Tutor Tab Profile")
