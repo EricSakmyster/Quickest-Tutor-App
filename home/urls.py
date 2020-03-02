@@ -4,10 +4,11 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name='index'),
+    path('home', views.home, name='index'),
     path('signin', views.signin, name='signin'),
-    path('student/profile', views.profile, name='profile'),
-    path('student/schedule', views.studentSchedule, name='schedule'),
-    path('student/tutorsearch', views.tutorsearch, name='tutorsearch'),
-    path('tutor/profile', views.tutorProfile, name='tutorProfile'),
-    path('tutor/schedule', views.tutorSchedule, name='tutorSchedule'),
+    path('studentProfile', views.profile, name='profile'),
+    path('studentSchedule', views.studentSchedule, name='schedule'),
+    path('studentTutorSearch', views.tutorsearch, name='tutorsearch'),
+    path('tutorProfile', views.tutorProfile, name='tutorProfile'),
+    path('tutorSchedule', views.tutorSchedule, name='tutorSchedule'),
 ]
