@@ -20,7 +20,7 @@ def tutorsearch(request):
     return render(request, 'home/tutorSearch.html')
 
 def tutorProfile(request):
-    return HttpResponse("Tutor Tab Profile")
+    return render(request, 'home/tutorProfile.html')
 
 def tutorSchedule(request):
     return render(request, 'home/baseTutor.html')
