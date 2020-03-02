@@ -1,5 +1,10 @@
 body{
-    background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -ms-flex-pack: center;
+    -webkit-box-pack: center;
+    justify-content: center;
 }
 .emp-profile{
     padding: 3%;
@@ -12,7 +17,7 @@ body{
     text-align: center;
 }
 .profile-img img{
-    width: 70%;
+    width: 60%;
     height: 100%;
 }
 .profile-img .file {
