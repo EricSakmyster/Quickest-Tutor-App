@@ -4,11 +4,11 @@ from django.http import HttpResponse
 
 # Create your views here.
 
-def index(request):
-    return HttpResponse("Welcome to the Tutor App!")
+def home(request):
+    return render(request, 'home/home.html')
 
-def signup(request):
-    return render(request, 'home/index.html')
+def signin(request):
+    return render(request, 'home/signIn.html')
 
 def profile(request):
     return render(request, 'home/studentProfile.html')
