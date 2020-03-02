@@ -33,12 +33,23 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'home.apps.TutorConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
+    # allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    # providers
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -78,12 +89,12 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'tutordatabase',                      
+        'NAME': 'tutordatabase',
         'USER': 'quickesttutor',
         'PASSWORD': 'qt3',
         'HOST': 'localhost',
         'PORT': '5432',
-    }
+}
 }
 
 
@@ -134,5 +145,9 @@ DATABASES = {
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = "/home/signup"
 
 django_heroku.settings(locals())

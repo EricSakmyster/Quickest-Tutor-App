@@ -8,16 +8,16 @@ def index(request):
     return HttpResponse("Welcome to the Tutor App!")
 
 def signup(request):
-    return HttpResponse("Welcome to the Signup Page")
+    return render(request, 'home/index.html')
 
 def profile(request):
     return render(request, 'home/studentProfile.html')
 
-def schedule(request):
-    return HttpResponse("Student Tab Schedule")
+def studentSchedule(request):
+    return render(request, 'home/studentSchedule.html')
 
 def tutorsearch(request):
-    return HttpResponse("Student Tab Tutor Search")
+    return render(request, 'home/tutorSearch.html')
 
 def tutorProfile(request):
     return HttpResponse("Tutor Tab Profile")
