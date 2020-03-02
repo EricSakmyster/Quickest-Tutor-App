@@ -130,6 +130,16 @@ USE_L10N = True
 
 USE_TZ = True
 
+DATABASES = {
+    'default':{
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'tutordatabase',
+        'USER': 'quickesttutor',
+        'PASSWORD': 'qt3',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
@@ -144,6 +154,6 @@ STATICFILES_DIRS = [
 
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = "/home/signin"
+LOGIN_REDIRECT_URL = "/home"
 
 django_heroku.settings(locals())
