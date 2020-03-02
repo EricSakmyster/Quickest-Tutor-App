@@ -144,6 +144,6 @@ STATICFILES_DIRS = [
 
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = "/home/signup"
+LOGIN_REDIRECT_URL = "/home/signin"
 
 django_heroku.settings(locals())
