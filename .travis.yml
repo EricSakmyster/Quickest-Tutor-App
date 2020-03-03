@@ -18,7 +18,7 @@ script:
 deploy:
   provider: heroku
   api_key:
-    secure: 55a72b8e-145a-4035-8961-0eed4f5c2b14
+    secure: 32ae2e88-7a88-4152-b2f0-c33c820ecd01
   app: quickest-tutor-103
   on:
     repo: uva-cs3240-s20/project-103-quickesttutor
