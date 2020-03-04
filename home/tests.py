@@ -2,21 +2,21 @@ from django.test import TestCase
 
 # Create your tests here.
 class StudentTab(TestCase):
-    def updateSProfile(self):
+    def test_updateSProfile(self):
         self.assertEqual(1,1)
 
-    def updateSSchedule(self):
+    def test_updateSSchedule(self):
         self.assertEqual(1,1)
 
-    def searchTutor(self):
+    def test_searchTutor(self):
         self.assertEqual(1, 1)
 
-    def filterTutors(self):
+    def test_filterTutors(self):
         self.assertEqual(1,1)
 
 class TutorTab(TestCase):
-    def updateTProfile(self):
+    def test_updateTProfile(self):
         self.assertEqual(1,1)
 
-    def updateTSchedule(self):
+    def test_updateTSchedule(self):
         self.assertEqual(1,1)
