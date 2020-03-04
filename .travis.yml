@@ -18,7 +18,7 @@ script:
 deploy:
   provider: heroku
   api_key:
-    secure: 32ae2e88-7a88-4152-b2f0-c33c820ecd01
+    secure: Ed1vMFks6VwpQyMZoFCFsGPSA6RyzApiVva68x4TvKMlyXxFfn48wMpjh0JnmtY0eFWUxJZ8VyFBG2ifM76hdZN8DNZwvysInnbAj+rBwNumIGzvpg/6U4WZI5Uhfvc3xM0sJyrlWLxb1eWD8rMFhOiG8y0gxcOqzjzT0bKl3iEKanLlge3A2uOGtWYVinL8E0NucGlGueigcM+wUppbQLol+aOggpVmtFEPmoejl/fvxheHeqNeJvN+/dkem1+Fktrb4mDddarr8zZduwQa5DRjjvmY/y/PW2XeN9qYp8HCrmFr/3sjHHzO6FVus+B/8v7ck0M+Zy0biwHcLVzSfITV71MeMWnDrTILHBBhugi4P/ocqOfKd1SS9hLdC3WjxAR4DNbVjUjSpm49vFNpLUyJXdXLWmpufRoEu1Mooo8yP0vUJdYrXT14buAPDO28o87Ac2O+a2ak/xxnaRsmXU8RCoSJLUIOgxjmopjGc3bHn0AW0+rPolzHphiU/+3+LGmTY7+KRqQ7xL/vMKIT8xVE67oZJrEqG06/CMULpQONCNOZ5xQtV3AK09sNA5WBSUfWbtAWpZ3eb8J5IYEafJH9m1VxWM84sZfcBkUZAkxyXhjC0bgvLZj8QJMhbm2Oqw8sI9H9RsmMaVG48fdbe75QSR5nG70Udmr5kyD0YuQ=
   app: quickest-tutor-103
   on:
     repo: uva-cs3240-s20/project-103-quickesttutor
