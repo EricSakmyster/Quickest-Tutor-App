@@ -3,7 +3,9 @@
     <head>
         <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-                <title>Bootstrap 4 Navbar with Search Form</title>
+                <title>Tutor Search</title>
+                <script src='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js'></script>
+                <link href='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css' rel='stylesheet' />
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
                     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
                         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -46,15 +48,20 @@
             <div class="card-body p-5">
                 <center>
                 
-                    <h5> Search for Tutors </h5>
-                
-                    <button type="button" class="btn btn-dark">Find Tutors Near Me</button>
-                    
-                    
-                    
-                    
+                    <h5> <u>Search for Tutors Near You!</u></h5>
                 </center>
-                <div style="height: 700px"></div>
+                    <div id='map' width="100%" style='height:600px'></div>
+                    <script>
+                     mapboxgl.accessToken = 'pk.eyJ1IjoiZXJpY3Nha215c3RlciIsImEiOiJjazhiMXlxZmUwMWN0M2VxZWp2cGIwcGE3In0.LOR2DgUVncLrbVuaPtD5QA';
+                     var map = new mapboxgl.Map({
+                      container: 'map',
+                      style: 'mapbox://styles/mapbox/streets-v10',
+                    center: [-78.4850, 38.0293],
+                    zoom: 13
+                     });
+                    </script>
+                
+                <div style="height: 400px"></div>
             </div>
             </div>
         </div>
