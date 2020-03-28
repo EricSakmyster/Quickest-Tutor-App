@@ -10,6 +10,9 @@ def home(request):
 def signin(request):
     return render(request, 'home/signIn.html')
 
+def welcome(request):
+    return render(request, 'home/welcome.html')
+
 def profile(request):
     return render(request, 'home/studentProfile.html')
 
