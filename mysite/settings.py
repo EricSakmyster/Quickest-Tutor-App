@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
 
     # providers
-    'allauth.socialaccount.providers.facebook',
+    #'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
 ]
 
@@ -154,6 +154,6 @@ STATICFILES_DIRS = [
 
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = "/home"
+LOGIN_REDIRECT_URL = "/welcome"
 
 django_heroku.settings(locals())

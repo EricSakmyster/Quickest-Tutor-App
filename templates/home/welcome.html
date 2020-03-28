@@ -1,4 +1,6 @@
 {% load static %}
+{% load socialaccount %}
+{% providers_media_js %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,20 +25,27 @@
 
     <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
       <header class="masthead mb-auto">
+        <div class="inner">
+          <h3 class="masthead-brand">QuickestTutor</h3>
+          <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link active" href="home/">Home</a>
+            <a class="nav-link" href="studentProfile">My Profile</a>
+              <a class="nav-link" href="studentSchedule">My Schedule</a>
+              <a class="nav-link" href="studentTutorSearch">Tutor Search</a>
+          </nav>
+        </div>
       </header>
 
       <main role="main" class="inner cover">
-        <h1 class="cover-heading">Hi, Welcome to QuickestTutor!</h1>
-        <p class="lead">With QuickestTutor you can find nearby tutors with ease. Don't worry about the hassle of appointments, scheduling, prices, etc. We do all of that for you.</p>
-        <p class="lead">
-          <a href="signin" class="btn btn-lg btn-secondary">Sign In</a>
+        <h1 class="cover-heading">Hi {{user}}!</h1>
+        <p class="lead">Please use the tabs above to navigate the site or the button below if you are a tutor</p>
         </p>
       </main>
 
-      <footer class="mastfoot mt-auto">
-        <div class="inner">
-          <p><a href=	https://github.com/uva-cs3240-s20/project-103-quickesttutor>Ⓒ /uva-cs3240-s20/project-103-quickesttutor</a></p>
-        </div>
+        <footer class="mastfoot mt-auto">
+            <div>
+                <div>
+                    <a href="tutorProfile" class="btn btn-lg btn-secondary">I am a tutor</a>
       </footer>
     </div>
 
