@@ -1,86 +1,102 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-                <title>Student Schedule</title>
-                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-                    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-                        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-                        <style type="text/css">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Student Schedule</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style type="text/css">
                             .bs-example{
                                 margin: 20px;
                             }
-                        </style>
-    </head>
-    <body style = "background-color: gray;">
-        <div class="bs-example">
-            <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-                <a href="#" class="navbar-brand">Quickest Tutor</a>
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav">
-                        <a href="home" class="nav-item nav-link active">Home</a>
-                        <a href="studentProfile" class="nav-item nav-link">Student</a>
-                        <a href="tutorSchedule" class="nav-item nav-link">Tutor</a>
-                    </div>
-                    <form class="form-inline ml-auto">
-                        <input type="text" class="form-control mr-sm-2" placeholder="Search">
-                            <button type="submit" class="btn btn-outline-light">Search</button>
-                            </form>
-                </div>
-            </nav>
-        </div>
-        <center>
-            
-            <h5> Schedule of your Upcoming Tutor Sessions </h5>
-            <div django-app="TaskManager">        
-                <div class="container">
-                        <div class="content">
-                        <form action="" method="post">
-                        {% csrf_token %} <!-- csrf token for basic security -->
-                            <div class="inputContainer">
-                                
-                                <input type="text" style="width: 300px;" id="description" class="taskName" placeholder="What do you need to be tutored for?" name="description" required>
-                                
-                                <label for="description">Description</label>
-                            </div>
-                            <div class="inputContainer">
-                                <input type="text" id="class" class="taskName" placeholder="What Class?" name="class" required>
-                                <label for="description">Course Mneomonic and Number</label>
-                            </div>
-                            <div class="inputContainer half last right">
-                                <input type="date" id="date" class="Tutor Date" name="date">
-                                <label for="date">Date of Tutoring</label>
-                            </div>
-                            <div class="row">
-                                <div class="col align-self-center">
-                                <button class="taskAdd" name="taskAdd" type="submit"><i class="fa fa-plus icon"></i>Add Session</button>
-                                <button class="taskDelete" name="taskDelete" formnovalidate="" type="submit" onclick="$('input#sublist').click();"><i class="fa fa-trash-o icon"></i>Cancel Session</button>
-                                </div>
-                            </div>
-                        <ul class="taskList">
-                        {% for todo in todos %} <!-- django template lang - for loop -->
-                            <li class="taskItem">
-                                <input type="checkbox" class="taskCheckbox" name="checkedbox" id="{{ todo.id }}" value="{{ todo.id }}">
-                                <label for="{{ todo.id }}"><span class="complete-">{{ todo.title }}</span></label>
-                                <span class="category-{{ todo.category }}">{{ todo.category }}</span>
-                                <strong class="taskDate"><i class="fa fa-calendar"></i>{{ todo.created }} - {{ todo.due_date }}</strong>
-                            </li>
-                        {% endfor %}
-                        </ul><!-- taskList -->
-                        </form>
-                        </div><!-- content -->
-            </div><!-- container -->
+
+
+    </style>
+</head>
+<body style="background-color: gray;">
+<div class="bs-example">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a href="#" class="navbar-brand">Quickest Tutor</a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav">
+                <a href="home" class="nav-item nav-link active">Home</a>
+                <a href="studentProfile" class="nav-item nav-link">Student</a>
+                <a href="tutorSchedule" class="nav-item nav-link">Tutor</a>
             </div>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-                    
- 
-        </center>
-    </body>
+            <form class="form-inline ml-auto">
+                <input type="text" class="form-control mr-sm-2" placeholder="Search">
+                <button type="submit" class="btn btn-outline-light">Search</button>
+            </form>
+        </div>
+    </nav>
+</div>
+<center>
+
+    <h5> Schedule of your Upcoming Tutor Sessions </h5>
+
+    <div django-app="TaskManager">
+        <div class="container">
+            <div class="content">
+                <form action="" method="post">
+                    {% csrf_token %} <!-- csrf token for basic security -->
+                    <div class="inputContainer">
+                        <input type="text" style="width: 300px;" id="description" class="taskName"
+                               placeholder="What do you need to be tutored for?"
+                               name="description" required>
+                        <label for="description">Description</label>
+                    </div>
+                    <div class="inputContainer half last">
+                        <i class="fa fa-caret-down selectArrow"></i>
+                        <select id="category" class="taskCategory" name="category_select">
+                            <option class="disabled" value="">Choose a Tutor</option>
+                            {% for category in categories %}
+                            <option class="" value="{{ category.name }}">{{ category.name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                        <label for="category">Tutor</label>
+                    </div>
+                    <div class="inputContainer half last right">
+                        <input type="date" id="dueDate" class="taskDate" name="date">
+                        <label for="dueDate">Tutor Session Date</label>
+                    </div>
+                    <div class="row">
+                        <div class="col align-self-center">
+                            <button class="taskAdd" name="taskAdd" type="submit"><i class="fa fa-plus icon"></i>Add
+                                Session
+                            </button>
+                            <button class="taskDelete" name="taskDelete" formnovalidate="" type="submit"
+                                    onclick="$('input#sublist').click();"><i class="fa fa-trash-o icon"></i>Cancel
+                                Session
+                            </button>
+                        </div>
+                    </div>
+                    <ul class="taskList">
+                        {% for todo in todos %} <!-- django template lang - for loop -->
+                        <li class="taskItem">
+                            <input type="checkbox" class="taskCheckbox" name="checkedbox" id="{{ todo.id }}"
+                                   value="{{ todo.id }}">
+                            <label for="{{ todo.id }}"><span class="complete-">{{ todo.title }}</span></label>
+                            <span class="category-{{ todo.category }}">{{ todo.category }}</span>
+                            <strong class="taskDate"><i class="fa fa-calendar"></i>{{ todo.due_date }}</strong>
+                        </li>
+                        {% endfor %}
+                    </ul><!-- taskList -->
+                </form>
+            </div><!-- content -->
+        </div><!-- container -->
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+</center>
+</body>
 </html>
