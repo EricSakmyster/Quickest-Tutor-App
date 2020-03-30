@@ -20,18 +20,32 @@
 
     <!-- Custom styles for this template -->
     <link href="{% static 'css/cover.css' %}" rel="stylesheet">
+        <style type="text/css">
+            .search-margin{
+                margin-left: 100px;
+            }
+        .bottom-mar{
+            margin-bottom: 100px;
+        }
+        </style>
   </head>
 <body class="text-center">
 
-    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+    <div class="d-flex h-100 w-100 p-3 mx-auto flex-column">
       <header class="masthead mb-auto">
         <div class="inner">
           <h3 class="masthead-brand">QuickestTutor</h3>
           <nav class="nav nav-masthead justify-content-center">
             <a class="nav-link active" href="home/">Home</a>
             <a class="nav-link" href="studentProfile">My Profile</a>
+            <a class="nav-link" href="tutorProfile">Tutor Profile</a>
               <a class="nav-link" href="studentSchedule">My Schedule</a>
+              <a class="nav-link" href="tutorSchedule">Tutor Schedule</a>
               <a class="nav-link" href="studentTutorSearch">Tutor Search</a>
+              <form class="form-inline ml-auto">
+                  <input type="text" class="form-control mr-sm-2 search-margin" placeholder="Search">
+                  <button type="submit" class="btn btn-outline-light">Search</button>
+            </form>
           </nav>
         </div>
       </header>
@@ -45,7 +59,7 @@
         <footer class="mastfoot mt-auto">
             <div>
                 <div>
-                    <a href="tutorProfile" class="btn btn-lg btn-secondary">I am a tutor</a>
+                    <a href="tutorProfile" class="btn btn-dark bottom-mar">I am a tutor</a>
       </footer>
     </div>
 
