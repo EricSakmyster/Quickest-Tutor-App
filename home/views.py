@@ -18,6 +18,9 @@ def welcome(request):
 def profile(request):
     return render(request, 'home/studentProfile.html')
 
+def editSP(request):
+    return render(request, 'home/editSP.html')
+
 def studentSchedule(request):
     return render(request, 'home/studentSchedule.html')
 
