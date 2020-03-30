@@ -27,6 +27,9 @@ def tutorsearch(request):
 def tutorProfile(request):
     return render(request, 'home/tutorProfile.html')
 
+def editTP(request):
+    return render(request, 'home/editTP.html')
+
 def tutorSchedule(request):
     return render(request, 'home/baseTutor.html')
 
