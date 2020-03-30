@@ -24,6 +24,9 @@ class WelcomeView(generic.TemplateView):
 def profile(request):
     return render(request, 'home/studentProfile.html')
 
+def editSP(request):
+    return render(request, 'home/editSP.html')
+
 def studentSchedule(request):
     return render(request, 'home/studentSchedule.html')
 
@@ -32,6 +35,9 @@ def tutorsearch(request):
 
 def tutorProfile(request):
     return render(request, 'home/tutorProfile.html')
+
+def editTP(request):
+    return render(request, 'home/editTP.html')
 
 def tutorSchedule(request):
     return render(request, 'home/baseTutor.html')
