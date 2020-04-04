@@ -135,6 +135,8 @@ USE_TZ = True
 
 AUTH_USER_MODEL = 'home.User'
 
+ACCOUNT_LOGOUT_ON_GET = True
+
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
