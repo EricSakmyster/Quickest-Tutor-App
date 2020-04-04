@@ -130,19 +130,10 @@ USE_L10N = True
 
 USE_TZ = True
 
-DATABASES = {
-    'default':{
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'tutordatabase',
-        'USER': 'quickesttutor',
-        'PASSWORD': 'qt3',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
+
+AUTH_USER_MODEL = 'home.User'
 
 STATIC_URL = '/static/'
 
