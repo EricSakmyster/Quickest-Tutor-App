@@ -4,18 +4,17 @@ from django.urls import reverse
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
-'''
+
 class User(AbstractUser):
 
   first_name=models.TextField(max_length=20)
   last_name=models.TextField(max_length=30)
-  email=models.EmailField(('email address'), unique=True)
 
 
 
   def __str__(self):
     return self.username
-'''
+
 class Student(models.Model):
   year=models.IntegerField(default="0000")
 

@@ -2,8 +2,7 @@ from django.shortcuts import render
 from django.views import generic
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
-from .models import TodoList, Category
-#User, Student, Tutor
+from .models import TodoList, Category, User, Student, Tutor
 
 # Create your views here.
 
@@ -12,15 +11,12 @@ def home(request):
 
 def signin(request):
     return render(request, 'home/signIn.html')
-def welcome(request):
-    return render(request, 'home/welcome.html')
 
-'''
 class WelcomeView(generic.TemplateView):
     model=User
     template_name= 'home/welcome.html'
     context_object_name= 'user'
-'''
+
 def profile(request):
     return render(request, 'home/studentProfile.html')
 
