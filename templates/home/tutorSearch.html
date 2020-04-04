@@ -32,7 +32,8 @@
     </head>
     
     <body>
-        <!-- Page Content -->
+        <!-- Page Content 
+        {% if user.is_authenticated %} -->
         <div class="d-flex w-100 h-50 p-3 mx-auto flex-column">
             <header class="masthead mb-auto">
                 <div class="inner">
@@ -74,5 +75,8 @@
             </div>
         </div>
         </div>
+        <!-- {% else %}
+        <meta http-equiv="refresh" content="0; URL=home">
+        {% endif %} -->
     </body>
 </html>
