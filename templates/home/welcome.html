@@ -30,7 +30,7 @@
         </style>
   </head>
 <body class="text-center">
-
+    {% if user.is_authenticated %}
     <div class="d-flex h-100 w-100 p-3 mx-auto flex-column">
       <header class="masthead mb-auto">
         <div class="inner">
@@ -51,7 +51,7 @@
       </header>
 
       <main role="main" class="inner cover">
-        <h1 class="cover-heading">Hi {{user}}!</h1>
+        <h1 class="cover-heading">Hi {{user.username}}!</h1>
         <p class="lead">Please use the tabs above to navigate the site or the button below if you are a tutor</p>
         </p>
       </main>
@@ -71,7 +71,8 @@
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="../../assets/js/vendor/popper.min.js"></script>
     <script src="../../dist/js/bootstrap.min.js"></script>
-
-
+    {% else %}
+    <meta http-equiv="refresh" content="0; URL=home">
+    {% endif %}
 </body>
 </html>

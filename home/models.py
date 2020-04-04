@@ -2,19 +2,40 @@ import datetime
 from django.urls import reverse
 
 from django.db import models
-
+from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
 
+class User(AbstractUser):
 
-# class Event(models.Model):
-#   title = models.CharField(max_length=200)
-#   start_time = models.DateTimeField(default=datetime.date.today)
-# def __str__(self):
-#   return self.title
-# @property
-# def get_html_url(self):
-#   url = reverse('event_edit', args=(self.id,))
-#   return f'<p>{self.title}</p><a href="{url}">edit</a>'
+  first_name=models.TextField(max_length=20)
+  last_name=models.TextField(max_length=30)
+
+
+
+  def __str__(self):
+    return self.username
+
+class Student(models.Model):
+  year=models.IntegerField(default="0000")
+
+
+  def __str__(self):
+    return self.year
+
+class Tutor(models.Model):
+  year=models.IntegerField(default="0000")
+  def __str__(self):
+    return self.year
+
+class Event(models.Model):
+  title = models.CharField(max_length=200)
+  start_time = models.DateTimeField(default=datetime.date.today)
+def __str__(self):
+  return self.title
+@property
+def get_html_url(self):
+  url = reverse('event_edit', args=(self.id,))
+  return f'<p>{self.title}</p><a href="{url}">edit</a>'
 
 class Category(models.Model): # The Category table name that inherits models.Model
     name = models.CharField(max_length=100) #Like a varchar
