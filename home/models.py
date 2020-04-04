@@ -9,9 +9,10 @@ from django.utils import timezone
 class User(AbstractUser):
     first_name = models.TextField(max_length=20)
     last_name = models.TextField(max_length=30)
+    email = models.EmailField(max_length=50)
 
     def __str__(self):
-        return self.last_name
+        return self.first_name
 
 
 class Student(models.Model):
