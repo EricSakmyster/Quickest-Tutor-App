@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views import generic
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+
+
 from .models import TodoList, Category, User, Student, Tutor
 
 
