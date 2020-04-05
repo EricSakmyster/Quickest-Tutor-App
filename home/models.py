@@ -16,14 +16,20 @@ class User(AbstractUser):
 
 
 class Student(models.Model):
-    year = models.IntegerField(default="0000")
+    syear = models.CharField(max_length=50)
+    spn = models.CharField(max_length=10)
+    ssubjects = models.TextField(max_length=500)
+    smajors = models.TextField(max_length=500)
 
     def __str__(self):
         return self.year
 
-
 class Tutor(models.Model):
-    year = models.IntegerField(default="0000")
+    tpn = models.CharField(max_length=10)
+    tsubjects = models.TextField(max_length=500)
+    tmajors = models.TextField(max_length=500)
+    texp = models.TextField(max_length=500)
+    trate = models.IntegerField(default=10)
 
     def __str__(self):
         return self.year
