@@ -39,8 +39,10 @@ def tutorsearch(request):
     return render(request, 'home/tutorSearch.html')
 
 
-def tutorProfile(request):
-    return render(request, 'home/tutorProfile.html')
+class tutorProfile(generic.TemplateView):
+    model = Tutor
+    template_name = 'home/tutorProfile.html'
+    context_object_name = 'thisTutor'
 
 
 def editTP(request):
