@@ -23,6 +23,10 @@ class Student(models.Model):
 
 class Tutor(models.Model):
     year = models.IntegerField(default=0)
+    tpn = models.CharField(max_length=10, default='0000000000')
+    tsubjects = models.TextField(max_length=500, default='none')
+    tmajors = models.TextField(max_length=500, default='none')
+    texp = models.TextField(max_length=500,default='none')
 
     def __str__(self):
         return self.year
