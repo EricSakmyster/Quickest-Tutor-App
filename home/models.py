@@ -9,27 +9,34 @@ from django.utils import timezone
 class User(AbstractUser):
     first_name = models.TextField(max_length=20)
     last_name = models.TextField(max_length=30)
-    email = models.EmailField(max_length=50)
+    year = models.IntegerField(default=0)
+    tsubjects = models.TextField(max_length=500, default='none')
+    tmajors = models.TextField(max_length=500, default='none')
+    texp = models.TextField(max_length=500,default='none')
+    is_active = models.BooleanField(default = True)
+    phoneNumber = models.IntegerField(default="0000")
+    
+
 
     def __str__(self):
         return self.first_name
 
 
-class Student(models.Model):
-    year = models.IntegerField(default=0)
+# class Student(models.Model):
+#     year = models.IntegerField(default=0)
 
-    def __str__(self):
-        return self.year
+#     def __str__(self):
+#         return self.year
 
-class Tutor(models.Model):
-    year = models.IntegerField(default=0)
-    tpn = models.CharField(max_length=10, default='0000000000')
-    tsubjects = models.TextField(max_length=500, default='none')
-    tmajors = models.TextField(max_length=500, default='none')
-    texp = models.TextField(max_length=500,default='none')
+# class Tutor(models.Model):
+#     year = models.IntegerField(default=0)
+#     tpn = models.CharField(max_length=10, default='0000000000')
+#     tsubjects = models.TextField(max_length=500, default='none')
+#     tmajors = models.TextField(max_length=500, default='none')
+#     texp = models.TextField(max_length=500,default='none')
 
-    def __str__(self):
-        return self.year
+#     def __str__(self):
+#         return self.year
 
 
 class Event(models.Model):
