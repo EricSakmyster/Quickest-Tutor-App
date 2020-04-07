@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 
 
@@ -39,13 +40,27 @@ def tutorsearch(request):
     return render(request, 'home/tutorSearch.html')
 
 
-class tutorProfile(generic.TemplateView):
-    model = Tutor
-    template_name = 'home/tutorProfile.html'
-    context_object_name = 'thisTutor'
+def tutorProfile(request):
+    thisTutor = Tutor.objects.filter(user=request.user)
+    args ={
+        'thisTutor' : thisTutor
+    }
+    return render(request, 'home/tutorProfile.html', args)
+    ##template_name = 'home/tutorProfile.html'
+    ##context_object_name = 'thisTutor'
+
 
 
 def editTP(request):
+    if request.POST:
+        print(request.POST)
+        data = Tutor(tpn=request.POST.get('tpn'), tsubjects=request.POST.get('tsubjects'), texp=request.POST.get('texp'),
+                     trate=request.POST.get('trate'))
+        data.save()
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+    else:
+        pass
+
     return render(request, 'home/editTP.html')
 
 

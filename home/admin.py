@@ -12,7 +12,7 @@ class StudentAdmin(admin.ModelAdmin):
 
 
 class TutorAdmin(admin.ModelAdmin):
-    list_display = ("year",)
+    list_display = ("tpn",)
 
 
 class TodoListAdmin(admin.ModelAdmin):

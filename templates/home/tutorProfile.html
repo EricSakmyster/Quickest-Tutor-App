@@ -94,7 +94,7 @@
                                                 <label>Name</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>{{user.first_name}} {{user.last_name}}<p>
+                                                <p>{{user.first_name}} {{user.last_name}}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -110,7 +110,9 @@
                                                 <label>Phone</label>
                                             </div>
                                             <div class="col-md-6">
-                                                {{thisTutor.tpn}}
+                                                {% for me in thisTutor %}
+                                                    <p>{{me.tpn}}</p>
+                                                {% endfor %}
                                             </div>
                                         </div>
                                         <div class="row">
@@ -118,7 +120,9 @@
                                                 <label>Specialty Subjects</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Math, English</p>
+                                                {% for me in thisTutor %}
+                                                    <p>{{me.tsubjects}}</p>
+                                                {% endfor %}
                                             </div>
                                         </div>
                                         <div class="row">
@@ -126,7 +130,9 @@
                                                 <label>Experience</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>6 months</p>
+                                                {% for me in thisTutor %}
+                                                    <p>{{me.texp}}</p>
+                                                {% endfor %}
                                             </div>
                                         </div>
                                         <div class="row">
@@ -134,7 +140,9 @@
                                                 <label>Hourly Rate</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>20$/hr</p>
+                                                {% for me in thisTutor %}
+                                                    <p>{{me.trate}}</p>
+                                                {% endfor %}
                                             </div>
                                         </div>
                             </div>
