@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 
-from .models import TodoList, Category, User, Student, Tutor
+from .models import TodoList, Category, User
 
 
 # Create your views here.
@@ -40,7 +40,7 @@ def tutorsearch(request):
 
 
 class tutorProfile(generic.TemplateView):
-    model = Tutor
+    model = User
     template_name = 'home/tutorProfile.html'
     context_object_name = 'thisTutor'
 
