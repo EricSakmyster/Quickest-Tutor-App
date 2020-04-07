@@ -7,29 +7,15 @@ from django.utils import timezone
 
 
 class User(AbstractUser):
-    first_name = models.TextField(max_length=20)
-    last_name = models.TextField(max_length=30)
-    email = models.EmailField(max_length=50)
-
-    def __str__(self):
-        return self.first_name
-
-
-class Student(models.Model):
-    year = models.IntegerField(default=0)
-
-    def __str__(self):
-        return self.year
-
-class Tutor(User):
-    tpn = models.CharField(max_length=10, default='0000000000')
+    year = models.IntegerField(default='0')
+    phone = models.TextField(max_length=20, default='none')
+    classes = models.TextField(max_length=100, default='none')
+    major = models.TextField(max_length=20, default='none')
     tsubjects = models.TextField(max_length=500, default='none')
-    tmajors = models.TextField(max_length=500, default='none')
     texp = models.TextField(max_length=500,default='none')
-    trate = models.TextField(max_length=500,default='none')
-
+    hourlyRate= models.TextField(max_length=20,default='none')
     def __str__(self):
-        return self.tpn
+        return str(self.first_name)+' '+ str(self.last_name)
 
 
 class Event(models.Model):

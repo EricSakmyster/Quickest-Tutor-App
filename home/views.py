@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 
 
-from .models import TodoList, Category, User, Student, Tutor
+from .models import TodoList, Category, User
 
 
 # Create your views here.
@@ -40,15 +40,10 @@ def tutorsearch(request):
     return render(request, 'home/tutorSearch.html')
 
 
-def tutorProfile(request):
-    thisTutor = Tutor.objects.filter(user=request.user)
-    args ={
-        'thisTutor' : thisTutor
-    }
-    return render(request, 'home/tutorProfile.html', args)
-    ##template_name = 'home/tutorProfile.html'
-    ##context_object_name = 'thisTutor'
-
+class tutorProfile(generic.TemplateView):
+    model = User
+    template_name = 'home/tutorProfile.html'
+    context_object_name = 'thisTutor'
 
 
 def editTP(request):
