@@ -99,7 +99,8 @@
                                                 <label>Email</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>example@gmail.com</p>
+                                                <!-- <p>example@gmail.com</p> -->
+                                                <p>{user.email}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -109,9 +110,13 @@
                                             <div class="col-md-6">
                                                 <label>Phone</label>
                                             </div>
+                                            
                                             <div class="col-md-6">
-                                                <input class="form-control" type="text" value="000-000-0000">
+                                            <form action="saveNumber" method="post">
+                                                <input class="form-control" type="text" id="num" placeholder = "000">
+                                            </form>
                                             </div>
+                                        
                                         </div>
                                         <div class="row">
                                             <p> </p>
@@ -143,7 +148,7 @@
                                                 <label>Grade</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <input class="form-control" type="text" value="freshman/sophomore/junior/senior">
+                                                <input class="form-control" type="text" value="{{year}}">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -179,7 +184,10 @@
                                                 <p> </p>
                                             </div>
                                             <div class="col-md-6 ">
-                                                <input type="button" class="btn btn-primary" value="Save Changes">
+                                                <form action="/your-name/" method="post">
+                                                    <input type="button" class="btn btn-primary" name= "saveChanges" value="Save Changes">
+                                                </form>
+                                               
                                                 <span></span>
                                                 <a href="studentProfile" class="btn btn-default ">Cancel</a>
                                             </div>

@@ -9,7 +9,11 @@ from django.utils import timezone
 class User(AbstractUser):
     first_name = models.TextField(max_length=20)
     last_name = models.TextField(max_length=30)
-    email = models.EmailField(max_length=50)
+    # email = models.EmailField(max_length=50)
+    is_active = models.BooleanField(default = True)
+    phoneNumber = models.IntegerField(default="0000")
+    
+
 
     def __str__(self):
         return self.first_name
