@@ -6,7 +6,14 @@ class TutorProfileForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['year','phone', 'tsubjects', 'major', 'texp', 'hourlyRate']
+        fields = ['phone', 'major', 'tsubjects', 'texp', 'hourlyRate']
+        widgets = {
+            'phone': forms.NumberInput(attrs={'class': "form-control"}),
+            'major': forms.TextInput(attrs={'class': "form-control"}),
+            'tsubjects': forms.TextInput(attrs={'class': "form-control"}),
+            'texp': forms.TextInput(attrs={'class': "form-control"}),
+            'hourlyRate': forms.NumberInput(attrs={'class': "form-control"}),
+        }
 
 class StudentProfileForm(forms.ModelForm):
     

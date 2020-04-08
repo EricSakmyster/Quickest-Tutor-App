@@ -29,9 +29,9 @@ def profile(request):
 
 def editSP(request):
     if request.method == "POST":
-        form = StudentProfileForm(request.POST, instance=request.user)
-        if form.is_valid():
-            post = form.save(commit=False)
+        sform = StudentProfileForm(request.POST, instance=request.user)
+        if sform.is_valid():
+            post = sform.save(commit=False)
             post.year = request.user.year
             post.phone = request.user.phone
             post.classes = request.user.classes
@@ -39,8 +39,8 @@ def editSP(request):
             post.save()
             return redirect('profile')
     else:
-        form = StudentProfileForm(instance=request.user)
-    return render(request, 'home/editSP.html', {'form': form})
+        sform = StudentProfileForm(instance=request.user)
+    return render(request, 'home/editSP.html', {'sform': sform})
 
 
 def studentSchedule(request):
@@ -59,10 +59,9 @@ class tutorProfile(generic.TemplateView):
 
 def editTP(request):
     if request.method == "POST":
-        form = TutorProfileForm(request.POST, instance=request.user)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.year = request.user.year
+        tform = TutorProfileForm(request.POST, instance=request.user)
+        if tform.is_valid():
+            post = tform.save(commit=False)
             post.phone = request.user.phone
             post.major = request.user.major
             post.tsubjects = request.user.tsubjects
@@ -71,8 +70,8 @@ def editTP(request):
             post.save()
             return redirect('tutorProfile')
     else:
-        form = TutorProfileForm(instance=request.user)
-    return render(request, 'home/editTP.html', {'form': form})
+        tform = TutorProfileForm(instance=request.user)
+    return render(request, 'home/editTP.html', {'tform': tform})
 
 
 def tutorSchedule(request):

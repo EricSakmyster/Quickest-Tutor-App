@@ -99,18 +99,18 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Email</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{user.emailAddress}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
                                                 <label>Phone</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p>{{user.phone}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Major(s)</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{user.major}}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -134,18 +134,10 @@
                                                 <label>Hourly Rate</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>{{user.hourlyRate}}</p>
+                                                <p>${{user.hourlyRate}}/hr</p>
                                             </div>
                                         </div>
 
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Major</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{user.major}}</p>
-                                            </div>
-                                        </div>
                             </div>
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
