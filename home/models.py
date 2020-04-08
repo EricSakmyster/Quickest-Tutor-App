@@ -8,7 +8,7 @@ from django.utils import timezone
 
 class User(AbstractUser):
     year = models.IntegerField(default='0')
-    phone = models.TextField(max_length=20, default='000-000-0000')
+    phone = models.TextField(max_length=20, default='0000000000')
     classes = models.TextField(max_length=100, default='none')
     major = models.TextField(max_length=20, default='none')
     tsubjects = models.TextField(max_length=500, default='none')

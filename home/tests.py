@@ -31,11 +31,11 @@ class ModelTests(TestCase):
         self.assertTrue('Eric Sakmyster'==testUser.__str__())
     def testDefaultPhone(self):
         testUser=User.objects.get(first_name="Eric")
-        self.assertEquals('000-000-0000', testUser.phone)
+        self.assertEquals('0000000000', testUser.phone)
     def testCreatedPhone(self):
         testUser=User.objects.get(first_name="Eric")
-        testUser.phone='500-555-0000'
-        self.assertEquals('500-555-0000', testUser.phone)
+        testUser.phone='5005550000'
+        self.assertEquals('5005550000', testUser.phone)
     def testYear(self):
         testUser=User.objects.get(first_name="Eric")
         testUser.year='4'
