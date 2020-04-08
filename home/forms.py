@@ -6,4 +6,10 @@ class TutorProfileForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['year','phone', 'subjects', 'majors', 'experience', 'hourlyRate']
+        fields = ['year','phone', 'tsubjects', 'major', 'texp', 'hourlyRate']
+
+class StudentProfileForm(forms.ModelForm):
+    
+    class Meta:
+        model = User
+        fields = ['year','phone', 'major',]
