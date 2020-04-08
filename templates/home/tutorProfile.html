@@ -102,7 +102,7 @@
                                                 <label>Email</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>{{user.email}}</p>
+                                                <p>{{user.emailAddress}}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -110,7 +110,7 @@
                                                 <label>Phone</label>
                                             </div>
                                             <div class="col-md-6">
-                                                {{thisTutor.tpn}}
+                                                <p>{{user.phone}}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -118,7 +118,7 @@
                                                 <label>Specialty Subjects</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Math, English</p>
+                                                <p>{{user.tsubjects}}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -126,7 +126,7 @@
                                                 <label>Experience</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>6 months</p>
+                                                <p>{{user.texp}}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -134,7 +134,16 @@
                                                 <label>Hourly Rate</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>20$/hr</p>
+                                                <p>{{user.hourlyRate}}</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Major</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{user.major}}</p>
                                             </div>
                                         </div>
                             </div>

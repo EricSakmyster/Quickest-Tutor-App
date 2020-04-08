@@ -14,6 +14,7 @@ class User(AbstractUser):
     tsubjects = models.TextField(max_length=500, default='none')
     texp = models.TextField(max_length=500,default='none')
     hourlyRate= models.TextField(max_length=20,default='none')
+    emailAddress = models.TextField(max_length=50,default='none')
     def __str__(self):
         return str(self.first_name)+' '+ str(self.last_name)
 
