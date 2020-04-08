@@ -18,28 +18,7 @@ class User(AbstractUser):
     def __str__(self):
         return str(self.first_name)+' '+ str(self.last_name)
 
-'''
-class Student(User):
-    year = models.IntegerField(default='0')
-    phone = models.TextField(max_length=20, default='none')
-    classes = models.TextField(max_length=100, default='none')
-    major = models.TextField(max_length=20, default='none')
-    def __str__(self):
-        return self.last_name
 
-
-class Tutor(User):
-    year = models.IntegerField(default='0')
-    tpn = models.CharField(max_length=10, default='0000000000')
-    tsubjects = models.TextField(max_length=500, default='none')
-    tmajors = models.TextField(max_length=500, default='none')
-    texp = models.TextField(max_length=500,default='none')
-    hourlyRate= models.TextField(max_length=20,default='none')
-    
-    def __str__(self):
-        return self.last_name
-
-'''
 class Event(models.Model):
     title = models.CharField(max_length=200)
     start_time = models.DateTimeField(default=datetime.date.today)

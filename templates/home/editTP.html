@@ -85,7 +85,8 @@
                     <div class="col-md-4">
                     </div>
                     <div class="col-md-8">
-                        <div class="tab-content profile-tab" id="myTabContent">
+                        <form method="POST">
+                            {% csrf_token %}
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                         <div class="row">
                                             <div class="col-md-6">
@@ -96,23 +97,25 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <!-- <div class="col-md-6">
-                                                <label>Email</label>
-                                            </div> -->
-                                            <!-- <div class="col-md-6">
-                                                <p>{user.email}</p>
-                                            </div> -->
+                                            <p> </p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Phone</label>
+                                            </div>
+                                            <div class="form-group">
+                                                {{tform.phone}}
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <p> </p>
                                         </div>
-                                        <div class="row">
-                                            <!-- <div class="col-md-6">
-                                                <label>Phone</label>
-                                            </div> -->
-                                            
+                                         <div class="row">
                                             <div class="col-md-6">
-                                                {{ form.as_p }}
+                                                <label>Major(s)</label>
+                                            </div>
+                                            <div class="form-group">
+                                                {{tform.major}}
                                             </div>
                                         
                                         </div>
@@ -120,17 +123,34 @@
                                             <p> </p>
                                         </div>
                                         <div class="row">
-                                            
+                                            <div class="col-md-6">
+                                                <label>Specialty Subjects</label>
+                                            </div>
+                                            <div class="form-group">
+                                                {{tform.tsubjects}}
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <p> </p>
                                         </div>
                                         <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Experience</label>
+                                            </div>
+                                            <div class="form-group">
+                                                {{tform.texp}}
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <p> </p>
                                         </div>
                                         <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Hourly Rate</label>
+                                            </div>
+                                            <div class="form-group">
+                                                {{tform.hourlyRate}}
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <p> </p>
@@ -142,14 +162,14 @@
                                             <div class="col-md-6">
                                                 <p> </p>
                                             </div>
-                                            <div class="col-md-6 ">
-                                                <input type="submit" class="btn btn-primary" value="Save Changes">
+                                            <div class="col-md-6">
+                                                <input type="submit" value="Save Changes">
                                                 <span></span>
                                                 <a href="studentProfile" class="btn btn-default ">Cancel</a>
                                             </div>
                                         </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </form>
