@@ -12,4 +12,10 @@ class StudentProfileForm(forms.ModelForm):
     
     class Meta:
         model = User
-        fields = ['year','phone', 'major',]
+        fields = ['year','phone', 'classes', 'major']
+        widgets={
+            'year': forms.NumberInput(attrs={'class':"form-control"}),
+            'phone': forms.NumberInput(attrs={'class':"form-control"}),
+            'classes': forms.TextInput(attrs={'class':"form-control"}),
+            'major': forms.TextInput(attrs={'class':"form-control"})
+        }

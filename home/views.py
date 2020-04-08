@@ -30,17 +30,20 @@ def profile(request):
 
 def editSP(request):
     if request.method == "POST":
-        form = StudentProfileForm(request.POST, instance=request.user)
-        if form.is_valid():
-            post = form.save(commit=False)
+        sform = StudentProfileForm(request.POST, instance=request.user)
+        print("hello")
+        if sform.is_valid():
+            print("byebye")
+            post = sform.save(commit=False)
             post.year = request.user.year
             post.phone = request.user.phone
+            post.classes = request.user.classes
             post.major = request.user.major
             post.save()
             return redirect('editSP')
     else:
-        form = StudentProfileForm(instance=request.user)
-    return render(request, 'home/editSP.html', {'form': form})
+        sform = StudentProfileForm(instance=request.user)
+    return render(request, 'home/editSP.html', {'sform': sform})
 
 
 def studentSchedule(request):

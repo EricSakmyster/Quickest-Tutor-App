@@ -97,10 +97,10 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Email</label>
+                                                <label>Year</label>
                                             </div>
-                                            <div class="col-md-6">
-                                                <p>example@gmail.com</p>
+                                            <div class="form-group">
+                                                {{sform.year}}
                                             </div>
                                         </div>
                                         <div class="row">
@@ -110,9 +110,8 @@
                                             <div class="col-md-6">
                                                 <label>Phone</label>
                                             </div>
-                                            <div class="col-md-6">
-                                                <input class="form-control" type="text" value="0000000000">
-                                                {{ form.as_p }}
+                                            <div class="form-group">
+                                                {{sform.phone}}
                                             </div>
                                         </div>
                                         <div class="row">
@@ -122,8 +121,8 @@
                                             <div class="col-md-6">
                                                 <label>Classes</label>
                                             </div>
-                                            <div class="col-md-6">
-                                                <input class="form-control" type="text" value="subjects">
+                                            <div class="form-group">
+                                                <p>{{sform.classes}}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -133,19 +132,8 @@
                                             <div class="col-md-6">
                                                 <label>Major(s)</label>
                                             </div>
-                                            <div class="col-md-6">
-                                                <input class="form-control" type="text" value="major">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <p> </p>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Grade</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input class="form-control" type="text" value="freshman/sophomore/junior/senior">
+                                            <div class="form-group">
+                                                {{sform.major}}
                                             </div>
                                         </div>
                                         <div class="row">
