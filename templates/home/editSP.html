@@ -1,7 +1,7 @@
 {% load static %}
 {% load socialaccount %}
 {% providers_media_js %}
-
+<!-- hello seeing if my branch works! -->
 <body lang="en">
     <head>
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -100,7 +100,8 @@
                                                 <label>Email</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>example@gmail.com</p>
+                                                <!-- <p>example@gmail.com</p> -->
+                                                <p>{user.email}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -110,10 +111,12 @@
                                             <div class="col-md-6">
                                                 <label>Phone</label>
                                             </div>
+                                            
                                             <div class="col-md-6">
                                                 <input class="form-control" type="text" value="0000000000">
                                                 {{ form.as_p }}
                                             </div>
+                                        
                                         </div>
                                         <div class="row">
                                             <p> </p>
@@ -145,7 +148,7 @@
                                                 <label>Grade</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <input class="form-control" type="text" value="freshman/sophomore/junior/senior">
+                                                <input class="form-control" type="text" value="{{year}}">
                                             </div>
                                         </div>
                                         <div class="row">

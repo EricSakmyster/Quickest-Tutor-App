@@ -4,7 +4,7 @@ from . import models
 
 # Register your models here.
 class UserAdmin(admin.ModelAdmin):
-    list_display = ("first_name",)
+    list_display = ("first_name","last_name", "year","phone", "tsubjects", "major", "texp", "hourlyRate")
 
 
 class TodoListAdmin(admin.ModelAdmin):

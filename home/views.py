@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import generic
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import StudentProfileForm
+from .forms import TutorProfileForm, StudentProfileForm
 
 from .models import TodoList, Category, User
 
@@ -36,7 +36,7 @@ def editSP(request):
             post.phone = request.user.phone
             post.major = request.user.major
             post.save()
-            return redirect('editSP')
+            return redirect('profile')
     else:
         form = StudentProfileForm(instance=request.user)
     return render(request, 'home/editSP.html', {'form': form})
@@ -57,7 +57,21 @@ class tutorProfile(generic.TemplateView):
 
 
 def editTP(request):
-    return render(request, 'home/editTP.html')
+    if request.method == "POST":
+        form = TutorProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.year = request.user.year
+            post.phone = request.user.phone
+            post.major = request.user.major
+            post.tsubjects = request.user.tsubjects
+            post.texp = request.user.texp
+            post.hourlyRate = request.user.hourlyRate
+            post.save()
+            return redirect('tutorProfile')
+    else:
+        form = TutorProfileForm(instance=request.user)
+    return render(request, 'home/editTP.html', {'form': form})
 
 
 def tutorSchedule(request):
