@@ -8,7 +8,7 @@ from django.utils import timezone
 
 class User(AbstractUser):
     year = models.IntegerField(default='0')
-    phone = models.TextField(max_length=20, default='none')
+    phone = models.TextField(max_length=20, default='000-000-0000')
     classes = models.TextField(max_length=100, default='none')
     major = models.TextField(max_length=20, default='none')
     tsubjects = models.TextField(max_length=500, default='none')
@@ -34,8 +34,8 @@ def get_html_url(self):
     return f'<p>{self.title}</p><a href="{url}">edit</a>'
 
 
-class Category(models.Model):  # The Category table name that inherits models.Model
-    name = models.CharField(max_length=100)  # Like a varchar
+class Category(models.Model): 
+    name = models.CharField(max_length=100)  
     objects = models.Manager()
 
     class Meta:
@@ -43,19 +43,19 @@ class Category(models.Model):  # The Category table name that inherits models.Mo
         verbose_name_plural = ("Categories")
 
     def __str__(self):
-        return self.name  # name to be shown when called
+        return self.name 
 
 
-class TodoList(models.Model):  # Todolist able name that inherits models.Model
-    title = models.CharField(max_length=250)  # a varchar
-    content = models.TextField(blank=True)  # a text field
-    created = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))  # a date
-    due_date = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))  # a date
+class TodoList(models.Model): 
+    title = models.CharField(max_length=250) 
+    content = models.TextField(blank=True)  
+    created = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))  
+    due_date = models.DateField(default=timezone.now().strftime("%Y-%m-%d")) 
     objects = models.Manager()
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, default="general")  # a foreignkey
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, default="general")  
 
     class Meta:
-        ordering = ["-created"]  # ordering by the created field
+        ordering = ["-created"]  
 
     def __str__(self):
-        return self.title  # name to be shown when called
+        return self.title  
