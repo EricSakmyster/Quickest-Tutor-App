@@ -2,8 +2,7 @@ from django.shortcuts import render
 from django.views import generic
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import StudentProfileForm
-
+from .forms import TutorProfileForm, StudentProfileForm
 
 from .models import TodoList, Category, User
 
@@ -30,20 +29,18 @@ def profile(request):
 
 def editSP(request):
     if request.method == "POST":
-        sform = StudentProfileForm(request.POST, instance=request.user)
-        print("hello")
-        if sform.is_valid():
-            print("byebye")
-            post = sform.save(commit=False)
+        form = StudentProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            post = form.save(commit=False)
             post.year = request.user.year
             post.phone = request.user.phone
             post.classes = request.user.classes
             post.major = request.user.major
             post.save()
-            return redirect('editSP')
+            return redirect('profile')
     else:
-        sform = StudentProfileForm(instance=request.user)
-    return render(request, 'home/editSP.html', {'sform': sform})
+        form = StudentProfileForm(instance=request.user)
+    return render(request, 'home/editSP.html', {'form': form})
 
 
 def studentSchedule(request):
@@ -61,16 +58,21 @@ class tutorProfile(generic.TemplateView):
 
 
 def editTP(request):
-    if request.POST:
-        print(request.POST)
-        data = Tutor(tpn=request.POST.get('tpn'), tsubjects=request.POST.get('tsubjects'), texp=request.POST.get('texp'),
-                     trate=request.POST.get('trate'))
-        data.save()
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+    if request.method == "POST":
+        form = TutorProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.year = request.user.year
+            post.phone = request.user.phone
+            post.major = request.user.major
+            post.tsubjects = request.user.tsubjects
+            post.texp = request.user.texp
+            post.hourlyRate = request.user.hourlyRate
+            post.save()
+            return redirect('tutorProfile')
     else:
-        pass
-
-    return render(request, 'home/editTP.html')
+        form = TutorProfileForm(instance=request.user)
+    return render(request, 'home/editTP.html', {'form': form})
 
 
 def tutorSchedule(request):

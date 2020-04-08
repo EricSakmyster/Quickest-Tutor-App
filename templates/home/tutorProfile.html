@@ -10,7 +10,7 @@
         <link href="{% static 'css/tutorProfile.css' %}" rel="stylesheet">
 
         <title>Tutor Profile</title>
-        
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
@@ -94,7 +94,7 @@
                                                 <label>Name</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>{{user.first_name}} {{user.last_name}}</p>
+                                                <p>{{user.first_name}} {{user.last_name}}<p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -102,7 +102,7 @@
                                                 <label>Email</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>{{user.email}}</p>
+                                                <p>{{user.emailAddress}}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -110,9 +110,7 @@
                                                 <label>Phone</label>
                                             </div>
                                             <div class="col-md-6">
-                                                {% for me in thisTutor %}
-                                                    <p>{{me.tpn}}</p>
-                                                {% endfor %}
+                                                <p>{{user.phone}}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -120,9 +118,7 @@
                                                 <label>Specialty Subjects</label>
                                             </div>
                                             <div class="col-md-6">
-                                                {% for me in thisTutor %}
-                                                    <p>{{me.tsubjects}}</p>
-                                                {% endfor %}
+                                                <p>{{user.tsubjects}}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -130,9 +126,7 @@
                                                 <label>Experience</label>
                                             </div>
                                             <div class="col-md-6">
-                                                {% for me in thisTutor %}
-                                                    <p>{{me.texp}}</p>
-                                                {% endfor %}
+                                                <p>{{user.texp}}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -140,9 +134,16 @@
                                                 <label>Hourly Rate</label>
                                             </div>
                                             <div class="col-md-6">
-                                                {% for me in thisTutor %}
-                                                    <p>{{me.trate}}</p>
-                                                {% endfor %}
+                                                <p>{{user.hourlyRate}}</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Major</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{user.major}}</p>
                                             </div>
                                         </div>
                             </div>
