@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.views import generic
 from django.http import HttpResponse
-from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from .forms import StudentProfileForm
 
 
 from .models import TodoList, Category, User
@@ -29,7 +29,18 @@ def profile(request):
 
 
 def editSP(request):
-    return render(request, 'home/editSP.html')
+    if request.method == "POST":
+        form = StudentProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.year = request.user.year
+            post.phone = request.user.phone
+            post.major = request.user.major
+            post.save()
+            return redirect('editSP')
+    else:
+        form = StudentProfileForm(instance=request.user)
+    return render(request, 'home/editSP.html', {'form': form})
 
 
 def studentSchedule(request):
