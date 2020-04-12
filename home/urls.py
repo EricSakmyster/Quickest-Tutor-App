@@ -16,4 +16,5 @@ urlpatterns = [
     path('tutorProfileAvailibility', views.tutorProfileAvailibility.as_view(), name='tutorProfileAvailibility'),
     path('editTPA', views.editTPA, name='editTPA'),
     path('tutorSchedule', views.tutorSchedule, name='tutorSchedule'),
+    path('allTutors', views.allTutors, name='allTutors'),
 ]
