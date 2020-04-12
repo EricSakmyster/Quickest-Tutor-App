@@ -13,7 +13,13 @@ class TutorProfileForm(forms.ModelForm):
             'texp': forms.TextInput(attrs={'class': "form-control"}),
             'hourlyRate': forms.NumberInput(attrs={'class': "form-control"}),
         }
-
+class TutorProfileAvailibilityForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['tutorAvailibility']
+        widgets = {
+            'tutorAvailibility': forms.DateInput(attrs={'class': "form-control"}),
+        }
 class StudentProfileForm(forms.ModelForm):
     
     class Meta:
