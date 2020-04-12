@@ -13,5 +13,7 @@ urlpatterns = [
     path('studentTutorSearch', views.tutorsearch, name='tutorsearch'),
     path('tutorProfile', views.tutorProfile.as_view(), name='tutorProfile'),
     path('editTP', views.editTP, name='editTP'),
+    path('tutorProfileAvailibility', views.tutorProfileAvailibility.as_view(), name='tutorProfileAvailibility'),
+    path('editTPA', views.editTPA, name='editTPA'),
     path('tutorSchedule', views.tutorSchedule, name='tutorSchedule'),
 ]

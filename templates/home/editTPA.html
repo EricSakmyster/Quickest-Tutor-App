@@ -1,0 +1,114 @@
+{% load static %}
+{% load socialaccount %}
+{% providers_media_js %}
+<!-- hello seeing if my branch works! -->
+<body lang="en">
+    <head>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link href="{% static 'css/tutorProfile.css' %}" rel="stylesheet">
+
+        <title>Edit Tutor Availibility</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+        <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/cover/">
+        <!-- Bootstrap core CSS -->
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="{% static 'css/cover.css' %}" rel="stylesheet">
+            <style type="text/css">
+            .search-margin{
+                margin-left: 275px;
+            }
+        .bottom-mar{
+            margin-bottom: 100px;
+        }
+        </style>
+    </head>
+
+<body >
+    {% if user.is_authenticated %}
+    <div class="d-flex w-100 h-50 p-3 mx-auto flex-column">
+        <header class="masthead mb-auto">
+            <div class="inner">
+                <h3 class="masthead-brand">QuickestTutor</h3>
+                <nav class="nav nav-masthead justify-content-center">
+                    <a class="nav-link" href="welcome">Home</a>
+                    <a class="nav-link active" href="studentProfile">My Profile</a>
+                    <a class="nav-link" href="tutorProfile">Tutor Profile</a>
+                    <a class="nav-link" href="studentSchedule">My Schedule</a>
+                    <a class="nav-link" href="tutorSchedule">Tutor Schedule</a>
+                    <a class="nav-link" href="studentTutorSearch">Tutor Search</a>
+                    <a href="/accounts/logout" class= "btn btn-dark masthead-brand search-margin">Log Out</a>
+                </nav>
+            </div>
+        </header>
+    <div class="container emp-profile">
+            <form method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt=""/>
+                            <div class="file btn btn-lg btn-primary">
+                                Change Photo
+                                <input type="file" name="file"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h5>
+                                        {{user}}
+                                    </h5>
+                                    <h6>
+                                        Student
+                                    </h6>
+                                    <p class="proile-rating">RANKINGS : <span>10/10</span></p>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="editTPA" role="tab" aria-controls="home" aria-selected="true">Edit Availibility</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-8">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="tab-pane fade show active profile-tab" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p> </p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="submit" class="btn btn-primary" value="Save Changes">
+                                                <span></span>
+                                                <a href="tutorProfileAvailibility" class="btn btn-default ">Cancel</a>
+                                            </div>
+                                        </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% else %}
+    <meta http-equiv="refresh" content="0; URL=home">
+    {% endif %}
+</body>
+
+</html>

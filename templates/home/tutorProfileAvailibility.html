@@ -9,7 +9,7 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link href="{% static 'css/tutorProfile.css' %}" rel="stylesheet">
 
-        <title>Tutor Profile</title>
+        <title>Tutor Profile Availability</title>
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -71,16 +71,16 @@
                                     <p class="proile-rating">RANKINGS : <span>10/10</span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                    <a class="nav-link" id="home-tab" data-toggle="tab" href="tutorProfile" role="tab" aria-controls="home" aria-selected="false">About</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="tutorProfileAvailibility" role="tab" aria-controls="profile" aria-selected="false">Availability</a>
+                                    <a class="nav-link active" id="profile-tab" data-toggle="tab" href="tutorProfileAvailibility" role="tab" aria-controls="profile" aria-selected="true">Availability</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <a href="editTP" class="profile-edit-btn">Edit Profile</a>
+                        <a href="editTPA" class="profile-edit-btn">Edit Availibility</a>
                     </div>
                 </div>
                 <div class="row">
@@ -90,54 +90,8 @@
                         <div class="tab-content profile-tab" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Name</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{user.first_name}} {{user.last_name}}<p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Phone</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{user.phone}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Major(s)</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{user.major}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Specialty Subjects</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{user.tsubjects}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Experience</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{user.texp}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Hourly Rate</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>${{user.hourlyRate}}/hr</p>
-                                            </div>
-                                        </div>
 
+                                        </div>
                             </div>
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 

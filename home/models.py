@@ -1,9 +1,10 @@
 import datetime
 from django.urls import reverse
-
+from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
+from datetime import datetime 
 
 
 class User(AbstractUser):
@@ -15,23 +16,9 @@ class User(AbstractUser):
     texp = models.TextField(max_length=500,default='none')
     hourlyRate= models.TextField(max_length=20,default='none')
     emailAddress = models.TextField(max_length=50,default='none')
+    tutorAvailibility=ArrayField(models.DateTimeField(default=datetime.now, blank=True), null=True, blank=True)
     def __str__(self):
         return str(self.first_name)+' '+ str(self.last_name)
-
-
-class Event(models.Model):
-    title = models.CharField(max_length=200)
-    start_time = models.DateTimeField(default=datetime.date.today)
-
-
-def __str__(self):
-    return self.title
-
-
-@property
-def get_html_url(self):
-    url = reverse('event_edit', args=(self.id,))
-    return f'<p>{self.title}</p><a href="{url}">edit</a>'
 
 
 class Category(models.Model): 

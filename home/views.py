@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import generic
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import TutorProfileForm, StudentProfileForm
+from .forms import TutorProfileForm, TutorProfileAvailibilityForm, StudentProfileForm
 
 from .models import TodoList, Category, User
 
@@ -55,8 +55,21 @@ class tutorProfile(generic.TemplateView):
     model = User
     template_name = 'home/tutorProfile.html'
     context_object_name = 'thisTutor'
-
-
+class tutorProfileAvailibility(generic.TemplateView):
+    model = User
+    template_name = 'home/tutorProfileAvailibility.html'
+    context_object_name = 'thisTutor'
+def editTPA(request):
+    if request.method == "POST":
+        tpaform = TutorProfileAvailibilityForm(request.POST, instance=request.user)
+        if tpaform.is_valid():
+            post = tpaform.save(commit=False)
+            post.tutorAvailibility = request.user.tutorAvailibility
+            post.save()
+            return redirect('tutorProfileAvailibility')
+    else:
+        tpaform = TutorProfileAvailibilityForm(instance=request.user)
+    return render(request, 'home/editTPA.html', {'tform': tpaform})
 def editTP(request):
     if request.method == "POST":
         tform = TutorProfileForm(request.POST, instance=request.user)
