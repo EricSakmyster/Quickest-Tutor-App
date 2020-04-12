@@ -129,7 +129,7 @@ def index(request):  # the index view
 
 
 def allTutors(request):
-
+    
     tutors = get_user_model().objects.all()
     context = {'tutors': tutors}
     return render(request, 'home/allTutors.html', context)
