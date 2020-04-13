@@ -17,6 +17,7 @@ class User(AbstractUser):
     hourlyRate= models.TextField(max_length=20,default='none')
     emailAddress = models.TextField(max_length=50,default='none')
     tutorAvailability = ArrayField(models.DateTimeField(default=datetime.now, blank=True), default=list, blank=True)
+    image = models.FileField(default="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png")
     def __str__(self):
         return str(self.first_name) + ' ' + str(self.last_name)
 
