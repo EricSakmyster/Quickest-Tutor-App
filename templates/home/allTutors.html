@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+{% load static %}
+{% load socialaccount %}
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Tutor Schedule</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+<link href="{% static 'css/tutorProfile.css' %}" rel="stylesheet">
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+<link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/cover/">
+<!-- Bootstrap core CSS -->
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="{% static 'css/cover.css' %}" rel="stylesheet">
+    <style type="text/css">
+        .search-margin{
+            margin-left: 275px;
+        }
+        .bottom-mar{
+            margin-bottom: 100px;
+        }
+        .top-margin{
+            margin-top: 50px;
+        }
+        .text-color{
+            color: black;
+        }
+        .left-margin{
+            margin-left: 10px;
+        }
+        </style>
+</head>
+<body >
+    {% if user.is_authenticated %}
+    <div class="d-flex w-100 h-25 p-3 mx-auto flex-column ">
+        <header class="masthead mb-auto ">
+            <div class="inner">
+                <h3 class="masthead-brand">QuickestTutor</h3>
+                <nav class="nav nav-masthead justify-content-center">
+                    <a class="nav-link" href="welcome">Home</a>
+                    <a class="nav-link" href="studentProfile">My Profile</a>
+                    <a class="nav-link" href="tutorProfile">Tutor Profile</a>
+                    <a class="nav-link" href="studentSchedule">My Schedule</a>
+                    <a class="nav-link" href="tutorSchedule">Tutor Schedule</a>
+                    <a class="nav-link" href="studentTutorSearch">Tutor Search</a>
+                    <a href="/accounts/logout" class= "btn btn-dark masthead-brand search-margin">Log Out</a>
+                </nav>
+            </div>
+        </header>
+
+<center>
+<h5> All of our Tutors </h5>
+<form method="post">
+    {% csrf_token %}
+    {% for tutor in tutors %}
+    <div class="container emp-profile top-margin text-color ">
+        <div class="left-margin">
+        <div class="row ">
+            Name: {{tutor}}
+        </div>
+        <div class="row">
+            Phone: {{tutor.phone}}
+        </div>
+        <div class="row">
+            Major(s): {{tutor.major}}
+        </div>
+        <div class="row">
+            Subjects: {{tutor.tsubjects}}
+        </div>
+        <div class="row">
+            Hourly Rate: {{tutor.hourlyRate}}
+        </div>
+        <div class="row">
+            Availability:
+            <select id="category" class="taskCategory" name="category_select">
+                <option class="disabled" value="">Choose a Date</option>
+                {% for vail in tutor.tutorAvailability %}
+                <option class="" value="{{ vail }}">{{ vail }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Request Session">
+        </div>
+    </div>
+    {% endfor %}
+ </form>
+    
+</center>
+</div>
+{% else %}
+<meta http-equiv="refresh" content="0; URL=home">
+{% endif %}
+</body>
+</html>

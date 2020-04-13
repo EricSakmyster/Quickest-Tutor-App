@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views import generic
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import get_user_model
 from .forms import TutorProfileForm, TutorProfileAvailabilityForm, StudentProfileForm
 
 from .models import TodoList, Category, User, Available
@@ -60,15 +61,17 @@ class tutorProfileAvailability(generic.TemplateView):
     template_name = 'home/tutorProfileAvailability.html'
     context_object_name = 'thistutor'
 def editTPA(request):
+    userObject = User.objects.get(username = request.user.username)
     if request.method=="POST":
-        tpaform = TutorProfileAvailabilityForm(request.POST, instance=available)
+        tpaform = TutorProfileAvailabilityForm(request.POST)
         if tpaform.is_valid():
             post=tpaform.save(commit=False)
-            post.available= tpaform.cleaned_data['available']
-            post.save()
+            post.available=tpaform.cleaned_data['available']
+            userObject.tutorAvailability.append(tpaform.cleaned_data['available'])
+            userObject.save()
             return redirect('tutorProfileAvailability')
     else:
-        tpaform = TutorProfileAvailabilityForm(instance=request.user)
+        tpaform = TutorProfileAvailabilityForm()
     return render(request, 'home/editTPA.html', {'tpaform': tpaform})
 def editTP(request):
     if request.method == "POST":
@@ -120,3 +123,8 @@ def index(request):  # the index view
                 todo = TodoList.objects.get(id=int(todo_id))  # getting todo id
                 todo.delete()  # deleting todo
     return render(request, "home/studentSchedule.html", {"todos": todos, "categories": categories})
+def allTutors(request):
+    
+    tutors = get_user_model().objects.all()
+    context = {'tutors': tutors}
+    return render(request, 'home/allTutors.html', context)
