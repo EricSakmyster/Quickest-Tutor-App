@@ -4,7 +4,7 @@ from . import models
 
 # Register your models here.
 class UserAdmin(admin.ModelAdmin):
-    list_display = ("first_name", "last_name", "year", "phone", "tsubjects", "major", "texp", "hourlyRate")
+    list_display = ("first_name", "last_name", "year", "phone", "tsubjects", "major", "texp", "hourlyRate", "tutorAvailability")
 
 
 class RequestSessionAdmin(admin.ModelAdmin):
@@ -18,7 +18,9 @@ class TodoListAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ("name",)
 
-
+class AvailableAdmin(admin.ModelAdmin):
+    list_display = ("available",)
+admin.site.register(models.Available, AvailableAdmin)
 admin.site.register(models.User, UserAdmin)
 admin.site.register(models.RequestSession, RequestSessionAdmin)
 admin.site.register(models.TodoList, TodoListAdmin)

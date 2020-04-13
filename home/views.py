@@ -3,9 +3,9 @@ from django.views import generic
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import get_user_model
-from .forms import TutorProfileForm, TutorProfileAvailibilityForm, StudentProfileForm
+from .forms import TutorProfileForm, TutorProfileAvailabilityForm, StudentProfileForm
 
-from .models import TodoList, Category, User
+from .models import TodoList, Category, User, Available
 
 
 # Create your views here.
@@ -56,27 +56,23 @@ class tutorProfile(generic.TemplateView):
     model = User
     template_name = 'home/tutorProfile.html'
     context_object_name = 'thisTutor'
-
-
-class tutorProfileAvailibility(generic.TemplateView):
+class tutorProfileAvailability(generic.TemplateView):
     model = User
-    template_name = 'home/tutorProfileAvailibility.html'
-    context_object_name = 'thisTutor'
-
-
+    template_name = 'home/tutorProfileAvailability.html'
+    context_object_name = 'thistutor'
 def editTPA(request):
-    if request.method == "POST":
-        tpaform = TutorProfileAvailibilityForm(request.POST, instance=request.user)
+    userObject = User.objects.get(username = request.user.username)
+    if request.method=="POST":
+        tpaform = TutorProfileAvailabilityForm(request.POST)
         if tpaform.is_valid():
-            post = tpaform.save(commit=False)
-            post.tutorAvailibility = request.user.tutorAvailibility
-            post.save()
-            return redirect('tutorProfileAvailibility')
+            post=tpaform.save(commit=False)
+            post.available=tpaform.cleaned_data['available']
+            userObject.tutorAvailability.append(tpaform.cleaned_data['available'])
+            userObject.save()
+            return redirect('tutorProfileAvailability')
     else:
-        tpaform = TutorProfileAvailibilityForm(instance=request.user)
+        tpaform = TutorProfileAvailabilityForm()
     return render(request, 'home/editTPA.html', {'tpaform': tpaform})
-
-
 def editTP(request):
     if request.method == "POST":
         tform = TutorProfileForm(request.POST, instance=request.user)
@@ -92,6 +88,7 @@ def editTP(request):
     else:
         tform = TutorProfileForm(instance=request.user)
     return render(request, 'home/editTP.html', {'tform': tform})
+
 
 
 def tutorSchedule(request):
@@ -126,8 +123,6 @@ def index(request):  # the index view
                 todo = TodoList.objects.get(id=int(todo_id))  # getting todo id
                 todo.delete()  # deleting todo
     return render(request, "home/studentSchedule.html", {"todos": todos, "categories": categories})
-
-
 def allTutors(request):
     
     tutors = get_user_model().objects.all()

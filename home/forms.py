@@ -1,7 +1,6 @@
 from django import forms
 
-from .models import User
-from django.forms.widgets import FileInput
+from .models import User, Available
 
 class TutorProfileForm(forms.ModelForm):
     class Meta:
@@ -14,12 +13,12 @@ class TutorProfileForm(forms.ModelForm):
             'texp': forms.TextInput(attrs={'class': "form-control", 'placeholder': "ex) Calc teacher 3 years"}),
             'hourlyRate': forms.NumberInput(attrs={'class': "form-control", 'placeholder': "expected hourly pay"}),
         }
-class TutorProfileAvailibilityForm(forms.ModelForm):
+class TutorProfileAvailabilityForm(forms.ModelForm):
     class Meta:
-        model = User
-        fields = ['tutorAvailibility']
+        model = Available
+        fields = ['available']
         widgets = {
-            'tutorAvailibility': forms.DateTimeInput(attrs={'class': "form-control"}),
+            'available': forms.DateTimeInput(attrs={'class': "form-control", 'title': 'MM/DD/YYYY HH:MM'}),
         }
 class StudentProfileForm(forms.ModelForm):
 

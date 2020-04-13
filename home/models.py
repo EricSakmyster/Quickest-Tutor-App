@@ -13,12 +13,11 @@ class User(AbstractUser):
     classes = models.TextField(max_length=100, default='none')
     major = models.TextField(max_length=20, default='none')
     tsubjects = models.TextField(max_length=500, default='none')
-    texp = models.TextField(max_length=500, default='none')
-    hourlyRate = models.TextField(max_length=20, default='none')
-    emailAddress = models.TextField(max_length=50, default='none')
-    tutorAvailibility = ArrayField(models.DateTimeField(default=datetime.now, blank=True), null=True, blank=True)
+    texp = models.TextField(max_length=500,default='none')
+    hourlyRate= models.TextField(max_length=20,default='none')
+    emailAddress = models.TextField(max_length=50,default='none')
+    tutorAvailability = ArrayField(models.DateTimeField(default=datetime.now, blank=True), default=list, blank=True)
     image = models.FileField(default="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png")
-
     def __str__(self):
         return str(self.first_name) + ' ' + str(self.last_name)
 
@@ -29,9 +28,11 @@ class RequestSession(models.Model):
     note = models.TextField(max_length=1000, default='none')
     student = models.ForeignKey(User, on_delete=models.CASCADE)
 
+class Available(models.Model):
+    available=models.DateTimeField(default=datetime.now, blank=True)
 
-class Category(models.Model):
-    name = models.CharField(max_length=100)
+class Category(models.Model): 
+    name = models.CharField(max_length=100)  
     objects = models.Manager()
 
     class Meta:
