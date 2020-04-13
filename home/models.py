@@ -16,11 +16,12 @@ class User(AbstractUser):
     texp = models.TextField(max_length=500,default='none')
     hourlyRate= models.TextField(max_length=20,default='none')
     emailAddress = models.TextField(max_length=50,default='none')
-    tutorAvailibility=ArrayField(models.DateTimeField(default=datetime.now, blank=True), null=True, blank=True)
     def __str__(self):
         return str(self.first_name)+' '+ str(self.last_name)
 
-
+class Available(models.Model):
+    available=models.DateTimeField(default=datetime.now, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default="general")
 class Category(models.Model): 
     name = models.CharField(max_length=100)  
     objects = models.Manager()

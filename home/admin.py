@@ -14,7 +14,9 @@ class TodoListAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ("name",)
 
-
+class AvailableAdmin(admin.ModelAdmin):
+    list_display = ("available",)
+admin.site.register(models.Available, AvailableAdmin)
 admin.site.register(models.User, UserAdmin)
 admin.site.register(models.TodoList, TodoListAdmin)
 admin.site.register(models.Category, CategoryAdmin)

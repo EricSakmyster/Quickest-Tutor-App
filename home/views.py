@@ -2,9 +2,9 @@ from django.shortcuts import render
 from django.views import generic
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import TutorProfileForm, TutorProfileAvailibilityForm, StudentProfileForm
+from .forms import TutorProfileForm, TutorProfileAvailabilityForm, StudentProfileForm
 
-from .models import TodoList, Category, User
+from .models import TodoList, Category, User, Available
 
 
 # Create your views here.
@@ -55,21 +55,21 @@ class tutorProfile(generic.TemplateView):
     model = User
     template_name = 'home/tutorProfile.html'
     context_object_name = 'thisTutor'
-class tutorProfileAvailibility(generic.TemplateView):
+class tutorProfileAvailability(generic.TemplateView):
     model = User
-    template_name = 'home/tutorProfileAvailibility.html'
-    context_object_name = 'thisTutor'
+    template_name = 'home/tutorProfileAvailability.html'
+    context_object_name = 'thistutor'
 def editTPA(request):
-    if request.method == "POST":
-        tpaform = TutorProfileAvailibilityForm(request.POST, instance=request.user)
+    if request.method=="POST":
+        tpaform = TutorProfileAvailabilityForm(request.POST, instance=available)
         if tpaform.is_valid():
-            post = tpaform.save(commit=False)
-            post.tutorAvailibility = request.user.tutorAvailibility
+            post=tpaform.save(commit=False)
+            post.available= tpaform.cleaned_data['available']
             post.save()
-            return redirect('tutorProfileAvailibility')
+            return redirect('tutorProfileAvailability')
     else:
-        tpaform = TutorProfileAvailibilityForm(instance=request.user)
-    return render(request, 'home/editTPA.html', {'tform': tpaform})
+        tpaform = TutorProfileAvailabilityForm(instance=request.user)
+    return render(request, 'home/editTPA.html', {'tpaform': tpaform})
 def editTP(request):
     if request.method == "POST":
         tform = TutorProfileForm(request.POST, instance=request.user)
