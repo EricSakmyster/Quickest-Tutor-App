@@ -6,7 +6,7 @@ from django.forms.widgets import FileInput
 class TutorProfileForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['phone', 'major', 'tsubjects', 'texp', 'hourlyRate']
+        fields = ['phone', 'major', 'tsubjects', 'texp', 'hourlyRate', 'image']
         widgets = {
             'phone': forms.NumberInput(attrs={'class': "form-control", 'placeholder': "XXX-XXX-XXXX"}),
             'major': forms.TextInput(attrs={'class': "form-control", 'placeholder': "ex) Math, Chemistry"}),
