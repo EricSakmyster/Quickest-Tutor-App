@@ -27,7 +27,9 @@ class RequestSession(models.Model):
     student_availability = models.DateTimeField(default=datetime.now, blank=True)
     students_class = models.TextField(max_length=100, default='none')
     note = models.TextField(max_length=1000, default='none')
-    student = models.ForeignKey(User, on_delete=models.CASCADE, related_name='student')
+    tutor_username = models.TextField(max_length=1000, default='none')
+    student = models.ForeignKey(User, on_delete=models.CASCADE, related_name='student', default=1)
+    tutor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tutor', default=1)
 
 class Available(models.Model):
     available=models.DateTimeField(default=datetime.now, blank=True)

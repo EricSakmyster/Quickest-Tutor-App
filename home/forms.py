@@ -36,9 +36,11 @@ class SessionRequestForm(forms.ModelForm):
     
     class Meta:
         model = RequestSession
-        fields = ['student_availability','students_class', 'note']
+        fields = ['student_availability','students_class', 'note', 'tutor_username']
         widgets={
             'student_availability': forms.DateTimeInput(attrs={'class': "form-control", 'title': 'MM/DD/YYYY HH:MM'}),
             'students_class': forms.TextInput(attrs={'class':"form-control", 'placeholder': "Ex) CS1110"}),
-            'note': forms.TextInput(attrs={'class':"form-control", 'placeholder': "Notes"})
+            'note': forms.TextInput(attrs={'class':"form-control", 'placeholder': "Notes"}),
+            'tutor_username': forms.HiddenInput()
+        
         }
