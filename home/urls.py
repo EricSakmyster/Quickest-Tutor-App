@@ -17,4 +17,5 @@ urlpatterns = [
     path('editTPA', views.editTPA, name='editTPA'),
     path('tutorSchedule', views.tutorSchedule, name='tutorSchedule'),
     path('allTutors', views.allTutors, name='allTutors'),
+    path('sessionForm', views.sessionForm, name='sessionForm'),
 ]
