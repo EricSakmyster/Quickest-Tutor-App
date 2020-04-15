@@ -65,9 +65,10 @@
 
 <center>
 <h5> All of our Tutors </h5>
-<form method="post">
-    {% csrf_token %}
+
     {% for tutor in tutors %}
+    <form method="post">
+        {% csrf_token %}
     <div class="container emp-profile top-margin text-color ">
         <div class="left-margin">
         <div class="row ">
@@ -95,11 +96,16 @@
                 {% endfor %}
             </select>
         </div>
+        <div class="form-group">
+            {{srform.note}}
+        </div>
         <input type="submit" class="btn btn-primary" value="Request Session">
         </div>
     </div>
+     </form>
     {% endfor %}
- </form>
+
+
     
 </center>
 </div>
