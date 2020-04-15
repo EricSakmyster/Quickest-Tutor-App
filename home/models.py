@@ -24,14 +24,20 @@ class User(AbstractUser):
 
 
 class RequestSession(models.Model):
-    student_availability = models.DateTimeField(default=datetime.now, blank=True)
-    students_class = models.TextField(max_length=100, default='none')
-    note = models.TextField(max_length=1000, default='none')
-    student = models.ForeignKey(User, on_delete=models.CASCADE, related_name='student')
-
+    objects = models.Manager()
+    student_availability = models.DateTimeField(blank=True)
+    tutor_username= models.TextField(max_length=20,default='none')
+    description= models.TextField(max_length=50, default='')
+    course = models.TextField(max_length=20, default='')
+    student = models.ForeignKey(User, on_delete=models.CASCADE, related_name='student', default=1)
+    tutor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tutor', default=1)
+    is_accepted=models.BooleanField(default=False)
+    def __str__(self):
+        return self.description
 class Available(models.Model):
     available=models.DateTimeField(default=datetime.now, blank=True)
-
+    def __str__(self):
+        return self.available
 class Category(models.Model): 
     name = models.CharField(max_length=100)  
     objects = models.Manager()
