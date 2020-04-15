@@ -67,12 +67,13 @@
 <h5> All of our Tutors </h5>
 
     {% for tutor in tutors %}
-    <form method="post">
+    <form method="post" id='srform'>
         {% csrf_token %}
     <div class="container emp-profile top-margin text-color ">
         <div class="left-margin">
         <div class="row ">
-            Name: {{tutor}}
+            Name: {{tutor}} 
+            <input type="hidden" id="tutor_username" name="tutor_username" value="{{tutor.username}}">
         </div>
         <div class="row">
             Phone: {{tutor.phone}}
@@ -87,9 +88,9 @@
             Hourly Rate: {{tutor.hourlyRate}}
         </div>
         <div class="row">
-            Availability:
+            Tutor Availability:
             <select id="category" class="taskCategory" name="category_select">
-                <option class="disabled" value="">Choose a Date</option>
+                <option class="disabled" value="">Available Times</option>
                 {% for vail in tutor.tutorAvailability %}
                 <option class="" value="{{ vail }}">{{ vail }}
                 </option>
@@ -98,16 +99,27 @@
         </div>
         <input type="hidden" id="tutor_username" name="tutor_username" value="{{tutor.username}}">
         <div class="form-group">
-            {{srform.student_availability}}
-            {{srform.students_class}}
-            {{srform.note}}
+            <div class="row">
+            Your Availability: {{srform.student_availability}}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+            Class: {{srform.course}}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+            Desciption: {{srform.description}}
+            </div>
         </div>
         <input type="submit" class="btn btn-primary" value="Request Session">
         </div>
     </div>
-     </form>
+    </form>
+    
     {% endfor %}
-
+    
 
     
 </center>

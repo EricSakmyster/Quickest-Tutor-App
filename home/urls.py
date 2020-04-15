@@ -9,7 +9,7 @@ urlpatterns = [
     path('signin', views.signin, name='signin'),
     path('studentProfile', views.profile, name='profile'),
     path('editSP', views.editSP, name='editSP'),
-    path('studentSchedule', views.index, name='schedule'),
+    path('studentSchedule', views.studentSchedule, name='schedule'),
     path('studentTutorSearch', views.tutorsearch, name='tutorsearch'),
     path('tutorProfile', views.tutorProfile.as_view(), name='tutorProfile'),
     path('editTP', views.editTP, name='editTP'),
@@ -17,5 +17,4 @@ urlpatterns = [
     path('editTPA', views.editTPA, name='editTPA'),
     path('tutorSchedule', views.tutorSchedule, name='tutorSchedule'),
     path('allTutors', views.allTutors, name='allTutors'),
-    path('sessionForm', views.sessionForm, name='sessionForm'),
 ]

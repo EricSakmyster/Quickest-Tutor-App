@@ -55,13 +55,54 @@
 
 <center>
 
-    <h5> My Schedule </h5>
-    <iframe src="https://calendar.google.com/calendar/embed?src=aishgavili%40gmail.com&ctz=America%2FNew_York" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-<br>
-<br>
-    <a href="studentTutorSearch" class="btn btn-dark ">Find Tutees Near Me</a>
-
-
+    <u><h3> Your Tutor Schedule </h3></u>
+    <div class="container">
+    <div class="left" style="background-color: #ff802cbe;
+    position: absolute;
+    left: 0px;
+    width: 50%;">
+        <u><h5>Requested Sessions</h5></u>
+        
+{% for session in tutorRequestedSessions %}
+<form method="POST">
+    {% csrf_token %}
+    <div class="row">
+    <ul>
+        <li>{{session.course}} with {{session.student}} at {{session.student_availability}}</li>
+            <ul>
+                <div align="left">
+                <li>{{session.description}}</li>
+                </div>
+            </ul>
+    </ul>
+    </div>
+    <input type="hidden" id="id" name="id" value="{{session.id}}">
+    <button class="Accept" style="font-size:12pt;color:white;background-color:green;border:2px solid #336600;padding:10px" name="Accept" type="submit">Accept
+    </button>
+    <button class="Decline" style="font-size:12pt;color:white;background-color:red;border:2px solid #ff0000;padding:10px" name="Decline" type="submit">Decline
+    </button>
+</form>
+{% endfor %}
+</div>
+<div class ="right" style="background-color: #59b94c;
+position: absolute;
+right: 0px;
+width: 50%;">
+    <u><h5>Accepted Sessions</h5></u>
+{% for session in tutorAcceptedSessions %}
+        <div class="row ">
+    <ul>
+        <li>{{session.course}} with {{session.student}} at {{session.student_availability}}</li>
+            <ul>
+                <div align="left">
+                <li>{{session.description}}</li>
+                </div>
+            </ul>
+    </ul>
+        </div>
+{% endfor %}
+</div>
+</div>
 
 
 </center>
