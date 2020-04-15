@@ -3,7 +3,7 @@ from django.views import generic
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import get_user_model
-from .forms import TutorProfileForm, TutorProfileAvailabilityForm, StudentProfileForm
+from .forms import TutorProfileForm, TutorProfileAvailabilityForm, StudentProfileForm, SessionRequestForm
 
 from .models import TodoList, Category, User, Available
 
@@ -124,7 +124,34 @@ def index(request):  # the index view
                 todo.delete()  # deleting todo
     return render(request, "home/studentSchedule.html", {"todos": todos, "categories": categories})
 def allTutors(request):
-    
+    srform = SessionRequestForm(request.POST, instance=request.user)
     tutors = get_user_model().objects.all()
-    context = {'tutors': tutors}
+    context = {'tutors': tutors, 'srform': srform}
+    
+    if request.method == "POST":
+        srform = SessionRequestForm(request.POST, instance=request.user)
+        if srform.is_valid():
+            post = srform.save(commit=False)
+            post.student_availability = request.POST["category_select"]
+            post.students_class = "";
+            post.note = request.user.first_name;
+            return redirect('tutorProfile')
+            post.save()
+        return redirect("/sessionForm")
     return render(request, 'home/allTutors.html', context)
+
+def sessionForm(request):
+    if request.method == "POST":
+        srform = SessionRequestForm(request.POST, instance=request.user)
+        if srform.is_valid():
+            post = srform.save(commit=False)
+            post.phone = request.user.phone
+            post.major = request.user.major
+            post.tsubjects = request.user.tsubjects
+            post.texp = request.user.texp
+            post.hourlyRate = request.user.hourlyRate
+            post.save()
+            return redirect('allTutors')
+    else:
+        srform = SessionRequestForm(instance=request.user)
+    return render(request, 'home/sessionForm.html', {'sfform': srform})

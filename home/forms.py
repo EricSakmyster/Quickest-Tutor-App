@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import User, Available
+from .models import User, Available, RequestSession
 
 class TutorProfileForm(forms.ModelForm):
     class Meta:
@@ -30,4 +30,15 @@ class StudentProfileForm(forms.ModelForm):
             'phone': forms.NumberInput(attrs={'class':"form-control", 'placeholder': "XXX-XXX-XXXX"}),
             'classes': forms.TextInput(attrs={'class':"form-control", 'placeholder': "ex) Math, English"}),
             'major': forms.TextInput(attrs={'class':"form-control", 'placeholder': "ex) Math, Chemistry"})
+        }
+
+class SessionRequestForm(forms.ModelForm):
+    
+    class Meta:
+        model = RequestSession
+        fields = ['student_availability','students_class', 'note']
+        widgets={
+            'student_availability': forms.DateTimeInput(attrs={'class': "form-control", 'title': 'MM/DD/YYYY HH:MM'}),
+            'students_class': forms.TextInput(attrs={'class':"form-control", 'placeholder': "Ex) CS1110"}),
+            'note': forms.TextInput(attrs={'class':"form-control", 'placeholder': "Notes"})
         }
