@@ -52,7 +52,7 @@ class tutorProfile(generic.TemplateView):
     model = User
     template_name = 'home/tutorProfile.html'
     context_object_name = 'thisTutor'
-    
+
 class tutorProfileAvailability(generic.TemplateView):
     model = User
     template_name = 'home/tutorProfileAvailability.html'
