@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import get_user_model
 from .forms import TutorProfileForm, TutorProfileAvailabilityForm, StudentProfileForm, SessionRequestForm
 
-from .models import TodoList, Category, User, Available
+from .models import TodoList, Category, User, Available, RequestSession
 
 
 # Create your views here.
@@ -124,34 +124,27 @@ def index(request):  # the index view
                 todo.delete()  # deleting todo
     return render(request, "home/studentSchedule.html", {"todos": todos, "categories": categories})
 def allTutors(request):
-    srform = SessionRequestForm(request.POST, instance=request.user)
-    tutors = get_user_model().objects.all()
-    context = {'tutors': tutors, 'srform': srform}
-    
     if request.method == "POST":
         srform = SessionRequestForm(request.POST, instance=request.user)
         if srform.is_valid():
             post = srform.save(commit=False)
-            post.student_availability = request.POST["category_select"]
-            post.students_class = "";
-            post.note = request.user.first_name;
-            return redirect('tutorProfile')
+            post.student_availability = srform.cleaned_data['student_availability']
+            post.students_class = srform.cleaned_data['students_class'];
+            post.note = srform.cleaned_data['note']
+            tu=srform.cleaned_data['tutor_username']
+            post.tutor_username = tu
             post.save()
-        return redirect("/sessionForm")
+            
+            request = RequestSession(student_availability=srform.cleaned_data['student_availability'], students_class=srform.cleaned_data['students_class'], note=srform.cleaned_data['note'], tutor_username=tu, student=User.objects.get(username = request.user.username), tutor =User.objects.get(username = tu))
+            request.save()
+            return redirect('sessionForm')
+    else:
+        srform = SessionRequestForm(instance=request.user)
+    tutors = get_user_model().objects.all()
+    context = {'tutors': tutors, 'srform': srform}
     return render(request, 'home/allTutors.html', context)
 
 def sessionForm(request):
-    if request.method == "POST":
-        srform = SessionRequestForm(request.POST, instance=request.user)
-        if srform.is_valid():
-            post = srform.save(commit=False)
-            post.phone = request.user.phone
-            post.major = request.user.major
-            post.tsubjects = request.user.tsubjects
-            post.texp = request.user.texp
-            post.hourlyRate = request.user.hourlyRate
-            post.save()
-            return redirect('allTutors')
-    else:
-        srform = SessionRequestForm(instance=request.user)
-    return render(request, 'home/sessionForm.html', {'sfform': srform})
+    users = get_user_model().objects.all()
+    context = {'users': users}
+    return render(request, 'home/sessionForm.html', context)

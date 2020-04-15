@@ -96,7 +96,10 @@
                 {% endfor %}
             </select>
         </div>
+        <input type="hidden" id="tutor_username" name="tutor_username" value="{{tutor.username}}">
         <div class="form-group">
+            {{srform.student_availability}}
+            {{srform.students_class}}
             {{srform.note}}
         </div>
         <input type="submit" class="btn btn-primary" value="Request Session">
