@@ -1,7 +1,8 @@
-
 from django.test import TestCase, RequestFactory
+from django.urls import reverse, resolve
 from .models import User, Category, TodoList
 from .views import WelcomeView, tutorsearch, home
+from .forms import TutorProfileForm, StudentProfileForm
 # Create your tests here.
 
 class FunctionalityTests(TestCase):
@@ -49,4 +50,90 @@ class ModelTests(TestCase):
             count+=1
         self.assertEquals(3, count)
 
+class viewTests(TestCase):
 
+    def editSP_view (self):
+        form_data = { 
+                'year': 'new test blog',
+                'phone': 'blog body',
+                'classes': 'blog body',
+                'major': 'blog body'
+
+            } 
+        form = StudentProfileForm(data= form_data) # create form instance 
+        response = self.client.post('/home/editsp/', form_data)
+        theUser = User.objects.get(year=form_data['year'])
+        self.assertTrue(form.is_valid())
+        self.assertEqual(theUser.year, 2)
+        self.assertRedirects(response, '/home/studentProfile/',status_code=302, target_status_code=200)
+
+    def editTP_view (self):
+        form_data = { 
+                'year': 'new test blog',
+                'phone': 'blog body',
+                'classes': 'blog body',
+                'major': 'blog body', 
+                'tsubjects': 'blog body',
+                'texp':'blog body',
+                'hourlyRate': 'blog body'
+            } 
+
+        form = TutorProfileForm(data= form_data) # create form instance 
+        response = self.client.post('/home/edittp/', form_data)
+        theUser = User.objects.get(year=form_data['year'])
+        self.assertTrue(form.is_valid())
+        self.assertEqual(theUser.year, 3)
+        self.assertEqual(theUser.hourlyRate, 11)
+        self.assertRedirects(response, '/home/tutorProfile/',status_code=302, target_status_code=200)
+
+
+class testURLS(TestCase):
+
+    def test_home_url(self):
+        view = resolve('/home/')
+        self.assertEquals(view.func, home)
+
+    def test_signin_url(self):
+        name = reverse('signin')
+        path = '/home/signin' 
+        self.assertEqual(name, path)
+
+    def test_sProfile_url(self):
+        name = reverse('profile')
+        path = '/home/studentProfile' 
+        self.assertEqual(name, path)
+
+    def test_tProfile_url(self):
+        name = reverse('tutorProfile')
+        path = '/home/tutorProfile' 
+        self.assertEqual(name, path)
+
+    def test_sSchedule_url(self):
+        name = reverse('schedule')
+        path = '/home/studentSchedule' 
+        self.assertEqual(name, path)
+
+    def test_tSchedule_url(self):
+        name = reverse('tutorSchedule')
+        path = '/home/tutorSchedule' 
+        self.assertEqual(name, path)
+
+    def test_editSP_url(self):
+        name = reverse('editSP')
+        path = '/home/editSP' 
+        self.assertEqual(name, path)
+
+    def test_editTP_url(self):
+        name = reverse('editTP')
+        path = '/home/editTP' 
+        self.assertEqual(name, path)
+
+    def test_tSearch_url(self):
+        name = reverse('tutorsearch')
+        path = '/home/studentTutorSearch' 
+        self.assertEqual(name, path)
+
+    # def test_tAvailability_url(self):
+    #     name = reverse('tutorProfileAvailibility')
+    #     path = '/home/tutorProfileAvailibility' 
+    #     self.assertEqual(name, path)
