@@ -18,7 +18,7 @@ class TutorProfileAvailabilityForm(forms.ModelForm):
         model = Available
         fields = ['available']
         widgets = {
-            'available': forms.DateTimeInput(attrs={'class': "form-control", 'title': 'MM/DD/YYYY HH:MM'}),
+            'available': forms.DateTimeInput(attrs={'class': 'form-control datetimepicker-input', 'data-target': '#datetimepicker1'}),
         }
 class StudentProfileForm(forms.ModelForm):
 
