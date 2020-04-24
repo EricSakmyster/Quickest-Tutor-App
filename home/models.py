@@ -38,7 +38,7 @@ class User(AbstractUser):
 class RequestSession(models.Model):
 
     objects = models.Manager()
-    student_availability = models.DateTimeField(blank=True)
+    chosen_time = models.TextField(max_length=100, default='none')
     tutor_username= models.TextField(max_length=20,default='none')
     description= models.TextField(max_length=50, default='')
     course = models.TextField(max_length=20, default='')
@@ -46,9 +46,8 @@ class RequestSession(models.Model):
     tutor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tutor', default=1)
     is_accepted=models.BooleanField(default=False)
     building = models.CharField(max_length=100, default='')
-   
 
-    
+
 
     def __str__(self):
         return self.description

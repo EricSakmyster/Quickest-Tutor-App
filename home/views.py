@@ -130,7 +130,7 @@ def allTutors(request):
         srform = SessionRequestForm(request.POST, instance=request.user)
         if srform.is_valid():
             post = srform.save(commit=False)
-            post.student_availability= srform.cleaned_data['student_availability']
+            post.chosen_time = request.POST["category_select"]
             post.course = srform.cleaned_data['course']
             post.description = srform.cleaned_data['description']
             tu=srform.cleaned_data['tutor_username']
@@ -139,7 +139,7 @@ def allTutors(request):
 
             post.save()
             
-            request = RequestSession(student_availability=srform.cleaned_data['student_availability'], course=srform.cleaned_data['course'], description=srform.cleaned_data['description'], tutor_username=tu, student=User.objects.get(username = request.user.username), tutor =User.objects.get(username = tu), is_accepted=False, building=srform.cleaned_data['building'])
+            request = RequestSession(chosen_time=request.POST["category_select"], course=srform.cleaned_data['course'], description=srform.cleaned_data['description'], tutor_username=tu, student=User.objects.get(username = request.user.username), tutor =User.objects.get(username = tu), is_accepted=False, building=srform.cleaned_data['building'])
             request.save()
             # if request.is_accepted:
             #     request.tutor.location = request.building
