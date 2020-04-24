@@ -36,10 +36,52 @@
             }
         .bottom-mar{
             margin-bottom: 100px;
+            
         }
+
+    
+
+        .marker {
+
+            width: 40px ;
+  height: 40px ;
+  background-color: #cc6262 ;
+  border-radius: 60px 60px 0px 60px ;
+  position:relative ;
+  transform: rotate(360deg);
+      /* width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 20px solid red; */
+
+        cursor: pointer;
+        }
+
+        .marker::after {
+  content: "" ;
+  width: 20px ;
+  height: 20px ;
+  background: #222 ;
+  position: absolute ;
+  left: 26% ;
+  top: 26% ;
+  border-radius: 30px ;
+}
+
+        .mapboxgl-popup {
+  max-height: 100px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  color:black
+}
+
         </style>
     </head>
-    
+
     <body>
         {% if user.is_authenticated %}
         <div class="d-flex w-100 h-50 p-3 mx-auto flex-column">
@@ -60,20 +102,237 @@
         <div class="container">
             <div class="card border-0 shadow my-5">
             <div class="card-body p-5">
-                <center>
                 
-                    <h5> <u>Search for Tutors Near You!</u></h5>
+                   
+
+                
+                <!-- <center> -->
+            <!-- {% for session in tutorAcceptedSessions %} -->
+                    <!-- {% if session.tutor == user %} -->
+                    <!-- <div class="row"> 
+                        {{session}} -->
+                    <!-- <h5 style="color: black"> <u>Location of Tutoring Session: {{session}}</u></h5> -->
+                    <!-- </div> -->
+                    <!-- {% endif %} -->
+            <!-- {% endfor %} -->
+
+
+  
+    
+                   
+                <!-- </center> -->
+                <!-- <p>{{user.building}}</p> -->
+
+                    {% for session in tutorAcceptedSessions %}
+                    {% if forloop.last %}
+                <input type="hidden" name="build" value="{{session.building}}" />
+                <center>
+
+                    <h5 style="color: black"> Location of Tutoring Session: {{session.building}}</h5>
+                    <h6 style="color: black"> Tutee: {{session.student}}</h6>
+                    <h6 style="color: black"> Class: {{session.course}}</h6>
+                    <h6 style="color: black"> Note: {{session.description}}</h6>
+
+
                 </center>
+                {% endif %}
+                {% endfor %}
+  
+
+              
+                <!-- <input type="hidden" name="accept" value="{{ user. }}" /> -->
+
                     <div id='map' width="100%" style='height:600px'></div>
+
                     <script>
                      mapboxgl.accessToken = 'pk.eyJ1IjoiZXJpY3Nha215c3RlciIsImEiOiJjazhiMXlxZmUwMWN0M2VxZWp2cGIwcGE3In0.LOR2DgUVncLrbVuaPtD5QA';
                      var map = new mapboxgl.Map({
                       container: 'map',
                       style: 'mapbox://styles/mapbox/streets-v10',
-                    center: [-78.4850, 38.0293],
-                    zoom: 13
+                    center: [-78.503868, 38.035250],
+                    zoom: 13.7
                      });
+
+                     var building = $("[name='build']").val()
+
+                     
+
+                     if(building == "Alderman Library"){
+                     var geojson = {
+                            type: 'FeatureCollection',
+                            features: [{
+                                type: 'Feature',
+                                geometry: {
+                                type: 'Point',
+                                coordinates: [-78.505372, 38.036530]
+                                },
+                                properties: {
+                                title: 'Mapbox',
+                                description: 'Alderman Library'
+                                }
+                            }]
+                        };
+                    }
+                    if(building == "Clark Library"){
+                        var geojson = {
+                            type: 'FeatureCollection',
+                            features: [{
+                                type: 'Feature',
+                                geometry: {
+                                type: 'Point',
+                                coordinates: [-78.5078, 38.0330]
+                                },
+                                properties: {
+                                title: 'Mapbox',
+                                description: 'Clark Library'
+                                }
+                            }]
+                        };
+
+                    }
+                    if(building == "Clemons Library"){
+                        var geojson = {
+                            type: 'FeatureCollection',
+                            features: [{
+                                type: 'Feature',
+                                geometry: {
+                                type: 'Point',
+                                coordinates: [-78.506154, 38.036664]
+                                },
+                                properties: {
+                                title: 'Mapbox',
+                                description: 'Clemons Library'
+                                }
+                            }]
+                        };
+
+                    }
+                    if(building == "Thornton's Stack"){
+                        var geojson = {
+                            type: 'FeatureCollection',
+                            features: [{
+                                type: 'Feature',
+                                geometry: {
+                                type: 'Point',
+                                coordinates: [-78.509593, 38.033520]
+                                },
+                                properties: {
+                                title: 'Mapbox',
+                                description: "Thornton's Stacks"
+                                }
+                            }]
+                        };
+
+                    }
+                    
+                    if(building == "Rice Hall"){
+                        var geojson = {
+                            type: 'FeatureCollection',
+                            features: [{
+                                type: 'Feature',
+                                geometry: {
+                                type: 'Point',
+                                coordinates: [-78.510835, 38.031847]
+                                },
+                                properties: {
+                                title: 'Mapbox',
+                                description: "Rice Hall"
+                                }
+                            }]
+                        };
+
+                    }
+                    if(building == "CDE"){
+                        var geojson = {
+                            type: 'FeatureCollection',
+                            features: [{
+                                type: 'Feature',
+                                geometry: {
+                                type: 'Point',
+                                coordinates: [-78.510563, 38.032698]
+                                },
+                                properties: {
+                                title: 'Mapbox',
+                                description: "CDE"
+                                }
+                            }]
+                        };
+
+                    }
+                    if(building == "Multicultural Student Center"){
+                        var geojson = {
+                            type: 'FeatureCollection',
+                            features: [{
+                                type: 'Feature',
+                                geometry: {
+                                type: 'Point',
+                                coordinates: [-78.506611, 38.036025]
+                                },
+                                properties: {
+                                title: 'Mapbox',
+                                description: "Multicultural Student Center"
+                                }
+                            }]
+                        };
+
+                    }
+                    if(building == "New Cabell"){
+                        var geojson = {
+                            type: 'FeatureCollection',
+                            features: [{
+                                type: 'Feature',
+                                geometry: {
+                                type: 'Point',
+                                coordinates: [-78.505075, 38.032702]
+                                },
+                                properties: {
+                                title: 'Mapbox',
+                                description: "New Cabell"
+                                }
+                            }]
+                        };
+                    }
+                    // }else{
+
+                    //     var geojson = {
+                    //         type: 'FeatureCollection',
+                    //         features: [{
+                    //             type: 'Feature',
+                    //             geometry: {
+                    //             type: 'Point',
+                    //             coordinates: null
+                    //             },
+                    //             properties: {
+                    //             title: 'Mapbox',
+                    //             description: ""
+                    //             }
+                    //         }]
+                    //     };
+
+
+
+
+
+
+                    // }
+
+                        // add markers to map
+                        geojson.features.forEach(function(marker) {
+                        // create a HTML element for each feature
+                        var el = document.createElement('div');
+                        el.className = 'marker';
+                        // make a marker for each feature and add to the map
+                        new mapboxgl.Marker(el)
+                        .setLngLat(marker.geometry.coordinates)
+                        .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+                        .setHTML('<p>' + marker.properties.description + '</p>'))
+                        .addTo(map);
+                        });
+
                     </script>
+
+
+
                 
                 <div style="height: 400px"></div>
             </div>

@@ -93,10 +93,16 @@ def default_map(request):
     # TODO: move this token to Django settings from an environment variable
     # found in the Mapbox account settings and getting started instructions
     # see https://www.mapbox.com/account/ under the "Access tokens" section
+    # tutorRequestedSessions = RequestSession.objects.filter(tutor_id=request.user.id)
+    # context = {'sessions': tutorRequestedSessions}
+    # tutorRequestedSessions = RequestSession.objects.filter(tutor_id=request.user.id)
+    tutorAcceptedSessions =  RequestSession.objects.filter(is_accepted=True)
+    context = {'tutorAcceptedSessions': tutorAcceptedSessions}
     mapbox_access_token = 'pk.my_mapbox_access_token'
+
     return render(request, 'tutorSearch.html',
                   {
-                      'mapbox_access_token': 'pk.eyJ1IjoiZXJpY3Nha215c3RlciIsImEiOiJjazhiMXlxZmUwMWN0M2VxZWp2cGIwcGE3In0.LOR2DgUVncLrbVuaPtD5QA'})
+                      'mapbox_access_token': 'pk.eyJ1IjoiZXJpY3Nha215c3RlciIsImEiOiJjazhiMXlxZmUwMWN0M2VxZWp2cGIwcGE3In0.LOR2DgUVncLrbVuaPtD5QA'},context)
 
 '''
 def index(request):  # the index view
@@ -129,10 +135,14 @@ def allTutors(request):
             post.description = srform.cleaned_data['description']
             tu=srform.cleaned_data['tutor_username']
             post.tutor_username = tu
+            # post.location = srform.cleaned_data['building']
+
             post.save()
             
-            request = RequestSession(student_availability=srform.cleaned_data['student_availability'], course=srform.cleaned_data['course'], description=srform.cleaned_data['description'], tutor_username=tu, student=User.objects.get(username = request.user.username), tutor =User.objects.get(username = tu), is_accepted=False)
+            request = RequestSession(student_availability=srform.cleaned_data['student_availability'], course=srform.cleaned_data['course'], description=srform.cleaned_data['description'], tutor_username=tu, student=User.objects.get(username = request.user.username), tutor =User.objects.get(username = tu), is_accepted=False, building=srform.cleaned_data['building'])
             request.save()
+            # if request.is_accepted:
+            #     request.tutor.location = request.building
             return redirect('allTutors')
     else:
         srform = SessionRequestForm(instance=request.user)
@@ -148,6 +158,7 @@ def studentSchedule(request):
     return render(request, 'home/studentSchedule.html', context)
 
 def tutorSchedule(request):
+
     tutorRequestedSessions = RequestSession.objects.filter(tutor_id=request.user.id)
     tutorAcceptedSessions = tutorRequestedSessions.filter(is_accepted=True)
     tutorRequestedSessions = tutorRequestedSessions.filter(is_accepted=False)
@@ -157,7 +168,8 @@ def tutorSchedule(request):
             acceptedSession=RequestSession.objects.get(id=request.POST["id"])
             acceptedSession.is_accepted=True
             acceptedSession.save()
+            return render(request, 'home/tutorSearch.html', context)
+
         if "Decline" in request.POST:
             RequestSession.objects.get(id=request.POST["id"]).delete()
-
     return render(request, 'home/baseTutor.html', context)

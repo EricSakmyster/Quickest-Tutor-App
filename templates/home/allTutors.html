@@ -97,6 +97,24 @@
                 {% endfor %}
             </select>
         </div>
+
+        <!-- <div class="row">
+            Location:
+            <select id="category" class="taskCategory" name="category_select">
+                <option value="">Available Locations</option>
+                {% for vail in tutor.building %}
+                <option class="" value="{{ vail }}">{{ vail }}
+                </option>
+                {% endfor %}
+            </select>
+        </div> -->
+
+        <div class="form-group">
+            <div class="row">
+            Location: {{srform.building}}
+            </div>
+        </div>
+
         <input type="hidden" id="tutor_username" name="tutor_username" value="{{tutor.username}}">
         <div class="form-group">
             <div class="row">
