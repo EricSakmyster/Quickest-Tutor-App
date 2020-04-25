@@ -2,6 +2,8 @@ from django import forms
 
 from .models import User, Available, RequestSession
 
+
+
 class TutorProfileForm(forms.ModelForm):
     class Meta:
         model = User
@@ -18,7 +20,7 @@ class TutorProfileAvailabilityForm(forms.ModelForm):
         model = Available
         fields = ['available']
         widgets = {
-            'available': forms.DateTimeInput(attrs={'class': "form-control", 'title': 'MM/DD/YYYY HH:MM'}),
+            'available': forms.DateTimeInput(attrs={'class': 'form-control datetimepicker-input', 'data-target': '#datetimepicker1'}),
         }
 class StudentProfileForm(forms.ModelForm):
 
@@ -33,14 +35,27 @@ class StudentProfileForm(forms.ModelForm):
         }
 
 class SessionRequestForm(forms.ModelForm):
-    
+
+
     class Meta:
         model = RequestSession
-        fields = ['student_availability','students_class', 'note', 'tutor_username']
+        fields = ['student_availability', 'tutor_username', 'course', 'description', 'building']
+
+        BUILDING_CHOICES =( 
+    ('initial', "Choose your Location"),
+    ("Alderman Library", "Alderman Library"), 
+    ("Clemons Library", "Clemons Library"), 
+    ("Clark Library", "Clark Library"), 
+    ("Thornton Stacks", "Thornton Stacks"), 
+    ("Rice Hall", "Rice Hall"), 
+    ("CDE", "CDE"), 
+    ("Multicultural Student Center", "Multicultural Student Center"), 
+    ("New Cabell", "New Cabell"), 
+)
         widgets={
-            'student_availability': forms.DateTimeInput(attrs={'class': "form-control", 'title': 'MM/DD/YYYY HH:MM'}),
-            'students_class': forms.TextInput(attrs={'class':"form-control", 'placeholder': "Ex) CS1110"}),
-            'note': forms.TextInput(attrs={'class':"form-control", 'placeholder': "Notes"}),
-            'tutor_username': forms.HiddenInput()
-        
+            'student_availability': forms.DateTimeInput(attrs={'class': "form-control", 'title': 'MM/DD/YYYY HH:MM', 'placeholder': "What time works for you? (MM/DD/YYYY HH:MM)"}),
+            'tutor_username': forms.HiddenInput(),
+            'course': forms.TextInput(attrs={'class':"form-control", 'placeholder': "ex) CS 2150"}),
+            'description': forms.TextInput(attrs={'class':"form-control", 'placeholder': "Describe what you need to be tutored for"}),
+            'building': forms.Select(attrs={'class': 'form-control'}, choices=BUILDING_CHOICES),
         }

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
-<html>
+{% load socialaccount %}
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,8 +15,6 @@
                             .search-margin{
                                 margin-left: 100px;
                             }
-
-    
     </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -38,7 +37,7 @@
 </head>
 <body>
     {% if user.is_authenticated %}
-    <div class="d-flex w-100 h-50 p-3 mx-auto flex-column">
+    <div class="d-flex w-100 h-25 p-3 mx-auto flex-column">
         <header class="masthead mb-auto">
             <div class="inner">
                 <h3 class="masthead-brand">QuickestTutor</h3>
@@ -58,13 +57,54 @@
 
 <center>
 
-    <h5> Schedule of your Upcoming Tutor Sessions </h5>
+    <u><h3> Schedule of Your Tutoring Sessions </h3></u>
+    <div class="container">
+    <div class="left" style="background-color: #ff802cbe;
+    position: absolute;
+    left: 0px;
+    width: 50%;">
+        <u><h5>Pending Sessions</h5></u>
+        
+{% for session in studentRequestedSessions %}
+        <div class="row">
+    <ul>
+        <li>{{session.course}} with {{session.tutor}} at {{session.student_availability}}</li>
+            <ul>
+                <div align="left">
+                <li>{{session.description}}</li>
+                </div>
+            </ul>
+    </ul>
+        </div>
+{% endfor %}
+</div>
+<div class ="right" style="background-color: #59b94c;
+position: absolute;
+right: 0px;
+width: 50%;">
+    <u><h5>Accepted Sessions</h5></u>
+{% for session in tutorAcceptedSessions %}
+        <div class="row ">
+    <ul>
+        <li>{{session.course}} with {{session.tutor}} at {{session.student_availability}}</li>
+            <ul>
+                <div align="left">
+                <li>{{session.description}}</li>
+                </div>
+            </ul>
+    </ul>
+        </div>
+{% endfor %}
+</div>
+</div>
 
+</center>
+<!--
     <div django-app="TaskManager">
         <div class="container">
             <div class="content">
                 <form action="" method="post">
-                    {% csrf_token %} <!-- csrf token for basic security -->
+                    {% csrf_token %}  csrf token for basic security 
                     <div class="inputContainer">
                         <input type="text" style="width: 300px;" id="description" class="taskName"
                                placeholder="What do you need to be tutored for?"
@@ -98,7 +138,7 @@
                         </div>
                     </div>
                     <ul class="taskList">
-                        {% for todo in todos %} <!-- django template lang - for loop -->
+                        {% for todo in todos %}  django template lang - for loop 
                         <li class="taskItem">
                             <input type="checkbox" class="taskCheckbox" name="checkedbox" id="{{ todo.id }}"
                                    value="{{ todo.id }}">
@@ -107,15 +147,13 @@
                             <strong class="taskDate"><i class="fa fa-calendar"></i>{{ todo.due_date }}</strong>
                         </li>
                         {% endfor %}
-                    </ul><!-- taskList -->
+                    </ul>taskList 
                 </form>
-            </div><!-- content -->
-        </div><!-- container -->
+            </div> content 
+        </div> container 
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 
-
-</center>
 </div>
 {% else %}
 <meta http-equiv="refresh" content="0; URL=home">
