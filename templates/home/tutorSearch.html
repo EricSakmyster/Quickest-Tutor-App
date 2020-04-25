@@ -89,15 +89,34 @@
                 <div class="inner">
                     <h3 class="masthead-brand">QuickestTutor</h3>
                     <nav class="nav nav-masthead justify-content-center">
-                        <a class="nav-link" href="welcome">Home</a>
-                        <a class="nav-link" href="allTutors">Find Tutors</a>
-                        <a class="nav-link" href="studentProfile">My Student Profile</a>
-                        <a class="nav-link" href="tutorProfile">My Tutor Profile</a>
-                        <a class="nav-link" href="studentSchedule">My Student Schedule</a>
-                        <a class="nav-link" href="tutorSchedule">My Tutor Schedule</a>
-                        <a class="nav-link active" href="studentTutorSearch">Tutor Search</a>
-                        <a href="/accounts/logout" class= "btn btn-dark masthead-brand search-margin">Log Out</a>
-                    </nav>
+
+                    <a class="nav-link" href="welcome">Home</a>
+
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="studentProfile" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Student
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="studentProfile">Student Profile</a>
+                        <a class="dropdown-item" href="studentSchedule">Student Schedule</a>
+                        <a class="dropdown-item" href="allTutors">Find a Tutor</a>
+                        <a class="dropdown-item" href="studentTutorSearch">Where's My Session</a>
+                    </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="tutorProfile" id="tutor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Tutor
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="tutor">
+                        <a class="dropdown-item" href="tutorProfile">Tutor Profile</a>
+                        <a class="dropdown-item" href="tutorSchedule">Tutor Schedule</a>
+                    </div>
+                    </li>
+                    <ul class="nav navbar-nav navbar-right">
+                        <a href="/accounts/logout" class= "btn btn-dark masthead-brand ">Log Out</a>
+                    </ul>
+                </nav>
+
                 </div>
             </header>
         <div class="container">

@@ -53,11 +53,8 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
-                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt=""/>
-                            <div class="file btn btn-lg btn-primary">
-                                Change Photo
-                                <input type="file" name="file"/>
-                            </div>
+                            <img src="{{user.image}}" alt=""/>
+
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -66,7 +63,7 @@
                                         {{user.first_name}} {{user.last_name}}
                                     </h5>
                                     <h6>
-                                        Tutor
+                                        Tutor <p>ID: {{user.id}}</p>
                                     </h6>
                                     <p class="proile-rating">RANKINGS : <span>10/10</span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -95,7 +92,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 {% for vail in user.tutorAvailability %}
-                                                {{ vail }}
+                                                <p>{{ vail }}</p>
                                                 {% endfor %}
                                             </div>
                                         </div>

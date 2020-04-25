@@ -10,6 +10,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
 
     <title>Quickest Tutor</title>
 
@@ -35,17 +40,34 @@
 <div class="d-flex h-100 w-100 p-3 mx-auto flex-column">
     <header class="masthead mb-auto">
         <div class="inner">
-            <h3 class="masthead-brand">QuickestTutor</h3>
-            <nav class="nav nav-masthead justify-content-center">
-                <a class="nav-link active" href="home/">Home</a>
-                <a class="nav-link" href="allTutors">Find Tutors</a>
-                <a class="nav-link" href="studentProfile">My Student Profile</a>
-                <a class="nav-link" href="tutorProfile">My Tutor Profile</a>
-                <a class="nav-link" href="studentSchedule">My Student Schedule</a>
-                <a class="nav-link" href="tutorSchedule">My Tutor Schedule</a>
-                <a class="nav-link" href="studentTutorSearch">Tutor Search</a>
-                <a href="/accounts/logout" class="btn btn-dark masthead-brand search-margin">Log Out</a>
-            </nav>
+          <h3 class="masthead-brand">QuickestTutor</h3>
+          <nav class="nav nav-masthead justify-content-center">
+                    <a class="nav-link" href="welcome">Home</a>
+
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="studentProfile" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Student
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="studentProfile">Student Profile</a>
+                        <a class="dropdown-item" href="studentSchedule">Student Schedule</a>
+                        <a class="dropdown-item" href="allTutors">Find a Tutor</a>
+                        <a class="dropdown-item" href="studentTutorSearch">Where's My Session</a>
+                    </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="tutorProfile" id="tutor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Tutor
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="tutor">
+                        <a class="dropdown-item" href="tutorProfile">Tutor Profile</a>
+                        <a class="dropdown-item" href="tutorSchedule">Tutor Schedule</a>
+                    </div>
+                    </li>
+                    <ul class="nav navbar-nav navbar-right">
+                        <a href="/accounts/logout" class= "btn btn-dark masthead-brand ">Log Out</a>
+                    </ul>
+                </nav>
         </div>
     </header>
 
