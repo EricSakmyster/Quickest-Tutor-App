@@ -25,7 +25,7 @@ class User(AbstractUser):
     emailAddress = models.TextField(max_length=50, default='none')
     requests = models.ManyToManyField("RequestSession", blank=True)
     tutorAvailability = ArrayField(models.DateTimeField(default=datetime.now, blank=True), default=list, blank=True)
-    pfp = models.ImageField(default='home/default.png', blank= True, null= True)
+    pfp = models.ImageField(blank= True, null= True)
     location = models.CharField(max_length=100, default='')
 
     # building = ArrayField(models.CharField(max_length=32, blank=True, choices=BUILDING_CHOICES), blank = True, default=list)

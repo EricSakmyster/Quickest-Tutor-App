@@ -115,7 +115,6 @@ def editTP(request):
             post.texp = request.user.texp
             post.hourlyRate = request.user.hourlyRate
             post.pfp = request.user.pfp
-
             post.save()
             return redirect('tutorProfile')
     else:
