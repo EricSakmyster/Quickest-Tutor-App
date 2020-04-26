@@ -95,6 +95,22 @@
         {% csrf_token %}
     <div class="container emp-profile top-margin text-color ">
         <div class="left-margin">
+
+            <div class="row ">
+
+                <!-- <div class="profile-img"> -->
+                {% if tutor.pfp %}
+                <img src="{{tutor.pfp.url}}" alt="" height="100" width="100"/>
+                {% else %}
+                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="" height="100" width="100"/>
+                {% endif %}
+
+            <!-- </div> -->
+
+            </div>
+
+
+
         <div class="row ">
             Name: {{tutor}} 
             <input type="hidden" id="tutor_username" name="tutor_username" value="{{tutor.username}}">

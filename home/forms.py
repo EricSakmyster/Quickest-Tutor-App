@@ -7,13 +7,16 @@ from .models import User, Available, RequestSession
 class TutorProfileForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['phone', 'major', 'tsubjects', 'texp', 'hourlyRate', 'image']
+        fields = ['phone', 'major', 'tsubjects', 'texp', 'hourlyRate', 'pfp']
         widgets = {
-            'phone': forms.NumberInput(attrs={'class': "form-control", 'placeholder': "01234567890"}),
+            'phone': forms.TextInput(attrs={'class': "form-control", 'placeholder': "+999999999"}),
             'major': forms.TextInput(attrs={'class': "form-control", 'placeholder': "ex) Math, Chemistry"}),
             'tsubjects': forms.TextInput(attrs={'class': "form-control", 'placeholder': "ex) Math, English"}),
             'texp': forms.TextInput(attrs={'class': "form-control", 'placeholder': "ex) Calc teacher 3 years"}),
             'hourlyRate': forms.NumberInput(attrs={'class': "form-control", 'placeholder': "expected hourly pay"}),
+            'pfp': forms.FileInput(),
+
+
         }
 class TutorProfileAvailabilityForm(forms.ModelForm):
     class Meta:
@@ -26,12 +29,13 @@ class StudentProfileForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['year','phone', 'classes', 'major']
+        fields = ['year','phone', 'classes', 'major', 'pfp']
         widgets={
             'year': forms.NumberInput(attrs={'class':"form-control", 'placeholder': "1,2,3,or 4"}),
-            'phone': forms.NumberInput(attrs={'class':"form-control", 'placeholder': "01234567890"}),
+            'phone': forms.TextInput(attrs={'class':"form-control", 'placeholder': "+999999999"}),
             'classes': forms.TextInput(attrs={'class':"form-control", 'placeholder': "ex) Math, English"}),
-            'major': forms.TextInput(attrs={'class':"form-control", 'placeholder': "ex) Math, Chemistry"})
+            'major': forms.TextInput(attrs={'class':"form-control", 'placeholder': "ex) Math, Chemistry"}),
+            'pfp': forms.FileInput(),
         }
 
 class SessionRequestForm(forms.ModelForm):
@@ -58,3 +62,15 @@ class SessionRequestForm(forms.ModelForm):
             'description': forms.TextInput(attrs={'class':"form-control", 'placeholder': "Describe what you need to be tutored for"}),
             'building': forms.Select(attrs={'class': 'form-control'}, choices=BUILDING_CHOICES),
         }
+
+
+# class ImageUploadForm(forms.Form):
+
+#     """Image upload form."""
+
+#     image = forms.ImageField()
+
+    # class Meta:
+    #     model = User
+    #     fields =['pfp']
+    #     widgets={'pfp': forms.FileInput(),}

@@ -79,16 +79,16 @@
             </div>
         </header>
     <div class="container emp-profile">
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
+                            {% if user.pfp %}
+                            <img src="{{user.pfp.url}}" alt=""/>
+                            {% else %}
                             <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt=""/>
-                            <div class="file btn btn-lg btn-primary">
-                                Change Photo
-                                <input type="file" name="file"/>
-                            </div>
+                            {% endif %}                   
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -168,7 +168,10 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <p> </p>
+                                            <div class="col-md-6">
+                                                <label>Update Profile Picture</label>
+                                            </div>
+                                                {{sform.pfp}}
                                         </div>
                                         <div class="row">
                                             <p> </p>
