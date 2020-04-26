@@ -47,11 +47,9 @@ class RequestSession(models.Model):
     is_accepted=models.BooleanField(default=False)
     building = models.CharField(max_length=100, default='')
    
-
-    
-
     def __str__(self):
         return self.description
+        
 class Available(models.Model):
     available=models.DateTimeField(default=datetime.now, blank=True)
     def __str__(self):

@@ -45,9 +45,9 @@
 
             width: 40px ;
   height: 40px ;
-  background-color: #cc6262 ;
+  background-color: #00d9ff ;
   border-radius: 60px 60px 0px 60px ;
-  position:relative ;
+  position: absolute ;
   transform: rotate(360deg);
       /* width: 0;
       height: 0;
@@ -94,7 +94,7 @@
                         <a class="nav-link" href="tutorProfile">Tutor Profile</a>
                         <a class="nav-link" href="studentSchedule">My Schedule</a>
                         <a class="nav-link" href="tutorSchedule">Tutor Schedule</a>
-                        <a class="nav-link active" href="studentTutorSearch">Tutor Search</a>
+                        <a class="nav-link active" href="locateSessions">Locate Sessions</a>
                         <a href="/accounts/logout" class= "btn btn-dark masthead-brand search-margin">Log Out</a>
                     </nav>
                 </div>
@@ -122,8 +122,8 @@
                    
                 <!-- </center> -->
                 <!-- <p>{{user.building}}</p> -->
-
-                    {% for session in tutorAcceptedSessions %}
+                <!-- 
+                    {% for session in studentAcceptedSessions %}
                     {% if forloop.last %}
                 <input type="hidden" name="build" value="{{session.building}}" />
                 <center>
@@ -136,12 +136,18 @@
 
                 </center>
                 {% endif %}
-                {% endfor %}
+                {% endfor %} -->
   
 
               
                 <!-- <input type="hidden" name="accept" value="{{ user. }}" /> -->
-
+                    <center>
+                    <button class="shadow-md p-3 mb-5 bg-white rounded" style="font-size:12pt;color:black;background-color:white;border:2px solid black;padding:10px" name="View Student Sessions" type="submit">View Student Sessions
+                    </button>
+                    <button class="shadow-md p-3 mb-5 bg-white rounded" style="font-size:12pt;color:black;background-color:rgb(0, 255, 255);border:2px solid black;padding:10px" name="View Tutor Sessions" type="submit">View Tutor Sessions
+                    </button>
+                    </center>
+                    
                     <div id='map' width="100%" style='height:600px'></div>
 
                     <script>
@@ -152,8 +158,11 @@
                     center: [-78.503868, 38.035250],
                     zoom: 13.7
                      });
-
-                     var building = $("[name='build']").val()
+                    </script>
+                    {% for session in AcceptedSessions %}
+                   
+                    <script>
+                     var building = "{{session.building}}";
 
                      
 
@@ -168,7 +177,7 @@
                                 },
                                 properties: {
                                 title: 'Mapbox',
-                                description: 'Alderman Library'
+                                description: 'Alderman Library, {{session.student_availability}}, {{session.course}}'
                                 }
                             }]
                         };
@@ -184,7 +193,7 @@
                                 },
                                 properties: {
                                 title: 'Mapbox',
-                                description: 'Clark Library'
+                                description: 'Clark Library, {{session.student_availability}}, {{session.course}}'
                                 }
                             }]
                         };
@@ -201,7 +210,7 @@
                                 },
                                 properties: {
                                 title: 'Mapbox',
-                                description: 'Clemons Library'
+                                description: 'Clemons Library, {{session.student_availability}}, {{session.course}}'
                                 }
                             }]
                         };
@@ -218,7 +227,7 @@
                                 },
                                 properties: {
                                 title: 'Mapbox',
-                                description: "Thornton's Stacks"
+                                description: "Thornton's Stacks, {{session.student_availability}}, {{session.course}}"
                                 }
                             }]
                         };
@@ -236,7 +245,7 @@
                                 },
                                 properties: {
                                 title: 'Mapbox',
-                                description: "Rice Hall"
+                                description: "Rice Hall, {{session.student_availability}}, {{session.course}}"
                                 }
                             }]
                         };
@@ -253,7 +262,7 @@
                                 },
                                 properties: {
                                 title: 'Mapbox',
-                                description: "CDE"
+                                description: "CDE, {{session.student_availability}}, {{session.course}}"
                                 }
                             }]
                         };
@@ -270,7 +279,7 @@
                                 },
                                 properties: {
                                 title: 'Mapbox',
-                                description: "Multicultural Student Center"
+                                description: "Multicultural Student Center, {{session.student_availability}}, {{session.course}}"
                                 }
                             }]
                         };
@@ -287,7 +296,7 @@
                                 },
                                 properties: {
                                 title: 'Mapbox',
-                                description: "New Cabell"
+                                description: "New Cabell, \n {{session.student_availability}}, {{session.course}}"
                                 }
                             }]
                         };
@@ -330,7 +339,7 @@
                         });
 
                     </script>
-
+                    {% endfor %}
 
 
                 
