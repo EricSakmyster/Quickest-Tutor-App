@@ -6,6 +6,9 @@ python:
 install:
 - pip install django-heroku
 - pip install django-allauth
+- pip install django-filter
+- pip install django-filters
+- pip install django-bootstrap-form
 - python -m pip install Pillow
 - pip install -r requirements-travis.txt
 
