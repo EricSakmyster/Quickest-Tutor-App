@@ -36,6 +36,9 @@
         .top-margin{
             margin-top: 50px;
         }
+        .top-margin-t{
+            margin-top: 135px;
+        }
         .text-color{
             color: black;
         }
@@ -90,9 +93,11 @@
         </header>
 
 <center>
-<u><h3> All of our Tutors </h3></u>
+<u><h3 class="top-margin-t"> All of our Tutors </h3></u>
 
     {% for tutor in tutors %}
+    {% if tutor.tutorAvailability %}
+    {% if tutor.id != user.id %}
     <form method="post" id='srform'>
         {% csrf_token %}
     <div class="container emp-profile top-margin text-color ">
@@ -172,7 +177,8 @@
         </div>
     </div>
     </form>
-    
+    {% endif %}
+    {% endif %}
     {% endfor %}
     
 
