@@ -8,7 +8,7 @@ class UserAdmin(admin.ModelAdmin):
 
 
 class RequestSessionAdmin(admin.ModelAdmin):
-    list_display = ("student_availability", "course", "description", "tutor_username", "student", "tutor")
+    list_display = ("chosen_time", "course", "description", "tutor_username", "student", "tutor")
 
 
 class TodoListAdmin(admin.ModelAdmin):

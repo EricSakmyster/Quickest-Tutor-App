@@ -16,25 +16,27 @@
     .search-margin{
         margin-left: 100px;
     }
-</style>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
-<link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
-<link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/cover/">
-<!-- Bootstrap core CSS -->
-<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-<!-- Custom styles for this template -->
-<link href="{% static 'css/cover.css' %}" rel="stylesheet">
+
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/cover/">
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/cover.css' %}" rel="stylesheet">
     <style type="text/css">
             .search-margin{
-                margin-left: 275px;
+                margin-left: 140px;
             }
         .bottom-mar{
             margin-bottom: 100px;
         }
-        </style>
+
+    </style>
 </head>
 <body >
     {% if user.is_authenticated %}
@@ -43,8 +45,10 @@
             <div class="inner">
                 <h3 class="masthead-brand">QuickestTutor</h3>
                 <nav class="nav nav-masthead justify-content-center">
+                    <div style = "position:absolute; left:575px; top:20px;">
                     <a class="nav-link" href="welcome">Home</a>
-
+                    </div>
+                    <div style = "position:absolute; left:675px; top:20px;">
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="studentProfile" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Student
@@ -56,6 +60,8 @@
                         <a class="dropdown-item" href="studentTutorSearch">Where's My Session</a>
                     </div>
                     </li>
+                    </div>
+                    <div style = "position:absolute; left:800px; top:20px;">
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="tutorProfile" id="tutor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Tutor
@@ -65,68 +71,85 @@
                         <a class="dropdown-item" href="tutorSchedule">Tutor Schedule</a>
                     </div>
                     </li>
+                    </div>
                     <ul class="nav navbar-nav navbar-right">
                         <a href="/accounts/logout" class= "btn btn-dark masthead-brand ">Log Out</a>
                     </ul>
                 </nav>
             </div>
         </header>
+    <center>
 
-<center>
-
-    <u><h3> Your Tutor Schedule </h3></u>
-    <div class="container">
-    <div class="left" style="background-color: #ff802cbe;
+        <u><h3> Your Tutor Schedule </h3></u>
+        <div class="container">
+            <div class="left" style="background-color: #ff802cbe;
     position: absolute;
     left: 0px;
     width: 50%;">
-        <u><h5>Requested Sessions</h5></u>
-        
-{% for session in tutorRequestedSessions %}
-<form method="POST">
-    {% csrf_token %}
-    <div class="row">
-    <ul>
-        <li>{{session.course}} with {{session.student}} at {{session.student_availability}}, in {{session.building}}</li>
-        <!-- <li>{{session.building}}</li> -->
-            <ul>
-                <div align="left">
-                <li>{{session.description}}</li>
-                </div>
-            </ul>
-    </ul>
-    </div>
-    <input type="hidden" id="id" name="id" value="{{session.id}}">
-    <button class="Accept" style="font-size:12pt;color:white;background-color:green;border:2px solid #336600;padding:10px" name="Accept" type="submit">Accept
-    </button>
-    <button class="Decline" style="font-size:12pt;color:white;background-color:red;border:2px solid #ff0000;padding:10px" name="Decline" type="submit">Decline
-    </button>
-</form>
-{% endfor %}
-</div>
-<div class ="right" style="background-color: #59b94c;
+                <u><h5>Requested Sessions</h5></u>
+
+                {% for session in tutorRequestedSessions %}
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <ul>
+                            <li>{{session.course}} with {{session.student}} at {{session.chosen_time}}, in
+                                {{session.building}}
+                            </li>
+                            <!-- <li>{{session.building}}</li> -->
+                            <ul>
+                                <div align="left">
+                                    <li>{{session.description}}</li>
+                                </div>
+                            </ul>
+                        </ul>
+                    </div>
+                    <input type="hidden" id="id" name="id" value="{{session.id}}">
+                    <button class="Accept"
+                            style="font-size:12pt;color:white;background-color:green;border:2px solid #008000;padding:10px"
+                            name="Accept" type="submit">Accept
+                    </button>
+                    <button class="Decline"
+                            style="font-size:12pt;color:white;background-color:orange;border:2px solid #ffa500;padding:10px"
+                            name="Decline" type="submit">Decline
+                    </button>
+                </form>
+                {% endfor %}
+            </div>
+
+            <div class="right" style="background-color: #59b94c;
 position: absolute;
 right: 0px;
 width: 50%;">
-    <u><h5>Accepted Sessions</h5></u>
-{% for session in tutorAcceptedSessions %}
-        <div class="row ">
-    <ul>
-        <li>{{session.course}} with {{session.student}} at {{session.student_availability}}, in {{session.building}}</li>
-        <!-- <li>{{session.building}}</li> -->
-            <ul>
-                <div align="left">
-                <li>{{session.description}}</li>
-                </div>
-            </ul>
-    </ul>
+                <u><h5>Accepted Sessions</h5></u>
+                {% for session in tutorAcceptedSessions %}
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="row ">
+                        <ul>
+                            <li>{{session.course}} with {{session.student}} at {{session.chosen_time}}, in
+                                {{session.building}}
+                            </li>
+                            <!-- <li>{{session.building}}</li> -->
+                            <ul>
+                                <div align="left">
+                                    <li>{{session.description}}</li>
+                                </div>
+                            </ul>
+                        </ul>
+                    </div>
+                    <input type="hidden" id="id" name="id" value="{{session.id}}">
+                    <button class="Cancel"
+                            style="font-size:12pt;color:white;background-color:red;border:2px solid #ff0000;padding:10px"
+                            name="Cancel" type="submit">Cancel
+                    </button>
+                </form>
+                {% endfor %}
+            </div>
         </div>
-{% endfor %}
-</div>
-</div>
 
 
-</center>
+    </center>
 </div>
 {% else %}
 <meta http-equiv="refresh" content="0; URL=home">

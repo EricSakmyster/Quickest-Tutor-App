@@ -25,24 +25,27 @@
 
     <!-- Custom styles for this template -->
     <link href="{% static 'css/cover.css' %}" rel="stylesheet">
-        <style type="text/css">
+    <style type="text/css">
             .search-margin{
-                margin-left: 275px;
+                margin-left: 140px;
             }
         .bottom-mar{
             margin-bottom: 100px;
         }
-        </style>
-  </head>
+
+    </style>
+</head>
 <body class="text-center">
-    {% if user.is_authenticated %}
-    <div class="d-flex h-100 w-100 p-3 mx-auto flex-column">
-      <header class="masthead mb-auto">
+{% if user.is_authenticated %}
+<div class="d-flex h-100 w-100 p-3 mx-auto flex-column">
+    <header class="masthead mb-auto">
         <div class="inner">
           <h3 class="masthead-brand">QuickestTutor</h3>
           <nav class="nav nav-masthead justify-content-center">
+              <div style = "position:absolute; left:575px; top:20px;">
                     <a class="nav-link" href="welcome">Home</a>
-
+              </div>
+              <div style = "position:absolute; left:675px; top:20px;">
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="studentProfile" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Student
@@ -54,6 +57,8 @@
                         <a class="dropdown-item" href="studentTutorSearch">Where's My Session</a>
                     </div>
                     </li>
+              </div>
+              <div style = "position:absolute; left:800px; top:20px;">
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="tutorProfile" id="tutor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Tutor
@@ -63,37 +68,39 @@
                         <a class="dropdown-item" href="tutorSchedule">Tutor Schedule</a>
                     </div>
                     </li>
+              </div>
                     <ul class="nav navbar-nav navbar-right">
                         <a href="/accounts/logout" class= "btn btn-dark masthead-brand ">Log Out</a>
                     </ul>
                 </nav>
         </div>
-      </header>
+    </header>
 
-      <main role="main" class="inner cover">
+    <main role="main" class="inner cover">
         <h1 class="cover-heading">Hi {{user}}!</h1>
         <p class="lead">Please use the tabs above to navigate the site</p>
         </p>
-      </main>
+    </main>
 
-        <footer class="mastfoot mt-auto">
+    <footer class="mastfoot mt-auto">
+        <div>
             <div>
-                <div>
-                    <a href="allTutors" class="btn btn-dark bottom-mar">Schedule a Session Now</a>
-                    <a href="tutorProfile" class="btn btn-dark bottom-mar">I am a tutor</a>
-      </footer>
-    </div>
+                <a href="allTutors" class="btn btn-dark bottom-mar">Schedule a Session Now</a>
+    </footer>
+</div>
 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="../../assets/js/vendor/popper.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    {% else %}
-    <meta http-equiv="refresh" content="0; URL=home">
-    {% endif %}
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="../../assets/js/vendor/popper.min.js"></script>
+<script src="../../dist/js/bootstrap.min.js"></script>
+{% else %}
+<meta http-equiv="refresh" content="0; URL=home">
+{% endif %}
 </body>
 </html>
