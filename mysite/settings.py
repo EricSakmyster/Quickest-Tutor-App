@@ -46,11 +46,13 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-
-    # providers
-    #'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
-    # 'modelapp',
+
+    # filter
+
+    'django_filters',
+    'bootstrapform'
+
 ]
 
 MIDDLEWARE = [
