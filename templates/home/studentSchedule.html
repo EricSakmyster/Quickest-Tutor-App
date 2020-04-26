@@ -103,7 +103,8 @@
                     {% csrf_token %}
                     <div class="row">
                         <ul>
-                            <li>{{session.course}} with {{session.tutor}} at {{session.chosen_time}}</li>
+                            <li>{{session.course}} with {{session.tutor}} at {{session.chosen_time}}, in
+                                {{session.building}}</li>
                             <ul>
                                 <div align="left">
                                     <li>{{session.description}}</li>
@@ -131,7 +132,8 @@ width: 50%;">
                     {% csrf_token %}
                     <div class="row ">
                         <ul>
-                            <li>{{session.course}} with {{session.tutor}} at {{session.chosen_time}}</li>
+                            <li>{{session.course}} with {{session.tutor}} at {{session.chosen_time}}, in
+                                {{session.building}}</li>
                             <ul>
                                 <div align="left">
                                     <li>{{session.description}}</li>
