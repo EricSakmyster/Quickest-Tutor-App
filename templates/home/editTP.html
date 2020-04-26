@@ -41,12 +41,12 @@
     <div class="d-flex w-100 h-50 p-3 mx-auto flex-column">
         <header class="masthead mb-auto">
             <div class="inner">
-                <h3 class="masthead-brand">QuickestTutor</h3>
+                <h3 class="masthead-brand"><a href="welcome"></a>QuickestTutor</h3>
                 <nav class="nav nav-masthead justify-content-center">
-                    <div style = "position:absolute; left:575px; top:20px;">
+                    <div style = "position:absolute; left:40vw; top:20px;">
                     <a class="nav-link" href="welcome">Home</a>
                     </div>
-                    <div style = "position:absolute; left:675px; top:20px;">
+                    <div style = "position:absolute; left:50vw; top:20px;">
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="studentProfile" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Student
@@ -55,38 +55,42 @@
                         <a class="dropdown-item" href="studentProfile">Student Profile</a>
                         <a class="dropdown-item" href="studentSchedule">Student Schedule</a>
                         <a class="dropdown-item" href="allTutors">Find a Tutor</a>
-                        <a class="dropdown-item" href="studentTutorSearch">Where's My Session</a>
+                        <a class="dropdown-item" href="studentLocateSessions">Where's My Session</a>
                     </div>
                     </li>
                     </div>
-                    <div style = "position:absolute; left:800px; top:20px;">
+                    <div style = "position:absolute; left:63vw; top:20px;">
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="tutorProfile" id="tutor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Tutor
                     </a>
                     <div class="dropdown-menu" aria-labelledby="tutor">
                         <a class="dropdown-item" href="tutorProfile">Tutor Profile</a>
+                        <a class="dropdown-item" href="tutorProfileAvailability">Tutor Availability</a>
                         <a class="dropdown-item" href="tutorSchedule">Tutor Schedule</a>
+                        <a class="dropdown-item" href="tutorLocateSessions">Where's My Session</a>
                     </div>
                     </li>
                     </div>
-                    <ul class="nav navbar-nav navbar-right">
+                    <div style = "position:absolute; left:92vw; top:20px;">
                         <a href="/accounts/logout" class= "btn btn-dark masthead-brand ">Log Out</a>
-                    </ul>
+                    </div>
                 </nav>
             </div>
         </header>
     <div class="container emp-profile">
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
+
+                            {% if user.pfp %}
+                            <img src="{{user.pfp.url}}" alt=""/>
+                            {% else %}
                             <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt=""/>
-                            <div class="file btn btn-lg btn-primary">
-                                Change Photo
-                                <input type="file" name="file"/>
-                            </div>
+                            {% endif %} 
+
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -97,7 +101,7 @@
                                     <h6>
                                         Tutor
                                     </h6>
-                                    <p class="proile-rating">RATING : <span>10/10</span></p>
+                                    <p class="proile-rating"><span></span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="editTP" role="tab" aria-controls="home" aria-selected="true">Edit Profile</a>
@@ -113,7 +117,7 @@
                     <div class="col-md-4">
                     </div>
                     <div class="col-md-8">
-                        <form method="POST">
+                        <form method="POST" >
                             {% csrf_token %}
                             <div class="tab-pane fade show active profile-tab" id="home" role="tabpanel" aria-labelledby="home-tab">
                                         <div class="row">
@@ -122,6 +126,14 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <p>{{user}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Email</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{user.email}}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -181,7 +193,10 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <p> </p>
+                                            <div class="col-md-6">
+                                                <label>Update Profile Picture</label>
+                                            </div>
+                                                {{tform.pfp}}
                                         </div>
                                         <div class="row">
                                             <p> </p>

@@ -10,11 +10,18 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
-     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
+          integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"
+            integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
+            crossorigin="anonymous"></script>
 
     <title>Quickest Tutor</title>
 
@@ -33,6 +40,7 @@
             margin-bottom: 100px;
         }
 
+
     </style>
 </head>
 <body class="text-center">
@@ -40,39 +48,45 @@
 <div class="d-flex h-100 w-100 p-3 mx-auto flex-column">
     <header class="masthead mb-auto">
         <div class="inner">
-          <h3 class="masthead-brand">QuickestTutor</h3>
-          <nav class="nav nav-masthead justify-content-center">
-              <div style = "position:absolute; left:575px; top:20px;">
-                    <a class="nav-link" href="welcome">Home</a>
-              </div>
-              <div style = "position:absolute; left:675px; top:20px;">
-                    <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="studentProfile" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <h3 class="masthead-brand">QuickestTutor</h3>
+            <nav class="nav nav-masthead justify-content-center">
+                <div style = "position:absolute; left:39vw; top:20px;">
+                    <a class="nav-link my-flex-item" href="welcome">Home</a>
+                </div>
+                <div style = "position:absolute; left:47vw; top:20px;">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="studentProfile" id="navbarDropdownMenuLink"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Student
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="studentProfile">Student Profile</a>
                         <a class="dropdown-item" href="studentSchedule">Student Schedule</a>
                         <a class="dropdown-item" href="allTutors">Find a Tutor</a>
-                        <a class="dropdown-item" href="studentTutorSearch">Where's My Session</a>
+                        <a class="dropdown-item" href="studentLocateSessions">Where's My Session</a>
                     </div>
-                    </li>
-              </div>
-              <div style = "position:absolute; left:800px; top:20px;">
-                    <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="tutorProfile" id="tutor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                </li>
+                </div>
+                <div style = "position:absolute; left:57vw; top:20px;">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="tutorProfile" id="tutor" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
                         Tutor
                     </a>
                     <div class="dropdown-menu" aria-labelledby="tutor">
                         <a class="dropdown-item" href="tutorProfile">Tutor Profile</a>
+                        <a class="dropdown-item" href="tutorProfileAvailability">Tutor Availability</a>
                         <a class="dropdown-item" href="tutorSchedule">Tutor Schedule</a>
+                        <a class="dropdown-item" href="tutorLocateSessions">Where's My Session</a>
                     </div>
-                    </li>
-              </div>
-                    <ul class="nav navbar-nav navbar-right">
-                        <a href="/accounts/logout" class= "btn btn-dark masthead-brand ">Log Out</a>
-                    </ul>
-                </nav>
+                </li>
+                </div>
+                <div style = "position:absolute; left:92vw; top:20px;">
+                <ul class="nav navbar-nav navbar-right">
+                    <a href="/accounts/logout" class="btn btn-dark masthead-brand ">Log Out</a>
+                </ul>
+                </div>
+            </nav>
         </div>
     </header>
 
@@ -85,7 +99,7 @@
     <footer class="mastfoot mt-auto">
         <div>
             <div>
-                <a href="allTutors" class="btn btn-dark bottom-mar">Schedule a Session Now</a>
+                <a href="allTutors" class="btn btn-dark bottom-mar">Schedule Session Now</a>
     </footer>
 </div>
 

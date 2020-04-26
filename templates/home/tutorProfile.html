@@ -4,15 +4,19 @@
 
 <body lang="en">
     <head>
+        
+        
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link href="{% static 'css/tutorProfile.css' %}" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+
 
 
         <title>Tutor Profile</title>
@@ -44,10 +48,10 @@
             <div class="inner">
                 <h3 class="masthead-brand">QuickestTutor</h3>
                 <nav class="nav nav-masthead justify-content-center">
-                    <div style = "position:absolute; left:575px; top:20px;">
+                    <div style = "position:absolute; left:39vw; top:20px;">
                     <a class="nav-link" href="welcome">Home</a>
                     </div>
-                        <div style = "position:absolute; left:675px; top:20px;">
+                        <div style = "position:absolute; left:47vw; top:20px;">
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="studentProfile" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Student
@@ -56,25 +60,29 @@
                         <a class="dropdown-item" href="studentProfile">Student Profile</a>
                         <a class="dropdown-item" href="studentSchedule">Student Schedule</a>
                         <a class="dropdown-item" href="allTutors">Find a Tutor</a>
-                        <a class="dropdown-item" href="studentTutorSearch">Where's My Session</a>
+                        <a class="dropdown-item" href="studentLocateSessions">Where's My Session</a>
                     </div>
 
                     </li>
                         </div>
-                    <div style = "position:absolute; left:800px; top:20px;">
+                    <div style = "position:absolute; left:57vw; top:20px;">
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="tutorProfile" id="tutor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Tutor
                     </a>
                     <div class="dropdown-menu" aria-labelledby="tutor">
                         <a class="dropdown-item" href="tutorProfile">Tutor Profile</a>
+                        <a class="dropdown-item" href="tutorProfileAvailability">Tutor Availability</a>
                         <a class="dropdown-item" href="tutorSchedule">Tutor Schedule</a>
+                        <a class="dropdown-item" href="tutorLocateSessions">Where's My Session</a>
                     </div>
                     </li>
                     </div>
+                    <div style = "position:absolute; left:92vw; top:20px;">
                     <ul class="nav navbar-nav navbar-right">
                         <a href="/accounts/logout" class= "btn btn-dark masthead-brand ">Log Out</a>
                     </ul>
+                    </div>
                 </nav>
             </div>
         </header>
@@ -83,7 +91,12 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
-                            <img src="{{user.image}}" alt=""/>
+                           
+                            {% if user.pfp %}
+                            <img src="{{user.pfp.url}}" alt=""/>
+                            {% else %}
+                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt=""/>
+                            {% endif %}
 
                         </div>
                     </div>
@@ -95,14 +108,12 @@
                                     <h6>
                                         Tutor
                                     </h6>
-                                    <p class="proile-rating">RATING : <span>10/10</span></p>
+                                    <p class="proile-rating">      <span>    </span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="tutorProfile" role="tab" aria-controls="home" aria-selected="true">About</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="tutorProfileAvailability" role="tab" aria-controls="profile" aria-selected="false">Availability</a>
-                                </li>
+
                             </ul>
                         </div>
                     </div>

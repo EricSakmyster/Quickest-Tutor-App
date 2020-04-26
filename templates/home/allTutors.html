@@ -36,6 +36,9 @@
         .top-margin{
             margin-top: 50px;
         }
+        .top-margin-t{
+            margin-top: 135px;
+        }
         .text-color{
             color: black;
         }
@@ -51,10 +54,10 @@
             <div class="inner">
                 <h3 class="masthead-brand">QuickestTutor</h3>
                 <nav class="nav nav-masthead justify-content-center">
-                    <div style = "position:absolute; left:575px; top:20px;">
+                    <div style = "position:absolute; left:39vw; top:20px;">
                     <a class="nav-link" href="welcome">Home</a>
                     </div>
-                    <div style = "position:absolute; left:675px; top:20px;">
+                    <div style = "position:absolute; left:47vw; top:20px;">
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="studentProfile" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Student
@@ -63,36 +66,58 @@
                         <a class="dropdown-item" href="studentProfile">Student Profile</a>
                         <a class="dropdown-item" href="studentSchedule">Student Schedule</a>
                         <a class="dropdown-item" href="allTutors">Find a Tutor</a>
-                        <a class="dropdown-item" href="studentTutorSearch">Where's My Session</a>
+                        <a class="dropdown-item" href="studentLocateSessions">Where's My Session</a>
                     </div>
                     </li>
                     </div>
-                    <div style = "position:absolute; left:800px; top:20px;">
+                    <div style = "position:absolute; left:57vw; top:20px;">
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="tutorProfile" id="tutor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Tutor
                     </a>
                     <div class="dropdown-menu" aria-labelledby="tutor">
                         <a class="dropdown-item" href="tutorProfile">Tutor Profile</a>
+                        <a class="dropdown-item" href="tutorProfileAvailability">Tutor Availability</a>
                         <a class="dropdown-item" href="tutorSchedule">Tutor Schedule</a>
+                        <a class="dropdown-item" href="tutorLocateSessions">Where's My Session</a>
                     </div>
                     </li>
                     </div>
+                    <div style = "position:absolute; left:92vw; top:20px;">
                     <ul class="nav navbar-nav navbar-right">
                         <a href="/accounts/logout" class= "btn btn-dark masthead-brand ">Log Out</a>
                     </ul>
+                    </div>
                 </nav>
             </div>
         </header>
 
 <center>
-<u><h3> All of our Tutors </h3></u>
+<u><h3 class="top-margin-t"> All of our Tutors </h3></u>
 
     {% for tutor in tutors %}
+    {% if tutor.tutorAvailability %}
+    {% if tutor.id != user.id %}
     <form method="post" id='srform'>
         {% csrf_token %}
     <div class="container emp-profile top-margin text-color ">
         <div class="left-margin">
+
+            <div class="row ">
+
+                <!-- <div class="profile-img"> -->
+                {% if tutor.pfp %}
+                <img src="{{tutor.pfp.url}}" alt="" height="100" width="100"/>
+                {% else %}
+                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="" height="100" width="100"/>
+                {% endif %}
+
+            <!-- </div> -->
+
+            </div>
+
+
+
         <div class="row ">
             Name: {{tutor}} 
             <input type="hidden" id="tutor_username" name="tutor_username" value="{{tutor.username}}">
@@ -152,7 +177,8 @@
         </div>
     </div>
     </form>
-    
+    {% endif %}
+    {% endif %}
     {% endfor %}
     
 
