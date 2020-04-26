@@ -31,13 +31,13 @@ class ModelTests(TestCase):
     def testUser(self):
         testUser=User.objects.get(first_name="Eric")
         self.assertTrue('Eric Sakmyster'==testUser.__str__())
-    def testDefaultPhone(self):
-        testUser=User.objects.get(first_name="Eric")
-        self.assertEquals('0000000000', testUser.phone)
-    def testCreatedPhone(self):
-        testUser=User.objects.get(first_name="Eric")
-        testUser.phone='5005550000'
-        self.assertEquals('5005550000', testUser.phone)
+    # def testDefaultPhone(self):
+    #     testUser=User.objects.get(first_name="Eric")
+    #     self.assertEquals('0000000000', testUser.phone)
+    # def testCreatedPhone(self):
+    #     testUser=User.objects.get(first_name="Eric")
+    #     testUser.phone='5005550000'
+    #     self.assertEquals('5005550000', testUser.phone)
     def testYear(self):
         testUser=User.objects.get(first_name="Eric")
         testUser.year='4'
