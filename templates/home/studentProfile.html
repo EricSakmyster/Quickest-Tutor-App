@@ -87,7 +87,11 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
-                            <img src="{{user.image}}" alt=""/>
+                            {% if user.pfp %}
+                            <img src="{{user.pfp.url}}" alt=""/>
+                            {% else %}
+                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt=""/>
+                            {% endif %}
 
                         </div>
                     </div>
