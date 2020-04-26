@@ -29,17 +29,23 @@
             margin-bottom: 100px;
         }
 
+
     </style>
 
     <!-- Font Awesome -->
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     <!-- Moment.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js" integrity="sha256-VBLiveTKyUZMEzJd6z2mhfxIqz3ZATCuVMawPZGzIfA=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"
+            integrity="sha256-VBLiveTKyUZMEzJd6z2mhfxIqz3ZATCuVMawPZGzIfA=" crossorigin="anonymous"></script>
 
     <!-- Tempus Dominus Bootstrap 4 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css" integrity="sha256-XPTBwC3SBoWHSmKasAk01c08M6sIA5gF5+sRxqak2Qs=" crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js" integrity="sha256-z0oKYg6xiLq3yJGsp/LsY9XykbweQlHl42jHv2XTBz4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css"
+          integrity="sha256-XPTBwC3SBoWHSmKasAk01c08M6sIA5gF5+sRxqak2Qs=" crossorigin="anonymous"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js"
+            integrity="sha256-z0oKYg6xiLq3yJGsp/LsY9XykbweQlHl42jHv2XTBz4=" crossorigin="anonymous"></script>
 
 </head>
 
@@ -50,8 +56,10 @@
         <div class="inner">
             <h3 class="masthead-brand">QuickestTutor</h3>
             <nav class="nav nav-masthead justify-content-center">
+                <div style = "position:absolute; left:575px; top:20px;">
                     <a class="nav-link" href="welcome">Home</a>
-
+                </div>
+                <div style = "position:absolute; left:675px; top:20px;">
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="studentProfile" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Student
@@ -63,6 +71,8 @@
                         <a class="dropdown-item" href="studentTutorSearch">Where's My Session</a>
                     </div>
                     </li>
+                </div>
+                <div style = "position:absolute; left:800px; top:20px;">
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="tutorProfile" id="tutor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Tutor
@@ -72,6 +82,7 @@
                         <a class="dropdown-item" href="tutorSchedule">Tutor Schedule</a>
                     </div>
                     </li>
+                </div>
                     <ul class="nav navbar-nav navbar-right">
                         <a href="/accounts/logout" class= "btn btn-dark masthead-brand ">Log Out</a>
                     </ul>
@@ -126,22 +137,23 @@
                                     <label>Availability (MM/DD/YYYY HH:MM)</label>
                                 </div>
                                 <div class="col-md-6">
-                                <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-                                    {{ tpaform.available }}
-                                    <div class="input-group-append" data-target="#datetimepicker1"
-                                         data-toggle="datetimepicker">
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                                        {{ tpaform.available }}
+                                        <div class="input-group-append" data-target="#datetimepicker1"
+                                             data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <script>
+                                    <script>
                                   $(function () {
                                     $("#datetimepicker1").datetimepicker({
                                       format: 'MM/DD/YYYY HH:mm',
                                     });
                                   });
 
-                                </script>
+
+                                    </script>
                                 </div>
                             </div>
                             <div class="row">
