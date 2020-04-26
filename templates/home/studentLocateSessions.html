@@ -32,7 +32,7 @@
         <link href="{% static 'css/cover.css' %}" rel="stylesheet">
         <style type="text/css">
             .search-margin{
-                margin-left: 275px;
+                margin-left: 140px;
             }
         .bottom-mar{
             margin-bottom: 100px;
@@ -89,14 +89,40 @@
                 <div class="inner">
                     <h3 class="masthead-brand">QuickestTutor</h3>
                     <nav class="nav nav-masthead justify-content-center">
-                        <a class="nav-link" href="welcome">Home</a>
-                        <a class="nav-link" href="studentProfile">My Profile</a>
-                        <a class="nav-link" href="tutorProfile">Tutor Profile</a>
-                        <a class="nav-link" href="studentSchedule">My Schedule</a>
-                        <a class="nav-link" href="tutorSchedule">Tutor Schedule</a>
-                        <a class="nav-link active" href="locateSessions">Locate Sessions</a>
-                        <a href="/accounts/logout" class= "btn btn-dark masthead-brand search-margin">Log Out</a>
-                    </nav>
+                    <div style = "position:absolute; left:575px; top:20px;">
+                    <a class="nav-link" href="welcome">Home</a>
+                    </div>
+                        <div style = "position:absolute; left:675px; top:20px;">
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="studentProfile" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Student
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="studentProfile">Student Profile</a>
+                        <a class="dropdown-item" href="studentSchedule">Student Schedule</a>
+                        <a class="dropdown-item" href="allTutors">Find a Tutor</a>
+                        <a class="dropdown-item" href="studentLocateSessions">Where's My Session</a>
+                    </div>
+                    </li>
+                        </div>
+                        <div style = "position:absolute; left:800px; top:20px;">
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="tutorProfile" id="tutor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Tutor
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="tutor">
+                        <a class="dropdown-item" href="tutorProfile">Tutor Profile</a>
+                        <a class="dropdown-item" href="tutorProfileAvailability">Tutor Availability</a>
+                        <a class="dropdown-item" href="tutorSchedule">Tutor Schedule</a>
+                        <a class="dropdown-item" href="tutorLocateSessions">Where's My Session</a>
+                    </div>
+                    </li>
+                        </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <a href="/accounts/logout" class= "btn btn-dark masthead-brand ">Log Out</a>
+                    </ul>
+                </nav>
+
                 </div>
             </header>
         <div class="container">
@@ -142,12 +168,9 @@
               
                 <!-- <input type="hidden" name="accept" value="{{ user. }}" /> -->
                     <center>
-                    <button class="shadow-md p-3 mb-5 bg-white rounded" style="font-size:12pt;color:black;background-color:white;border:2px solid black;padding:10px" name="View Student Sessions" type="submit">View Student Sessions
-                    </button>
-                    <button class="shadow-md p-3 mb-5 bg-white rounded" style="font-size:12pt;color:black;background-color:rgb(0, 255, 255);border:2px solid black;padding:10px" name="View Tutor Sessions" type="submit">View Tutor Sessions
-                    </button>
+                    <u><h4 style="color: black;">Locate Your Tutor Sessions As A Student</h4></u>
                     </center>
-                    
+                    <br>
                     <div id='map' width="100%" style='height:600px'></div>
 
                     <script>
@@ -177,7 +200,7 @@
                                 },
                                 properties: {
                                 title: 'Mapbox',
-                                description: 'Alderman Library, {{session.student_availability}}, {{session.course}}'
+                                description: 'Alderman Library, {{session.chosen_time}}, {{session.course}}'
                                 }
                             }]
                         };
@@ -193,7 +216,7 @@
                                 },
                                 properties: {
                                 title: 'Mapbox',
-                                description: 'Clark Library, {{session.student_availability}}, {{session.course}}'
+                                description: 'Clark Library, {{session.chosen_time}}, {{session.course}}'
                                 }
                             }]
                         };
@@ -210,7 +233,7 @@
                                 },
                                 properties: {
                                 title: 'Mapbox',
-                                description: 'Clemons Library, {{session.student_availability}}, {{session.course}}'
+                                description: 'Clemons Library, {{session.chosen_time}}, {{session.course}}'
                                 }
                             }]
                         };
@@ -227,7 +250,7 @@
                                 },
                                 properties: {
                                 title: 'Mapbox',
-                                description: "Thornton's Stacks, {{session.student_availability}}, {{session.course}}"
+                                description: "Thornton's Stacks, {{session.chosen_time}}, {{session.course}}"
                                 }
                             }]
                         };
@@ -245,7 +268,7 @@
                                 },
                                 properties: {
                                 title: 'Mapbox',
-                                description: "Rice Hall, {{session.student_availability}}, {{session.course}}"
+                                description: "Rice Hall, {{session.chosen_time}}, {{session.course}}"
                                 }
                             }]
                         };
@@ -262,7 +285,7 @@
                                 },
                                 properties: {
                                 title: 'Mapbox',
-                                description: "CDE, {{session.student_availability}}, {{session.course}}"
+                                description: "CDE, {{session.chosen_time}}, {{session.course}}"
                                 }
                             }]
                         };
@@ -279,7 +302,7 @@
                                 },
                                 properties: {
                                 title: 'Mapbox',
-                                description: "Multicultural Student Center, {{session.student_availability}}, {{session.course}}"
+                                description: "Multicultural Student Center, {{session.chosen_time}}, {{session.course}}"
                                 }
                             }]
                         };
@@ -296,7 +319,7 @@
                                 },
                                 properties: {
                                 title: 'Mapbox',
-                                description: "New Cabell, \n {{session.student_availability}}, {{session.course}}"
+                                description: "New Cabell, {{session.chosen_time}}, {{session.course}}"
                                 }
                             }]
                         };
@@ -343,7 +366,7 @@
 
 
                 
-                <div style="height: 400px"></div>
+                <div style="height: 80px"></div>
             </div>
             </div>
         </div>

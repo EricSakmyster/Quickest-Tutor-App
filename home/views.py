@@ -1,12 +1,16 @@
+from datetime import datetime
+
 from django.shortcuts import render
+from django.urls import reverse, reverse_lazy
 from django.views import generic
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import get_user_model
+from django.views.generic import DeleteView
+
 from .forms import TutorProfileForm, TutorProfileAvailabilityForm, StudentProfileForm, SessionRequestForm
 
 from .models import TodoList, Category, User, Available, RequestSession
-
 
 # Create your views here.
 
@@ -44,29 +48,38 @@ def editSP(request):
     return render(request, 'home/editSP.html', {'sform': sform})
 
 
-def locateSessions(request):
+def studentLocateSessions(request):
     studentAcceptedSessions = RequestSession.objects.filter(student_id=request.user.id, is_accepted=True)
-    tutorAcceptedSessions = RequestSession.objects.filter(tutor_id=request.user.id, is_accepted=True)
-    if request.method=="POST":
-        if "View Student Sessions" in request.POST:
-            context = {'AcceptedSessions': studentAcceptedSessions}
-            return render(request, 'home/locateSessions.html', context)
-        if "View Tutor Sessions" in request.POST:
-            context = {'AcceptedSessions': tutorAcceptedSessions}
-            return render(request, 'home/locateSessions.html', context)
-    context = {'AcceptedSessions': studentAcceptedSessions}
-    return render(request, 'home/locateSessions.html', context)
 
+    context = {'AcceptedSessions': studentAcceptedSessions}
+    return render(request, 'home/studentLocateSessions.html', context)
+
+def tutorLocateSessions(request):
+    tutorAcceptedSessions = RequestSession.objects.filter(tutor_id=request.user.id, is_accepted=True)
+
+    context = {'AcceptedSessions': tutorAcceptedSessions}
+    return render(request, 'home/tutorLocateSessions.html', context)
 
 class tutorProfile(generic.TemplateView):
     model = User
     template_name = 'home/tutorProfile.html'
     context_object_name = 'thisTutor'
 
-class tutorProfileAvailability(generic.TemplateView):
-    model = User
+def tutorProfileAvailability(request):
+    userObject = User.objects.get(username = request.user.username)
     template_name = 'home/tutorProfileAvailability.html'
-    context_object_name = 'thistutor'
+    avails = Available.objects.all()
+    if request.method == "POST":
+        if "availDelete" in request.POST:
+            # checkedlist = request.POST["checkedbox"]
+            # for avail in checkedlist:
+            #     print(avail)
+            #     userObject.tutorAvailability.remove(avail)
+            #     userObject.save()
+            Available.objects.filter(id__in=request.POST.getlist('checkedbox')).delete()
+            return redirect('tutorProfileAvailability')
+
+    return render(request, template_name, {"avails": avails})
 
 def editTPA(request):
     userObject = User.objects.get(username = request.user.username)
@@ -76,6 +89,7 @@ def editTPA(request):
             post=tpaform.save(commit=False)
             post.available=tpaform.cleaned_data['available']
             userObject.tutorAvailability.append(tpaform.cleaned_data['available'])
+            post.save()
             userObject.save()
             return redirect('tutorProfileAvailability')
     else:
@@ -135,12 +149,11 @@ def index(request):  # the index view
     return render(request, "home/studentSchedule.html", {"todos": todos, "categories": categories})
 '''
 def allTutors(request):
-    
     if request.method == "POST":
         srform = SessionRequestForm(request.POST, instance=request.user)
         if srform.is_valid():
             post = srform.save(commit=False)
-            post.student_availability= srform.cleaned_data['student_availability']
+            post.chosen_time = request.POST["category_select"]
             post.course = srform.cleaned_data['course']
             post.description = srform.cleaned_data['description']
             tu=srform.cleaned_data['tutor_username']
@@ -149,7 +162,7 @@ def allTutors(request):
 
             post.save()
             
-            request = RequestSession(student_availability=srform.cleaned_data['student_availability'], course=srform.cleaned_data['course'], description=srform.cleaned_data['description'], tutor_username=tu, student=User.objects.get(username = request.user.username), tutor =User.objects.get(username = tu), is_accepted=False, building=srform.cleaned_data['building'])
+            request = RequestSession(chosen_time=request.POST["category_select"], course=srform.cleaned_data['course'], description=srform.cleaned_data['description'], tutor_username=tu, student=User.objects.get(username = request.user.username), tutor =User.objects.get(username = tu), is_accepted=False, building=srform.cleaned_data['building'])
             request.save()
             # if request.is_accepted:
             #     request.tutor.location = request.building
@@ -165,7 +178,21 @@ def studentSchedule(request):
     tutorAcceptedSessions = studentRequestedSessions.filter(is_accepted=True)
     studentRequestedSessions = studentRequestedSessions.filter(is_accepted=False)
     context = {'studentRequestedSessions': studentRequestedSessions, 'tutorAcceptedSessions': tutorAcceptedSessions}
+    if request.method == "POST":
+        if "Cancel" in request.POST:
+            id = request.POST["id"]
+            return redirect(str(id) + '/student/delete')
     return render(request, 'home/studentSchedule.html', context)
+
+class studentSessionDelete(DeleteView):
+    model = RequestSession
+
+    success_url = reverse_lazy('schedule')
+
+class tutorSessionDelete(DeleteView):
+    model = RequestSession
+
+    success_url = reverse_lazy('tutorSchedule')
 
 def tutorSchedule(request):
 
@@ -181,4 +208,9 @@ def tutorSchedule(request):
 
         if "Decline" in request.POST:
             RequestSession.objects.get(id=request.POST["id"]).delete()
+
+        if "Cancel" in request.POST:
+            id = request.POST["id"]
+            return redirect(str(id) + '/tutor/delete')
+
     return render(request, 'home/baseTutor.html', context)

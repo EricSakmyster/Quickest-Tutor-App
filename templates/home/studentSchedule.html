@@ -2,6 +2,7 @@
 {% load static %}
 {% load socialaccount %}
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,9 +13,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <style type="text/css">
-                            .search-margin{
-                                margin-left: 100px;
-                            }
+        .search-margin {
+            margin-left: 100px;
+        }
     </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -27,14 +28,16 @@
     <!-- Custom styles for this template -->
     <link href="{% static 'css/cover.css' %}" rel="stylesheet">
     <style type="text/css">
-            .search-margin{
-                margin-left: 275px;
-            }
-        .bottom-mar{
+        .search-margin {
+            margin-left: 140px;
+        }
+
+        .bottom-mar {
             margin-bottom: 100px;
         }
-        </style>
+    </style>
 </head>
+
 <body>
     {% if user.is_authenticated %}
     <div class="d-flex w-100 h-25 p-3 mx-auto flex-column">
@@ -42,121 +45,117 @@
             <div class="inner">
                 <h3 class="masthead-brand">QuickestTutor</h3>
                 <nav class="nav nav-masthead justify-content-center">
-                    <a class="nav-link" href="welcome">Home</a>
-                    <a class="nav-link" href="studentProfile">My Profile</a>
-                    <a class="nav-link" href="tutorProfile">Tutor Profile</a>
-                    <a class="nav-link active" href="studentSchedule">My Schedule</a>
-                    <a class="nav-link" href="tutorSchedule">Tutor Schedule</a>
-                    <a class="nav-link" href="locateSessions">Locate Sessions</a>
-                    <a href="/accounts/logout" class= "btn btn-dark masthead-brand search-margin">Log Out</a>
+                    <div style="position:absolute; left:575px; top:20px;">
+                        <a class="nav-link" href="welcome">Home</a>
+                    </div>
+                    <div style="position:absolute; left:675px; top:20px;">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="studentProfile" id="navbarDropdownMenuLink"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Student
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="studentProfile">Student Profile</a>
+                                <a class="dropdown-item" href="studentSchedule">Student Schedule</a>
+                                <a class="dropdown-item" href="allTutors">Find a Tutor</a>
+                                <a class="dropdown-item" href="studentLocateSessions">Where's My Session</a>
+                            </div>
+                        </li>
+                    </div>
+                    <div style="position:absolute; left:800px; top:20px;">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="tutorProfile" id="tutor" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                Tutor
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="tutor">
+                                <a class="dropdown-item" href="tutorProfile">Tutor Profile</a>
+                                <a class="dropdown-item" href="tutorProfileAvailability">Tutor Availability</a>
+                                <a class="dropdown-item" href="tutorSchedule">Tutor Schedule</a>
+                                <a class="dropdown-item" href="tutorLocateSessions">Where's My Session</a>
+                            </div>
+                        </li>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <a href="/accounts/logout" class="btn btn-dark masthead-brand ">Log Out</a>
+                    </ul>
                 </nav>
-                
+
             </div>
-            
+
         </header>
+    
 
-<center>
 
-    <u><h3> Schedule of Your Tutoring Sessions </h3></u>
-    <div class="container">
-    <div class="left" style="background-color: #ff802cbe;
-    position: absolute;
-    left: 0px;
-    width: 50%;">
-        <u><h5>Pending Sessions</h5></u>
-        
-{% for session in studentRequestedSessions %}
-        <div class="row">
-    <ul>
-        <li>{{session.course}} with {{session.tutor}} at {{session.student_availability}}, in {{session.building}}</li>
-            <ul>
-                <div align="left">
-                <li>{{session.description}}</li>
-                </div>
-            </ul>
-    </ul>
-        </div>
-{% endfor %}
-</div>
-<div class ="right" style="background-color: #59b94c;
+    <center>
+
+        <u>
+            <h3> Schedule of Your Tutoring Sessions </h3>
+        </u>
+        <div class="container">
+            <div class="left" style="background-color: #ff802cbe; position: absolute; left: 0px; width: 50%;">
+                <u>
+                    <h5>Pending Sessions</h5>
+                </u>
+
+                {% for session in studentRequestedSessions %}
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <ul>
+                            <li>{{session.course}} with {{session.tutor}} at {{session.chosen_time}}</li>
+                            <ul>
+                                <div align="left">
+                                    <li>{{session.description}}</li>
+                                </div>
+                            </ul>
+                        </ul>
+                    </div>
+                    <input type="hidden" id="id" name="id" value="{{session.id}}">
+                    <button class="Cancel"
+                        style="font-size:12pt;color:white;background-color:red;border:2px solid #ff0000;padding:10px"
+                        name="Cancel" type="submit">Cancel
+                    </button>
+                </form>
+                {% endfor %}
+            </div>
+            <div class="right" style="background-color: #59b94c;
 position: absolute;
 right: 0px;
 width: 50%;">
-    <u><h5>Accepted Sessions</h5></u>
-{% for session in tutorAcceptedSessions %}
-        <div class="row ">
-    <ul>
-        <li>{{session.course}} with {{session.tutor}} at {{session.student_availability}}, in {{session.building}}</li>
-            <ul>
-                <div align="left">
-                <li>{{session.description}}</li>
-                </div>
-            </ul>
-    </ul>
-        </div>
-{% endfor %}
-</div>
-</div>
-
-</center>
-<!--
-    <div django-app="TaskManager">
-        <div class="container">
-            <div class="content">
-                <form action="" method="post">
-                    {% csrf_token %}  csrf token for basic security 
-                    <div class="inputContainer">
-                        <input type="text" style="width: 300px;" id="description" class="taskName"
-                               placeholder="What do you need to be tutored for?"
-                               name="description" required>
-                        <label for="description">Description</label>
+                <u>
+                    <h5>Accepted Sessions</h5>
+                </u>
+                {% for session in tutorAcceptedSessions %}
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="row ">
+                        <ul>
+                            <li>{{session.course}} with {{session.tutor}} at {{session.chosen_time}}</li>
+                            <ul>
+                                <div align="left">
+                                    <li>{{session.description}}</li>
+                                </div>
+                            </ul>
+                        </ul>
                     </div>
-                    <div class="inputContainer half last">
-                        <i class="fa fa-caret-down selectArrow"></i>
-                        <select id="category" class="taskCategory" name="category_select">
-                            <option class="disabled" value="">Choose a Tutor</option>
-                            {% for category in categories %}
-                            <option class="" value="{{ category.name }}">{{ category.name }}
-                            </option>
-                            {% endfor %}
-                        </select>
-                        <label for="category">Tutor</label>
-                    </div>
-                    <div class="inputContainer half last right">
-                        <input type="date" id="dueDate" class="taskDate" name="date">
-                        <label for="dueDate">Tutor Session Date</label>
-                    </div>
-                    <div class="row">
-                        <div class="col align-self-center">
-                            <button class="taskAdd" name="taskAdd" type="submit"><i class="fa fa-plus icon"></i>Add
-                                Session
-                            </button>
-                            <button class="taskDelete" name="taskDelete" formnovalidate="" type="submit"
-                                    onclick="$('input#sublist').click();"><i class="fa fa-trash-o icon"></i>Cancel
-                                Session
-                            </button>
-                        </div>
-                    </div>
-                    <ul class="taskList">
-                        {% for todo in todos %}  django template lang - for loop 
-                        <li class="taskItem">
-                            <input type="checkbox" class="taskCheckbox" name="checkedbox" id="{{ todo.id }}"
-                                   value="{{ todo.id }}">
-                            <label for="{{ todo.id }}"><span class="complete-">{{ todo.title }}</span></label>
-                            <span class="category-{{ todo.category }}">{{ todo.category }}</span>
-                            <strong class="taskDate"><i class="fa fa-calendar"></i>{{ todo.due_date }}</strong>
-                        </li>
-                        {% endfor %}
-                    </ul>taskList 
+                    <input type="hidden" id="id" name="id" value="{{session.id}}">
+                    <button class="Cancel"
+                        style="font-size:12pt;color:white;background-color:red;border:2px solid #ff0000;padding:10px"
+                        name="Cancel" type="submit">Cancel
+                    </button>
                 </form>
-            </div> content 
-        </div> container 
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+                {% endfor %}
+            </div>
+        </div>
 
-</div>
-{% else %}
-<meta http-equiv="refresh" content="0; URL=home">
-{% endif %}
+    </center>
+
+
+    </div>
+    {% else %}
+    <meta http-equiv="refresh" content="0; URL=home">
+    {% endif %}
 </body>
+
 </html>

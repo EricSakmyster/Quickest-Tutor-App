@@ -9,7 +9,7 @@ class TutorProfileForm(forms.ModelForm):
         model = User
         fields = ['phone', 'major', 'tsubjects', 'texp', 'hourlyRate', 'image']
         widgets = {
-            'phone': forms.NumberInput(attrs={'class': "form-control", 'placeholder': "XXX-XXX-XXXX"}),
+            'phone': forms.NumberInput(attrs={'class': "form-control", 'placeholder': "01234567890"}),
             'major': forms.TextInput(attrs={'class': "form-control", 'placeholder': "ex) Math, Chemistry"}),
             'tsubjects': forms.TextInput(attrs={'class': "form-control", 'placeholder': "ex) Math, English"}),
             'texp': forms.TextInput(attrs={'class': "form-control", 'placeholder': "ex) Calc teacher 3 years"}),
@@ -29,7 +29,7 @@ class StudentProfileForm(forms.ModelForm):
         fields = ['year','phone', 'classes', 'major']
         widgets={
             'year': forms.NumberInput(attrs={'class':"form-control", 'placeholder': "1,2,3,or 4"}),
-            'phone': forms.NumberInput(attrs={'class':"form-control", 'placeholder': "XXX-XXX-XXXX"}),
+            'phone': forms.NumberInput(attrs={'class':"form-control", 'placeholder': "01234567890"}),
             'classes': forms.TextInput(attrs={'class':"form-control", 'placeholder': "ex) Math, English"}),
             'major': forms.TextInput(attrs={'class':"form-control", 'placeholder': "ex) Math, Chemistry"})
         }
@@ -39,7 +39,7 @@ class SessionRequestForm(forms.ModelForm):
 
     class Meta:
         model = RequestSession
-        fields = ['student_availability', 'tutor_username', 'course', 'description', 'building']
+        fields = ['tutor_username', 'course', 'description', 'building']
 
         BUILDING_CHOICES =( 
     ('initial', "Choose your Location"),
@@ -53,7 +53,6 @@ class SessionRequestForm(forms.ModelForm):
     ("New Cabell", "New Cabell"), 
 )
         widgets={
-            'student_availability': forms.DateTimeInput(attrs={'class': "form-control", 'title': 'MM/DD/YYYY HH:MM', 'placeholder': "What time works for you? (MM/DD/YYYY HH:MM)"}),
             'tutor_username': forms.HiddenInput(),
             'course': forms.TextInput(attrs={'class':"form-control", 'placeholder': "ex) CS 2150"}),
             'description': forms.TextInput(attrs={'class':"form-control", 'placeholder': "Describe what you need to be tutored for"}),

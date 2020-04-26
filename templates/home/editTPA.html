@@ -8,7 +8,10 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="{% static 'css/tutorProfile.css' %}" rel="stylesheet">
-
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
     <title>Edit Tutor Availibility</title>
 
     <meta charset="utf-8">
@@ -29,17 +32,23 @@
             margin-bottom: 100px;
         }
 
+
     </style>
 
     <!-- Font Awesome -->
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     <!-- Moment.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js" integrity="sha256-VBLiveTKyUZMEzJd6z2mhfxIqz3ZATCuVMawPZGzIfA=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"
+            integrity="sha256-VBLiveTKyUZMEzJd6z2mhfxIqz3ZATCuVMawPZGzIfA=" crossorigin="anonymous"></script>
 
     <!-- Tempus Dominus Bootstrap 4 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css" integrity="sha256-XPTBwC3SBoWHSmKasAk01c08M6sIA5gF5+sRxqak2Qs=" crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js" integrity="sha256-z0oKYg6xiLq3yJGsp/LsY9XykbweQlHl42jHv2XTBz4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css"
+          integrity="sha256-XPTBwC3SBoWHSmKasAk01c08M6sIA5gF5+sRxqak2Qs=" crossorigin="anonymous"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js"
+            integrity="sha256-z0oKYg6xiLq3yJGsp/LsY9XykbweQlHl42jHv2XTBz4=" crossorigin="anonymous"></script>
 
 </head>
 
@@ -50,14 +59,39 @@
         <div class="inner">
             <h3 class="masthead-brand">QuickestTutor</h3>
             <nav class="nav nav-masthead justify-content-center">
-                <a class="nav-link" href="welcome">Home</a>
-                <a class="nav-link" href="studentProfile">My Profile</a>
-                <a class="nav-link active" href="tutorProfile">Tutor Profile</a>
-                <a class="nav-link" href="studentSchedule">My Schedule</a>
-                <a class="nav-link" href="tutorSchedule">Tutor Schedule</a>
-                <a class="nav-link" href="locateSessions">Locate Sessions</a>
-                <a href="/accounts/logout" class="btn btn-dark masthead-brand search-margin">Log Out</a>
-            </nav>
+                <div style = "position:absolute; left:575px; top:20px;">
+                    <a class="nav-link" href="welcome">Home</a>
+                </div>
+                <div style = "position:absolute; left:675px; top:20px;">
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="studentProfile" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Student
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="studentProfile">Student Profile</a>
+                        <a class="dropdown-item" href="studentSchedule">Student Schedule</a>
+                        <a class="dropdown-item" href="allTutors">Find a Tutor</a>
+                        <a class="dropdown-item" href="studentLocateSessions">Where's My Session</a>
+                    </div>
+                    </li>
+                </div>
+                <div style = "position:absolute; left:800px; top:20px;">
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="tutorProfile" id="tutor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Tutor
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="tutor">
+                        <a class="dropdown-item" href="tutorProfile">Tutor Profile</a>
+                        <a class="dropdown-item" href="tutorProfileAvailability">Tutor Availability</a>
+                        <a class="dropdown-item" href="tutorSchedule">Tutor Schedule</a>
+                        <a class="dropdown-item" href="tutorLocateSessions">Where's My Session</a>
+                    </div>
+                    </li>
+                </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <a href="/accounts/logout" class= "btn btn-dark masthead-brand ">Log Out</a>
+                    </ul>
+                </nav>
         </div>
     </header>
     <div class="container emp-profile">
@@ -82,7 +116,7 @@
                         <h6>
                             Tutor
                         </h6>
-                        <p class="proile-rating">RANKINGS : <span>10/10</span></p>
+                        <p class="proile-rating"><span></span></p>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="editTPA" role="tab"
@@ -108,22 +142,23 @@
                                     <label>Availability (MM/DD/YYYY HH:MM)</label>
                                 </div>
                                 <div class="col-md-6">
-                                <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-                                    {{ tpaform.available }}
-                                    <div class="input-group-append" data-target="#datetimepicker1"
-                                         data-toggle="datetimepicker">
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                                        {{ tpaform.available }}
+                                        <div class="input-group-append" data-target="#datetimepicker1"
+                                             data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <script>
+                                    <script>
                                   $(function () {
                                     $("#datetimepicker1").datetimepicker({
                                       format: 'MM/DD/YYYY HH:mm',
                                     });
                                   });
 
-                                </script>
+
+                                    </script>
                                 </div>
                             </div>
                             <div class="row">

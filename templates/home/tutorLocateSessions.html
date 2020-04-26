@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+{% load static %}
+{% load socialaccount %}
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                <title>Tutor Search</title>
+                <script src="https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js"></script>
+                <link href="https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css" rel='stylesheet' />
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+                    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+                        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+                        <style type="text/css">
+                            .search-margin{
+                                margin-left: 100px;
+                            }
+                        </style>
+                    
+        <!-- Custom styles for this template -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+        <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/cover/">
+        <!-- Bootstrap core CSS -->
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="{% static 'css/cover.css' %}" rel="stylesheet">
+        <style type="text/css">
+            .search-margin{
+                margin-left: 140px;
+            }
+        .bottom-mar{
+            margin-bottom: 100px;
+            
+        }
+
+    
+
+        .marker {
+
+            width: 40px ;
+  height: 40px ;
+  background-color: #00d9ff ;
+  border-radius: 60px 60px 0px 60px ;
+  position: absolute ;
+  transform: rotate(360deg);
+      /* width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 20px solid red; */
+
+        cursor: pointer;
+        }
+
+        .marker::after {
+  content: "" ;
+  width: 20px ;
+  height: 20px ;
+  background: #222 ;
+  position: absolute ;
+  left: 26% ;
+  top: 26% ;
+  border-radius: 30px ;
+}
+
+        .mapboxgl-popup {
+  max-height: 100px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  color:black
+}
+
+        </style>
+    </head>
+
+    <body>
+        {% if user.is_authenticated %}
+        <div class="d-flex w-100 h-50 p-3 mx-auto flex-column">
+            <header class="masthead mb-auto">
+                <div class="inner">
+                    <h3 class="masthead-brand">QuickestTutor</h3>
+                    <nav class="nav nav-masthead justify-content-center">
+                    <div style = "position:absolute; left:575px; top:20px;">
+                    <a class="nav-link" href="welcome">Home</a>
+                    </div>
+                        <div style = "position:absolute; left:675px; top:20px;">
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="studentProfile" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Student
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="studentProfile">Student Profile</a>
+                        <a class="dropdown-item" href="studentSchedule">Student Schedule</a>
+                        <a class="dropdown-item" href="allTutors">Find a Tutor</a>
+                        <a class="dropdown-item" href="studentLocateSessions">Where's My Session</a>
+                    </div>
+                    </li>
+                        </div>
+                        <div style = "position:absolute; left:800px; top:20px;">
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="tutorProfile" id="tutor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Tutor
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="tutor">
+                        <a class="dropdown-item" href="tutorProfile">Tutor Profile</a>
+                        <a class="dropdown-item" href="tutorProfileAvailability">Tutor Availability</a>
+                        <a class="dropdown-item" href="tutorSchedule">Tutor Schedule</a>
+                        <a class="dropdown-item" href="tutorLocateSessions">Where's My Session</a>
+                    </div>
+                    </li>
+                        </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <a href="/accounts/logout" class= "btn btn-dark masthead-brand ">Log Out</a>
+                    </ul>
+                </nav>
+
+                </div>
+            </header>
+        <div class="container">
+            <div class="card border-0 shadow my-5">
+            <div class="card-body p-5">
+                
+                   
+
+                
+                <!-- <center> -->
+            <!-- {% for session in tutorAcceptedSessions %} -->
+                    <!-- {% if session.tutor == user %} -->
+                    <!-- <div class="row"> 
+                        {{session}} -->
+                    <!-- <h5 style="color: black"> <u>Location of Tutoring Session: {{session}}</u></h5> -->
+                    <!-- </div> -->
+                    <!-- {% endif %} -->
+            <!-- {% endfor %} -->
+
+
+  
+    
+                   
+                <!-- </center> -->
+                <!-- <p>{{user.building}}</p> -->
+                <!-- 
+                    {% for session in studentAcceptedSessions %}
+                    {% if forloop.last %}
+                <input type="hidden" name="build" value="{{session.building}}" />
+                <center>
+
+                    <h5 style="color: black"> Location of Tutoring Session: {{session.building}}</h5>
+                    <h6 style="color: black"> Tutee: {{session.student}}</h6>
+                    <h6 style="color: black"> Class: {{session.course}}</h6>
+                    <h6 style="color: black"> Note: {{session.description}}</h6>
+
+
+                </center>
+                {% endif %}
+                {% endfor %} -->
+  
+
+              
+                <!-- <input type="hidden" name="accept" value="{{ user. }}" /> -->
+                    <center>
+                    <u><h4 style="color: black;">Locate Your Tutor Sessions As A Tutor</h4></u>
+                    </center>
+                    <br>
+                    <div id='map' width="100%" style='height:600px'></div>
+
+                    <script>
+                     mapboxgl.accessToken = 'pk.eyJ1IjoiZXJpY3Nha215c3RlciIsImEiOiJjazhiMXlxZmUwMWN0M2VxZWp2cGIwcGE3In0.LOR2DgUVncLrbVuaPtD5QA';
+                     var map = new mapboxgl.Map({
+                      container: 'map',
+                      style: 'mapbox://styles/mapbox/streets-v10',
+                    center: [-78.503868, 38.035250],
+                    zoom: 13.7
+                     });
+                    </script>
+                    {% for session in AcceptedSessions %}
+                   
+                    <script>
+                     var building = "{{session.building}}";
+
+                     
+
+                     if(building == "Alderman Library"){
+                     var geojson = {
+                            type: 'FeatureCollection',
+                            features: [{
+                                type: 'Feature',
+                                geometry: {
+                                type: 'Point',
+                                coordinates: [-78.505372, 38.036530]
+                                },
+                                properties: {
+                                title: 'Mapbox',
+                                description: 'Alderman Library, {{session.chosen_time}}, {{session.course}}'
+                                }
+                            }]
+                        };
+                    }
+                    if(building == "Clark Library"){
+                        var geojson = {
+                            type: 'FeatureCollection',
+                            features: [{
+                                type: 'Feature',
+                                geometry: {
+                                type: 'Point',
+                                coordinates: [-78.5078, 38.0330]
+                                },
+                                properties: {
+                                title: 'Mapbox',
+                                description: 'Clark Library, {{session.chosen_time}}, {{session.course}}'
+                                }
+                            }]
+                        };
+
+                    }
+                    if(building == "Clemons Library"){
+                        var geojson = {
+                            type: 'FeatureCollection',
+                            features: [{
+                                type: 'Feature',
+                                geometry: {
+                                type: 'Point',
+                                coordinates: [-78.506154, 38.036664]
+                                },
+                                properties: {
+                                title: 'Mapbox',
+                                description: 'Clemons Library, {{session.chosen_time}}, {{session.course}}'
+                                }
+                            }]
+                        };
+
+                    }
+                    if(building == "Thornton's Stack"){
+                        var geojson = {
+                            type: 'FeatureCollection',
+                            features: [{
+                                type: 'Feature',
+                                geometry: {
+                                type: 'Point',
+                                coordinates: [-78.509593, 38.033520]
+                                },
+                                properties: {
+                                title: 'Mapbox',
+                                description: "Thornton's Stacks, {{session.chosen_time}}, {{session.course}}"
+                                }
+                            }]
+                        };
+
+                    }
+                    
+                    if(building == "Rice Hall"){
+                        var geojson = {
+                            type: 'FeatureCollection',
+                            features: [{
+                                type: 'Feature',
+                                geometry: {
+                                type: 'Point',
+                                coordinates: [-78.510835, 38.031847]
+                                },
+                                properties: {
+                                title: 'Mapbox',
+                                description: "Rice Hall, {{session.chosen_time}}, {{session.course}}"
+                                }
+                            }]
+                        };
+
+                    }
+                    if(building == "CDE"){
+                        var geojson = {
+                            type: 'FeatureCollection',
+                            features: [{
+                                type: 'Feature',
+                                geometry: {
+                                type: 'Point',
+                                coordinates: [-78.510563, 38.032698]
+                                },
+                                properties: {
+                                title: 'Mapbox',
+                                description: "CDE, {{session.chosen_time}}, {{session.course}}"
+                                }
+                            }]
+                        };
+
+                    }
+                    if(building == "Multicultural Student Center"){
+                        var geojson = {
+                            type: 'FeatureCollection',
+                            features: [{
+                                type: 'Feature',
+                                geometry: {
+                                type: 'Point',
+                                coordinates: [-78.506611, 38.036025]
+                                },
+                                properties: {
+                                title: 'Mapbox',
+                                description: "Multicultural Student Center, {{session.chosen_time}}, {{session.course}}"
+                                }
+                            }]
+                        };
+
+                    }
+                    if(building == "New Cabell"){
+                        var geojson = {
+                            type: 'FeatureCollection',
+                            features: [{
+                                type: 'Feature',
+                                geometry: {
+                                type: 'Point',
+                                coordinates: [-78.505075, 38.032702]
+                                },
+                                properties: {
+                                title: 'Mapbox',
+                                description: "New Cabell, {{session.chosen_time}}, {{session.course}}"
+                                }
+                            }]
+                        };
+                    }
+                    // }else{
+
+                    //     var geojson = {
+                    //         type: 'FeatureCollection',
+                    //         features: [{
+                    //             type: 'Feature',
+                    //             geometry: {
+                    //             type: 'Point',
+                    //             coordinates: null
+                    //             },
+                    //             properties: {
+                    //             title: 'Mapbox',
+                    //             description: ""
+                    //             }
+                    //         }]
+                    //     };
+
+
+
+
+
+
+                    // }
+
+                        // add markers to map
+                        geojson.features.forEach(function(marker) {
+                        // create a HTML element for each feature
+                        var el = document.createElement('div');
+                        el.className = 'marker';
+                        // make a marker for each feature and add to the map
+                        new mapboxgl.Marker(el)
+                        .setLngLat(marker.geometry.coordinates)
+                        .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+                        .setHTML('<p>' + marker.properties.description + '</p>'))
+                        .addTo(map);
+                        });
+
+                    </script>
+                    {% endfor %}
+
+
+                
+                <div style="height: 80px"></div>
+            </div>
+            </div>
+        </div>
+        </div>
+        {% else %}
+        <meta http-equiv="refresh" content="0; URL=home">
+        {% endif %} 
+    </body>
+</html>
