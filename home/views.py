@@ -48,9 +48,17 @@ def editSP(request):
     return render(request, 'home/editSP.html', {'sform': sform})
 
 
-def tutorsearch(request):
-    return render(request, 'home/tutorSearch.html')
+def studentLocateSessions(request):
+    studentAcceptedSessions = RequestSession.objects.filter(student_id=request.user.id, is_accepted=True)
 
+    context = {'AcceptedSessions': studentAcceptedSessions}
+    return render(request, 'home/studentLocateSessions.html', context)
+
+def tutorLocateSessions(request):
+    tutorAcceptedSessions = RequestSession.objects.filter(tutor_id=request.user.id, is_accepted=True)
+
+    context = {'AcceptedSessions': tutorAcceptedSessions}
+    return render(request, 'home/tutorLocateSessions.html', context)
 
 class tutorProfile(generic.TemplateView):
     model = User
@@ -116,7 +124,7 @@ def default_map(request):
     context = {'tutorAcceptedSessions': tutorAcceptedSessions}
     mapbox_access_token = 'pk.my_mapbox_access_token'
 
-    return render(request, 'tutorSearch.html',
+    return render(request, 'locateSessions.html',
                   {
                       'mapbox_access_token': 'pk.eyJ1IjoiZXJpY3Nha215c3RlciIsImEiOiJjazhiMXlxZmUwMWN0M2VxZWp2cGIwcGE3In0.LOR2DgUVncLrbVuaPtD5QA'},context)
 
@@ -197,7 +205,6 @@ def tutorSchedule(request):
             acceptedSession=RequestSession.objects.get(id=request.POST["id"])
             acceptedSession.is_accepted=True
             acceptedSession.save()
-            return render(request, 'home/tutorSearch.html', context)
 
         if "Decline" in request.POST:
             RequestSession.objects.get(id=request.POST["id"]).delete()

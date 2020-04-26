@@ -44,11 +44,10 @@ class RequestSession(models.Model):
     tutor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tutor', default=1)
     is_accepted = models.BooleanField(default=False)
     building = models.CharField(max_length=100, default='')
-
+   
     def __str__(self):
         return self.description
-
-
+        
 class Available(models.Model):
     available = models.DateTimeField(default=datetime.now, blank=True)
 

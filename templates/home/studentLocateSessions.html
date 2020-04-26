@@ -45,9 +45,9 @@
 
             width: 40px ;
   height: 40px ;
-  background-color: #cc6262 ;
+  background-color: #00d9ff ;
   border-radius: 60px 60px 0px 60px ;
-  position:relative ;
+  position: absolute ;
   transform: rotate(360deg);
       /* width: 0;
       height: 0;
@@ -101,7 +101,7 @@
                         <a class="dropdown-item" href="studentProfile">Student Profile</a>
                         <a class="dropdown-item" href="studentSchedule">Student Schedule</a>
                         <a class="dropdown-item" href="allTutors">Find a Tutor</a>
-                        <a class="dropdown-item" href="studentTutorSearch">Where's My Session</a>
+                        <a class="dropdown-item" href="studentLocateSessions">Where's My Session</a>
                     </div>
                     </li>
                         </div>
@@ -112,7 +112,9 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="tutor">
                         <a class="dropdown-item" href="tutorProfile">Tutor Profile</a>
+                        <a class="dropdown-item" href="tutorProfileAvailability">Tutor Availability</a>
                         <a class="dropdown-item" href="tutorSchedule">Tutor Schedule</a>
+                        <a class="dropdown-item" href="tutorLocateSessions">Where's My Session</a>
                     </div>
                     </li>
                         </div>
@@ -146,8 +148,8 @@
                    
                 <!-- </center> -->
                 <!-- <p>{{user.building}}</p> -->
-
-                    {% for session in tutorAcceptedSessions %}
+                <!-- 
+                    {% for session in studentAcceptedSessions %}
                     {% if forloop.last %}
                 <input type="hidden" name="build" value="{{session.building}}" />
                 <center>
@@ -160,12 +162,15 @@
 
                 </center>
                 {% endif %}
-                {% endfor %}
+                {% endfor %} -->
   
 
               
                 <!-- <input type="hidden" name="accept" value="{{ user. }}" /> -->
-
+                    <center>
+                    <u><h4 style="color: black;">Locate Your Tutor Sessions As A Student</h4></u>
+                    </center>
+                    <br>
                     <div id='map' width="100%" style='height:600px'></div>
 
                     <script>
@@ -176,8 +181,11 @@
                     center: [-78.503868, 38.035250],
                     zoom: 13.7
                      });
-
-                     var building = $("[name='build']").val()
+                    </script>
+                    {% for session in AcceptedSessions %}
+                   
+                    <script>
+                     var building = "{{session.building}}";
 
                      
 
@@ -192,7 +200,7 @@
                                 },
                                 properties: {
                                 title: 'Mapbox',
-                                description: 'Alderman Library'
+                                description: 'Alderman Library, {{session.chosen_time}}, {{session.course}}'
                                 }
                             }]
                         };
@@ -208,7 +216,7 @@
                                 },
                                 properties: {
                                 title: 'Mapbox',
-                                description: 'Clark Library'
+                                description: 'Clark Library, {{session.chosen_time}}, {{session.course}}'
                                 }
                             }]
                         };
@@ -225,7 +233,7 @@
                                 },
                                 properties: {
                                 title: 'Mapbox',
-                                description: 'Clemons Library'
+                                description: 'Clemons Library, {{session.chosen_time}}, {{session.course}}'
                                 }
                             }]
                         };
@@ -242,7 +250,7 @@
                                 },
                                 properties: {
                                 title: 'Mapbox',
-                                description: "Thornton's Stacks"
+                                description: "Thornton's Stacks, {{session.chosen_time}}, {{session.course}}"
                                 }
                             }]
                         };
@@ -260,7 +268,7 @@
                                 },
                                 properties: {
                                 title: 'Mapbox',
-                                description: "Rice Hall"
+                                description: "Rice Hall, {{session.chosen_time}}, {{session.course}}"
                                 }
                             }]
                         };
@@ -277,7 +285,7 @@
                                 },
                                 properties: {
                                 title: 'Mapbox',
-                                description: "CDE"
+                                description: "CDE, {{session.chosen_time}}, {{session.course}}"
                                 }
                             }]
                         };
@@ -294,7 +302,7 @@
                                 },
                                 properties: {
                                 title: 'Mapbox',
-                                description: "Multicultural Student Center"
+                                description: "Multicultural Student Center, {{session.chosen_time}}, {{session.course}}"
                                 }
                             }]
                         };
@@ -311,7 +319,7 @@
                                 },
                                 properties: {
                                 title: 'Mapbox',
-                                description: "New Cabell"
+                                description: "New Cabell, {{session.chosen_time}}, {{session.course}}"
                                 }
                             }]
                         };
@@ -354,11 +362,11 @@
                         });
 
                     </script>
-
+                    {% endfor %}
 
 
                 
-                <div style="height: 400px"></div>
+                <div style="height: 80px"></div>
             </div>
             </div>
         </div>
