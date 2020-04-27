@@ -43,10 +43,10 @@
             <div class="inner">
                 <h3 class="masthead-brand">QuickestTutor</h3>
                 <nav class="nav nav-masthead justify-content-center">
-                    <div style = "position:absolute; left:575px; top:20px;">
+                    <div style = "position:absolute; left:39vw; top:20px;">
                     <a class="nav-link" href="welcome">Home</a>
                     </div>
-                    <div style = "position:absolute; left:675px; top:20px;">
+                    <div style = "position:absolute; left:47vw; top:20px;">
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="studentProfile" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Student
@@ -59,7 +59,7 @@
                     </div>
                     </li>
                     </div>
-                    <div style = "position:absolute; left:800px; top:20px;">
+                    <div style = "position:absolute; left:57vw; top:20px;">
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="tutorProfile" id="tutor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Tutor
@@ -72,23 +72,25 @@
                     </div>
                     </li>
                     </div>
+                    <div style = "position:absolute; left:92vw; top:20px;">
                     <ul class="nav navbar-nav navbar-right">
                         <a href="/accounts/logout" class= "btn btn-dark masthead-brand ">Log Out</a>
                     </ul>
+                    </div>
                 </nav>
             </div>
         </header>
     <div class="container emp-profile">
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
+                            {% if user.pfp %}
+                            <img src="{{user.pfp.url}}" alt=""/>
+                            {% else %}
                             <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt=""/>
-                            <div class="file btn btn-lg btn-primary">
-                                Change Photo
-                                <input type="file" name="file"/>
-                            </div>
+                            {% endif %}                   
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -168,7 +170,10 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <p> </p>
+                                            <div class="col-md-6">
+                                                <label>Update Profile Picture</label>
+                                            </div>
+                                                <label>{{sform.pfp}}</label>
                                         </div>
                                         <div class="row">
                                             <p> </p>

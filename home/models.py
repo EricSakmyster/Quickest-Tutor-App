@@ -5,6 +5,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
 from datetime import datetime
+from django.core.validators import RegexValidator, MaxValueValidator, MinValueValidator 
 
 
 class User(AbstractUser):
@@ -13,9 +14,9 @@ class User(AbstractUser):
     #     ("2", "Shannon"), 
     #     ("3", "Rice"), 
     # ) 
-
-    year = models.IntegerField(default='0')
-    phone = models.TextField(max_length=20, default='0000000000')
+    year = models.PositiveIntegerField(default=1, validators=[MaxValueValidator(4)])
+    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+    phone = models.CharField(validators=[phone_regex], max_length=10, blank=True)
     classes = models.TextField(max_length=100, default='none')
     major = models.TextField(max_length=20, default='none')
     tsubjects = models.TextField(max_length=500, default='none')
@@ -24,8 +25,7 @@ class User(AbstractUser):
     emailAddress = models.TextField(max_length=50, default='none')
     requests = models.ManyToManyField("RequestSession", blank=True)
     tutorAvailability = ArrayField(models.DateTimeField(default=datetime.now, blank=True), default=list, blank=True)
-    image = models.FileField(
-        default="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png")
+    pfp = models.ImageField(blank= True, null= True)
     location = models.CharField(max_length=100, default='')
 
     # building = ArrayField(models.CharField(max_length=32, blank=True, choices=BUILDING_CHOICES), blank = True, default=list)

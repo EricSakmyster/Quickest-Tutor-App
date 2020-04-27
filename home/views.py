@@ -33,16 +33,21 @@ def profile(request):
 
 
 def editSP(request):
+
+    file_data = request.FILES or None
+
     if request.method == "POST":
-        sform = StudentProfileForm(request.POST, instance=request.user)
+        sform = StudentProfileForm(request.POST, file_data, instance=request.user)
         if sform.is_valid():
             post = sform.save(commit=False)
             post.year = request.user.year
             post.phone = request.user.phone
             post.classes = request.user.classes
             post.major = request.user.major
+            post.pfp = request.user.pfp
             post.save()
             return redirect('profile')
+
     else:
         sform = StudentProfileForm(instance=request.user)
     return render(request, 'home/editSP.html', {'sform': sform})
@@ -50,13 +55,11 @@ def editSP(request):
 
 def studentLocateSessions(request):
     studentAcceptedSessions = RequestSession.objects.filter(student_id=request.user.id, is_accepted=True)
-
     context = {'AcceptedSessions': studentAcceptedSessions}
     return render(request, 'home/studentLocateSessions.html', context)
 
 def tutorLocateSessions(request):
     tutorAcceptedSessions = RequestSession.objects.filter(tutor_id=request.user.id, is_accepted=True)
-
     context = {'AcceptedSessions': tutorAcceptedSessions}
     return render(request, 'home/tutorLocateSessions.html', context)
 
@@ -97,8 +100,11 @@ def editTPA(request):
     return render(request, 'home/editTPA.html', {'tpaform': tpaform})
 
 def editTP(request):
+    
+    file_data = request.FILES or None
+
     if request.method == "POST":
-        tform = TutorProfileForm(request.POST, instance=request.user)
+        tform = TutorProfileForm(request.POST, file_data, instance=request.user)
         if tform.is_valid():
             post = tform.save(commit=False)
             post.phone = request.user.phone
@@ -106,6 +112,7 @@ def editTP(request):
             post.tsubjects = request.user.tsubjects
             post.texp = request.user.texp
             post.hourlyRate = request.user.hourlyRate
+            post.pfp = request.user.pfp
             post.save()
             return redirect('tutorProfile')
     else:
