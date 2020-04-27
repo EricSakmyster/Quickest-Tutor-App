@@ -205,6 +205,9 @@ def studentSchedule(request):
         if "Cancel" in request.POST:
             id = request.POST["id"]
             return redirect(str(id) + '/student/delete')
+    if request.method == "POST":
+        if "Finished?" in request.POST:
+            RequestSession.objects.get(id=request.POST["id"]).delete()
     return render(request, 'home/studentSchedule.html', context)
 
 
@@ -237,5 +240,9 @@ def tutorSchedule(request):
         if "Cancel" in request.POST:
             id = request.POST["id"]
             return redirect(str(id) + '/tutor/delete')
+
+        if request.method == "POST":
+            if "Finished?" in request.POST:
+                RequestSession.objects.get(id=request.POST["id"]).delete()
 
     return render(request, 'home/baseTutor.html', context)
