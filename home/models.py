@@ -14,14 +14,14 @@ class User(AbstractUser):
     #     ("2", "Shannon"), 
     #     ("3", "Rice"), 
     # ) 
-    year = models.PositiveIntegerField(default=1, validators=[MaxValueValidator(4)])
-    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
-    phone = models.CharField(validators=[phone_regex], max_length=10, blank=True)
+    year = models.PositiveIntegerField(default=1, validators=[MaxValueValidator(4), MinValueValidator(1)])
+    phone_regex = RegexValidator(regex=r'^(\d{3}\-\d{3}\-\d{4})$', message="Phone number must be entered in the format: '999-999-9999'. Up to 10 digits allowed.")
+    phone = models.CharField(validators=[phone_regex], max_length=12, blank=True)
     classes = models.TextField(max_length=100, default='none')
     major = models.TextField(max_length=20, default='none')
     tsubjects = models.TextField(max_length=500, default='none')
     texp = models.TextField(max_length=500, default='none')
-    hourlyRate = models.TextField(max_length=20, default='none')
+    hourlyRate = models.PositiveIntegerField(default=0, validators=[MinValueValidator(1)])
     requests = models.ManyToManyField("RequestSession", blank=True)
     tutorAvailability = ArrayField(models.DateTimeField(default=datetime.now, blank=True), default=list, blank=True)
     pfp = models.ImageField(blank= True, null= True)
@@ -48,7 +48,7 @@ class RequestSession(models.Model):
         return self.description
         
 class Available(models.Model):
-    available = models.DateTimeField(default=datetime.now, blank=True)
+    available = models.DateTimeField(default=datetime.now, blank=False)
 
     objects = models.Manager()
 

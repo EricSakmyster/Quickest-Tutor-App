@@ -56,14 +56,12 @@ def editSP(request):
 
 def studentLocateSessions(request):
     studentAcceptedSessions = RequestSession.objects.filter(student_id=request.user.id, is_accepted=True)
-
     context = {'AcceptedSessions': studentAcceptedSessions}
     return render(request, 'home/studentLocateSessions.html', context)
 
 
 def tutorLocateSessions(request):
     tutorAcceptedSessions = RequestSession.objects.filter(tutor_id=request.user.id, is_accepted=True)
-
     context = {'AcceptedSessions': tutorAcceptedSessions}
     return render(request, 'home/tutorLocateSessions.html', context)
 

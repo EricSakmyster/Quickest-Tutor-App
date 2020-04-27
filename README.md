@@ -9,7 +9,7 @@ Once signed in, use tabs on top to navigate the site. You can also navigate stra
 ### Student Dropdown Tab
 - Edit your profile in Student Profile tab.
 - See the status and information of your session requests in Student Schedule tab. The sessions can be canceled at any time.
-- Look through tutors list in Find a Tutor tab. To request the session select a date from Tutor Availability, choose a location for your session, and fill out which class you need help with and the description. The request will appear as pending in the Student Schdule tab until the tutors accepts it (moves to Accepted Session) or declines (it disappears from your schedule). 
+- Look through tutors list in Find a Tutor tab. To request the session select a date from Tutor Availability, choose a location for your session, and fill out which class you need help with and the description. The request will appear as pending in the Student Schedule tab until the tutors accepts it (moves to Accepted Session) or declines (it disappears from your schedule). 
 - Look at the locations for your accepted sessions on the Where's My Session tab.
 
 ### Tutor Dropdown Tab

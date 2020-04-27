@@ -1,27 +1,11 @@
-from django.test import TestCase, RequestFactory
+from django.test import TestCase, RequestFactory, Client
 from django.urls import reverse, resolve
 from .models import User, Category, TodoList
 from .views import WelcomeView, home
-from .forms import TutorProfileForm, StudentProfileForm
+from .forms import TutorProfileForm, StudentProfileForm, SessionRequestForm, TutorProfileAvailabilityForm
 # Create your tests here.
 
-class FunctionalityTests(TestCase):
-    def setUp(self):
-        self.factory=RequestFactory()
-    '''
-    def test_redirect_when_not_logged_in(self):
-        request= self.factory.get('/locateSessions')
-        response = locateSessions(request)
-        self.assertEqual(response.status_code, 200)
-    '''
-    '''
-    def test_redirect_to_home_when_not_logged_in_(self):
-        request1 = self.factory.get('/welcome')
-        response1 = WelcomeView.as_view()(request1).render()
-        request2 = self.factory.get('/home')
-        response2 = home(request2)
-        self.assertEquals(response1.content, response2.content)
-    '''
+
 class ModelTests(TestCase):
     def setUp(self):
         User.objects.create(first_name="Eric", last_name="Sakmyster")
@@ -31,13 +15,10 @@ class ModelTests(TestCase):
     def testUser(self):
         testUser=User.objects.get(first_name="Eric")
         self.assertTrue('Eric Sakmyster'==testUser.__str__())
-    # def testDefaultPhone(self):
-    #     testUser=User.objects.get(first_name="Eric")
-    #     self.assertEquals('0000000000', testUser.phone)
-    # def testCreatedPhone(self):
-    #     testUser=User.objects.get(first_name="Eric")
-    #     testUser.phone='5005550000'
-    #     self.assertEquals('5005550000', testUser.phone)
+    def testCreatedPhone(self):
+        testUser=User.objects.get(first_name="Eric")
+        testUser.phone='5005550000'
+        self.assertEquals('5005550000', testUser.phone)
     def testYear(self):
         testUser=User.objects.get(first_name="Eric")
         testUser.year='4'
@@ -51,42 +32,92 @@ class ModelTests(TestCase):
             count+=1
         self.assertEquals(3, count)
 
-class viewTests(TestCase):
+class formTests(TestCase):
+    
+    def testSPForm (self):
+        form = StudentProfileForm(data= { 
+                'year': 1,
+                'phone': '4444444444',
+                'classes': 'CS 2150, CS 4102',
+                'major': 'CS',
+                'pfp': 'fire.jpg',
 
-    def editSP_view (self):
-        form_data = { 
-                'year': 'new test blog',
-                'phone': 'blog body',
-                'classes': 'blog body',
-                'major': 'blog body'
+            }  
+        )
+        self.assertFalse(form.is_valid())
+    def testSPForm2 (self):
+        form = StudentProfileForm(data= { 
+                'year': 5,
+                'phone': '4444444444',
+                'classes': 'CS 2150, CS 4102',
+                'major': 'CS',
 
-            } 
-        form = StudentProfileForm(data= form_data) # create form instance 
-        response = self.client.post('/home/editsp/', form_data)
-        theUser = User.objects.get(year=form_data['year'])
+            }  
+        )
+        self.assertFalse(form.is_valid())
+    def testSPForm3 (self):
+        form = StudentProfileForm(data= { 
+                'year': 1,
+                'phone': '54444444444',
+                'classes': 'CS 2150, CS 4102',
+                'major': 'CS',
+
+            }  
+        )
+        self.assertFalse(form.is_valid())
+    def testSPForm4 (self):
+        form = StudentProfileForm(data= { 
+                'year': 1,
+                'phone': 'phone number',
+                'classes': 'CS 2150, CS 4102',
+                'major': 'CS',
+
+            }  
+        )
+        self.assertFalse(form.is_valid())
+    def testTPForm (self):
+        form = TutorProfileForm(data= { 
+                'phone': '5555555555',
+                'major': 'CS',
+                'tsubjects': 'CS 2150, CS 4102',
+                'texp': 'CS 2150 TA',
+                'hourlyRate': '10',
+
+            }  
+        )
+        self.assertFalse(form.is_valid())
+    def testTPForm2 (self):
+        form = TutorProfileForm(data= { 
+                'phone': '55555555550',
+                'major': 'CS',
+                'tsubjects': 'CS 2150, CS 4102',
+                'texp': 'CS 2150 TA',
+                'hourlyRate': '10',
+
+            }  
+        )
+        self.assertFalse(form.is_valid())
+    def testSessionRequestForm1(self):
+        form = SessionRequestForm(data={
+            'tutor_username': 'bob',
+            'course': 'CS 3240',
+            'description': 'I need help learning Django.',
+            'building': 'Rice Hall',
+        })
         self.assertTrue(form.is_valid())
-        self.assertEqual(theUser.year, 2)
-        self.assertRedirects(response, '/home/studentProfile/',status_code=302, target_status_code=200)
-
-    def editTP_view (self):
-        form_data = { 
-                'year': 'new test blog',
-                'phone': 'blog body',
-                'classes': 'blog body',
-                'major': 'blog body', 
-                'tsubjects': 'blog body',
-                'texp':'blog body',
-                'hourlyRate': 'blog body'
-            } 
-
-        form = TutorProfileForm(data= form_data) # create form instance 
-        response = self.client.post('/home/edittp/', form_data)
-        theUser = User.objects.get(year=form_data['year'])
+        
+    def testTPAform1(self):
+        form  = TutorProfileAvailabilityForm(data ={
+                'available': '11/29/2000 12:30'
+            }
+        )
         self.assertTrue(form.is_valid())
-        self.assertEqual(theUser.year, 3)
-        self.assertEqual(theUser.hourlyRate, 11)
-        self.assertRedirects(response, '/home/tutorProfile/',status_code=302, target_status_code=200)
-
+    def testTPAform2(self):
+        form  = TutorProfileAvailabilityForm(data ={
+                'available': '2019/12/03 12:30'
+            }
+        )
+        self.assertFalse(form.is_valid())
 
 class testURLS(TestCase):
 
@@ -128,9 +159,3 @@ class testURLS(TestCase):
         name = reverse('editTP')
         path = '/home/editTP' 
         self.assertEqual(name, path)
-
-
-    # def test_tAvailability_url(self):
-    #     name = reverse('tutorProfileAvailibility')
-    #     path = '/home/tutorProfileAvailibility' 
-    #     self.assertEqual(name, path)

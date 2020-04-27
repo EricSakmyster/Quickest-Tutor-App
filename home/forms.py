@@ -8,7 +8,7 @@ class TutorProfileForm(forms.ModelForm):
         model = User
         fields = ['phone', 'major', 'tsubjects', 'texp', 'hourlyRate', 'pfp']
         widgets = {
-            'phone': forms.TextInput(attrs={'class': "form-control", 'placeholder': "+999999999"}),
+            'phone': forms.TextInput(attrs={'class': "form-control", 'placeholder': "ex) 703-542-0000"}),
             'major': forms.TextInput(attrs={'class': "form-control", 'placeholder': "ex) Math, Chemistry"}),
             'tsubjects': forms.TextInput(attrs={'class': "form-control", 'placeholder': "ex) Math, English"}),
             'texp': forms.TextInput(attrs={'class': "form-control", 'placeholder': "ex) Calc teacher 3 years"}),
@@ -31,12 +31,12 @@ class TutorProfileAvailabilityForm(forms.ModelForm):
 class StudentProfileForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['year', 'phone', 'classes', 'major', 'pfp']
-        widgets = {
-            'year': forms.NumberInput(attrs={'class': "form-control", 'placeholder': "1,2,3,or 4"}),
-            'phone': forms.TextInput(attrs={'class': "form-control", 'placeholder': "+999999999"}),
-            'classes': forms.TextInput(attrs={'class': "form-control", 'placeholder': "ex) Math, English"}),
-            'major': forms.TextInput(attrs={'class': "form-control", 'placeholder': "ex) Math, Chemistry"}),
+        fields = ['year','phone', 'classes', 'major', 'pfp']
+        widgets={
+            'year': forms.NumberInput(attrs={'class':"form-control", 'placeholder': "1,2,3,or 4"}),
+            'phone': forms.TextInput(attrs={'class':"form-control", 'placeholder': "ex) 703-542-0000"}),
+            'classes': forms.TextInput(attrs={'class':"form-control", 'placeholder': "ex) Math, English"}),
+            'major': forms.TextInput(attrs={'class':"form-control", 'placeholder': "ex) Math, Chemistry"}),
             'pfp': forms.FileInput(),
         }
 

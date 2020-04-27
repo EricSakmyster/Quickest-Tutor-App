@@ -183,6 +183,7 @@
                     center: [-78.503868, 38.035250],
                     zoom: 13.7
                      });
+                    
                     </script>
                     {% for session in AcceptedSessions %}
                    
@@ -356,6 +357,7 @@
                         var el = document.createElement('div');
                         el.className = 'marker';
                         // make a marker for each feature and add to the map
+
                         new mapboxgl.Marker(el)
                         .setLngLat(marker.geometry.coordinates)
                         .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
