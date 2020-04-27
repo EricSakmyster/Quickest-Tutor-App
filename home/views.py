@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import get_user_model
 from django.views.generic import DeleteView
+from django import forms
 
 from .forms import TutorProfileForm, TutorProfileAvailabilityForm, StudentProfileForm, SessionRequestForm
 
@@ -162,6 +163,8 @@ def allTutors(request):
         srform = SessionRequestForm(request.POST, instance=request.user)
         if srform.is_valid():
             post = srform.save(commit=False)
+            if request.POST["category_select"] == "":
+                return redirect('allTutors')
             post.chosen_time = request.POST["category_select"]
             post.course = srform.cleaned_data['course']
             post.description = srform.cleaned_data['description']

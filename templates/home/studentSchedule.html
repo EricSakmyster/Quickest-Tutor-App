@@ -104,10 +104,10 @@
                     <div class="row">
                         <ul>
                             <li>{{session.course}} with {{session.tutor}} at {{session.chosen_time}}, in
-                                {{session.building}}</li>
+                                {{session.building}} {{session.tutor.phone}}</li>
                             <ul>
                                 <div align="left">
-                                    <li>{{session.description}}</li>
+                                    <li>Session Topic: {{session.description}}</li>
                                 </div>
                             </ul>
                         </ul>
@@ -136,7 +136,10 @@ width: 50%;">
                                 {{session.building}}</li>
                             <ul>
                                 <div align="left">
-                                    <li>{{session.description}}</li>
+                                    <li>Session Topic: {{session.description}}</li>
+                                </div>
+                                <div align="left">
+                                    <li>{{session.tutor}}'s Contact: {{session.tutor.phone}}</li>
                                 </div>
                             </ul>
                         </ul>
