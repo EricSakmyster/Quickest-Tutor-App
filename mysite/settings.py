@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     # filter
 
     'django_filters',
-    'bootstrapform'
+    'bootstrapform',
 
 ]
 

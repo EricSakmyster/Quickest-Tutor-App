@@ -43,10 +43,10 @@
             <div class="inner">
                 <h3 class="masthead-brand"><a href="welcome"></a>QuickestTutor</h3>
                 <nav class="nav nav-masthead justify-content-center">
-                    <div style = "position:absolute; left:40vw; top:20px;">
+                    <div style = "position:absolute; left:39vw; top:20px;">
                     <a class="nav-link" href="welcome">Home</a>
                     </div>
-                    <div style = "position:absolute; left:50vw; top:20px;">
+                    <div style = "position:absolute; left:47vw; top:20px;">
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="studentProfile" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Student
@@ -59,7 +59,7 @@
                     </div>
                     </li>
                     </div>
-                    <div style = "position:absolute; left:63vw; top:20px;">
+                    <div style = "position:absolute; left:57vw; top:20px;">
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="tutorProfile" id="tutor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Tutor
@@ -101,7 +101,7 @@
                                     <h6>
                                         Tutor
                                     </h6>
-                                    <p class="proile-rating"><span></span></p>
+                                    <p class="proile-rating"><span>Please fill out all fields.</span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="editTP" role="tab" aria-controls="home" aria-selected="true">Edit Profile</a>
@@ -126,14 +126,6 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <p>{{user}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Email</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{user.email}}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -196,7 +188,7 @@
                                             <div class="col-md-6">
                                                 <label>Update Profile Picture</label>
                                             </div>
-                                                {{tform.pfp}}
+                                                <label>{{tform.pfp}}</label>
                                         </div>
                                         <div class="row">
                                             <p> </p>
