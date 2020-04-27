@@ -8,7 +8,4 @@ PostgreSQL was used as the database to store data for our users and their tutori
 Boostrap was used to aid in designing this website. 
 ## Mapbox
 Mapbox was used for locating student and tutor sessions that were created. The free account of Mapbox allowed for this application. 
-## Authors
 
-Abhinay Dommalapati
-Eric Sakmyster
