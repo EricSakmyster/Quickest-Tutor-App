@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 {% load static %}
 {% load socialaccount %}
+{% load bootstrap %}
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Tutor Schedule</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Tutor Schedule</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-<link href="{% static 'css/tutorProfile.css' %}" rel="stylesheet">
-    
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="{% static 'css/tutorProfile.css' %}" rel="stylesheet">
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
-<link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
-<link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/cover/">
-<!-- Bootstrap core CSS -->
-<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-<!-- Custom styles for this template -->
-<link href="{% static 'css/cover.css' %}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/cover/">
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/cover.css' %}" rel="stylesheet">
     <style type="text/css">
         .search-margin{
             margin-left: 140px;
@@ -37,7 +38,7 @@
             margin-top: 50px;
         }
         .top-margin-t{
-            margin-top: 135px;
+            margin-top: 75px;
         }
         .text-color{
             color: black;
@@ -45,145 +46,155 @@
         .left-margin{
             margin-left: 10px;
         }
-        </style>
+
+
+    </style>
 </head>
-<body >
-    {% if user.is_authenticated %}
-    <div class="d-flex w-100 h-25 p-3 mx-auto flex-column ">
-        <header class="masthead mb-auto ">
-            <div class="inner">
-                <h3 class="masthead-brand">QuickestTutor</h3>
-                <nav class="nav nav-masthead justify-content-center">
-                    <div style = "position:absolute; left:39vw; top:20px;">
+<body>
+{% if user.is_authenticated %}
+<div class="d-flex w-100 h-25 p-3 mx-auto flex-column ">
+    <header class="masthead mb-auto ">
+        <div class="inner">
+            <h3 class="masthead-brand">QuickestTutor</h3>
+            <nav class="nav nav-masthead justify-content-center">
+                <div style="position:absolute; left:39vw; top:20px;">
                     <a class="nav-link" href="welcome">Home</a>
-                    </div>
-                    <div style = "position:absolute; left:47vw; top:20px;">
+                </div>
+                <div style="position:absolute; left:47vw; top:20px;">
                     <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="studentProfile" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Student
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="studentProfile">Student Profile</a>
-                        <a class="dropdown-item" href="studentSchedule">Student Schedule</a>
-                        <a class="dropdown-item" href="allTutors">Find a Tutor</a>
-                        <a class="dropdown-item" href="studentLocateSessions">Where's My Session</a>
-                    </div>
+                        <a class="nav-link dropdown-toggle" href="studentProfile" id="navbarDropdownMenuLink"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Student
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="studentProfile">Student Profile</a>
+                            <a class="dropdown-item" href="studentSchedule">Student Schedule</a>
+                            <a class="dropdown-item" href="allTutors">Find a Tutor</a>
+                            <a class="dropdown-item" href="studentLocateSessions">Where's My Session</a>
+                        </div>
                     </li>
-                    </div>
-                    <div style = "position:absolute; left:57vw; top:20px;">
+                </div>
+                <div style="position:absolute; left:57vw; top:20px;">
                     <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="tutorProfile" id="tutor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Tutor
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="tutor">
-                        <a class="dropdown-item" href="tutorProfile">Tutor Profile</a>
-                        <a class="dropdown-item" href="tutorProfileAvailability">Tutor Availability</a>
-                        <a class="dropdown-item" href="tutorSchedule">Tutor Schedule</a>
-                        <a class="dropdown-item" href="tutorLocateSessions">Where's My Session</a>
-                    </div>
+                        <a class="nav-link dropdown-toggle" href="tutorProfile" id="tutor" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Tutor
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="tutor">
+                            <a class="dropdown-item" href="tutorProfile">Tutor Profile</a>
+                            <a class="dropdown-item" href="tutorProfileAvailability">Tutor Availability</a>
+                            <a class="dropdown-item" href="tutorSchedule">Tutor Schedule</a>
+                            <a class="dropdown-item" href="tutorLocateSessions">Where's My Session</a>
+                        </div>
                     </li>
-                    </div>
-                    <div style = "position:absolute; left:92vw; top:20px;">
+                </div>
+                <div style="position:absolute; left:92vw; top:20px;">
                     <ul class="nav navbar-nav navbar-right">
-                        <a href="/accounts/logout" class= "btn btn-dark masthead-brand ">Log Out</a>
+                        <a href="/accounts/logout" class="btn btn-dark masthead-brand ">Log Out</a>
                     </ul>
-                    </div>
-                </nav>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <center>
+        <u><h3 class="top-margin-t"> All of our Tutors </h3></u>
+
+        {% for tutor in tutors %}
+        {% if tutor.tutorAvailability %}
+        {% if tutor.id != user.id %}
+        <form method="post" id='srform'>
+            {% csrf_token %}
+            <div class="container emp-profile top-margin text-color ">
+                <div class="left-margin">
+                    <form method="post" id='srform'>
+                        {% csrf_token %}
+                        <div class="container emp-profile top-margin text-color ">
+                            <div class="left-margin">
+
+                                <div class="row ">
+
+                                    <!-- <div class="profile-img"> -->
+                                    {% if tutor.pfp %}
+                                    <img src="{{tutor.pfp.url}}" alt="" height="100" width="100"/>
+                                    {% else %}
+                                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                                         alt="" height="100" width="100"/>
+                                    {% endif %}
+
+                                    <!-- </div> -->
+
+                                </div>
+                                <div class="row ">
+                                    Name: {{tutor}}
+                                    <input type="hidden" id="tutor_username" name="tutor_username"
+                                           value="{{tutor.username}}">
+                                </div>
+                                <div class="row">
+                                    Phone: {{tutor.phone}}
+                                </div>
+                                <div class="row">
+                                    Major(s): {{tutor.major}}
+                                </div>
+                                <div class="row">
+                                    Subjects: {{tutor.tsubjects}}
+                                </div>
+                                <div class="row">
+                                    Hourly Rate: {{tutor.hourlyRate}}
+                                </div>
+                                <div class="row">
+                                    Tutor Availability:
+                                    <select id="category" class="taskCategory" name="category_select">
+                                        <option class="" value="">Available Times</option>
+                                        {% for vail in tutor.tutorAvailability %}
+                                        <option class="" value="{{ vail }}">{{ vail }}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <!-- <div class="row">
+                                    Location:
+                                    <select id="category" class="taskCategory" name="category_select">
+                                        <option value="">Available Locations</option>
+                                        {% for vail in tutor.building %}
+                                        <option class="" value="{{ vail }}">{{ vail }}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                </div> -->
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        Location: {{srform.building}}
+                                    </div>
+                                </div>
+
+                                <input type="hidden" id="tutor_username" name="tutor_username"
+                                       value="{{tutor.username}}">
+                                <div class="form-group">
+                                    <div class="row">
+                                        Class: {{srform.course}}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        Desciption: {{srform.description}}
+                                    </div>
+                                </div>
+                                <input type="submit" class="btn btn-primary" value="Request Session">
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </header>
-
-<center>
-<u><h3 class="top-margin-t"> All of our Tutors </h3></u>
-
-    {% for tutor in tutors %}
-    {% if tutor.tutorAvailability %}
-    {% if tutor.id != user.id %}
-    <form method="post" id='srform'>
-        {% csrf_token %}
-    <div class="container emp-profile top-margin text-color ">
-        <div class="left-margin">
-
-            <div class="row ">
-
-                <!-- <div class="profile-img"> -->
-                {% if tutor.pfp %}
-                <img src="{{tutor.pfp.url}}" alt="" height="100" width="100"/>
-                {% else %}
-                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="" height="100" width="100"/>
-                {% endif %}
-
-            <!-- </div> -->
-
-            </div>
+        </form>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
 
 
+    </center>
 
-        <div class="row ">
-            Name: {{tutor}} 
-            <input type="hidden" id="tutor_username" name="tutor_username" value="{{tutor.username}}">
-        </div>
-        <div class="row">
-            Phone: {{tutor.phone}}
-        </div>
-        <div class="row">
-            Major(s): {{tutor.major}}
-        </div>
-        <div class="row">
-            Subjects: {{tutor.tsubjects}}
-        </div>
-        <div class="row">
-            Hourly Rate: {{tutor.hourlyRate}}
-        </div>
-        <div class="row">
-            Tutor Availability:
-            <select id="category" class="taskCategory" name="category_select">
-                <option class="disabled" value="">Available Times</option>
-                {% for vail in tutor.tutorAvailability %}
-                <option class="" value="{{ vail }}">{{ vail }}
-                </option>
-                {% endfor %}
-            </select>
-        </div>
-
-        <!-- <div class="row">
-            Location:
-            <select id="category" class="taskCategory" name="category_select">
-                <option value="">Available Locations</option>
-                {% for vail in tutor.building %}
-                <option class="" value="{{ vail }}">{{ vail }}
-                </option>
-                {% endfor %}
-            </select>
-        </div> -->
-
-        <div class="form-group">
-            <div class="row">
-            Location: {{srform.building}}
-            </div>
-        </div>
-
-        <input type="hidden" id="tutor_username" name="tutor_username" value="{{tutor.username}}">
-        <div class="form-group">
-            <div class="row">
-            Class: {{srform.course}}
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="row">
-            Desciption: {{srform.description}}
-            </div>
-        </div>
-        <input type="submit" class="btn btn-primary" value="Request Session">
-        </div>
-    </div>
-    </form>
-    {% endif %}
-    {% endif %}
-    {% endfor %}
-    
-
-    
-</center>
 </div>
 {% else %}
 <meta http-equiv="refresh" content="0; URL=home">

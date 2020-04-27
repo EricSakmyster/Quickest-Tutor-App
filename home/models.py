@@ -22,7 +22,6 @@ class User(AbstractUser):
     tsubjects = models.TextField(max_length=500, default='none')
     texp = models.TextField(max_length=500, default='none')
     hourlyRate = models.TextField(max_length=20, default='none')
-    emailAddress = models.TextField(max_length=50, default='none')
     requests = models.ManyToManyField("RequestSession", blank=True)
     tutorAvailability = ArrayField(models.DateTimeField(default=datetime.now, blank=True), default=list, blank=True)
     pfp = models.ImageField(blank= True, null= True)
