@@ -6,8 +6,9 @@ from django.views import generic
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import get_user_model
-from django.views.generic import DeleteView
+from django.views.generic import DeleteView, ListView
 
+from home.filters import UserFilter
 from .forms import TutorProfileForm, TutorProfileAvailabilityForm, StudentProfileForm, SessionRequestForm
 
 from .models import TodoList, Category, User, Available, RequestSession
@@ -157,30 +158,48 @@ def index(request):  # the index view
                 todo.delete()  # deleting todo
     return render(request, "home/studentSchedule.html", {"todos": todos, "categories": categories})
 '''
-def allTutors(request):
-    if request.method == "POST":
-        srform = SessionRequestForm(request.POST, instance=request.user)
-        if srform.is_valid():
-            post = srform.save(commit=False)
-            post.chosen_time = request.POST["category_select"]
-            post.course = srform.cleaned_data['course']
-            post.description = srform.cleaned_data['description']
-            tu=srform.cleaned_data['tutor_username']
-            post.tutor_username = tu
-            # post.location = srform.cleaned_data['building']
 
-            post.save()
-            
-            request = RequestSession(chosen_time=request.POST["category_select"], course=srform.cleaned_data['course'], description=srform.cleaned_data['description'], tutor_username=tu, student=User.objects.get(username = request.user.username), tutor =User.objects.get(username = tu), is_accepted=False, building=srform.cleaned_data['building'])
-            request.save()
-            # if request.is_accepted:
-            #     request.tutor.location = request.building
-            return redirect('allTutors')
-    else:
-        srform = SessionRequestForm(instance=request.user)
-    tutors = get_user_model().objects.all()
-    context = {'tutors': tutors, 'srform': srform}
-    return render(request, 'home/allTutors.html', context)
+class UserListView(ListView):
+    model = User
+    template_name = 'home/allTutors.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = UserFilter(self.request.GET, queryset = self.get_queryset())
+        return context
+
+    def allTutors(self, request):
+        if request.method == "POST":
+            srform = SessionRequestForm(request.POST, instance=request.user)
+            if srform.is_valid():
+                post = srform.save(commit=False)
+                post.chosen_time = request.POST["category_select"]
+                post.course = srform.cleaned_data['course']
+                post.description = srform.cleaned_data['description']
+                tu = srform.cleaned_data['tutor_username']
+                post.tutor_username = tu
+                # post.location = srform.cleaned_data['building']
+
+                post.save()
+
+                request = RequestSession(chosen_time=request.POST["category_select"],
+                                         course=srform.cleaned_data['course'],
+                                         description=srform.cleaned_data['description'], tutor_username=tu,
+                                         student=User.objects.get(username=request.user.username),
+                                         tutor=User.objects.get(username=tu), is_accepted=False,
+                                         building=srform.cleaned_data['building'])
+                request.save()
+                # if request.is_accepted:
+                #     request.tutor.location = request.building
+                return redirect('allTutors')
+        else:
+            srform = SessionRequestForm(instance=request.user)
+        tutors = get_user_model().objects.all()
+        context = {'tutors': tutors, 'srform': srform}
+        return render(request, 'home/allTutors.html', context)
+
+
+
 
 def studentSchedule(request):
     studentRequestedSessions = RequestSession.objects.filter(student_id=request.user.id)
