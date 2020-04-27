@@ -6,11 +6,13 @@ from django.views import generic
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import get_user_model
-from django.views.generic import DeleteView
+from django.views.generic import DeleteView, ListView
 
+from home.filters import UserFilter
 from .forms import TutorProfileForm, TutorProfileAvailabilityForm, StudentProfileForm, SessionRequestForm
 
 from .models import TodoList, Category, User, Available, RequestSession
+
 
 # Create your views here.
 
@@ -33,7 +35,6 @@ def profile(request):
 
 
 def editSP(request):
-
     file_data = request.FILES or None
 
     if request.method == "POST":
@@ -58,18 +59,21 @@ def studentLocateSessions(request):
     context = {'AcceptedSessions': studentAcceptedSessions}
     return render(request, 'home/studentLocateSessions.html', context)
 
+
 def tutorLocateSessions(request):
     tutorAcceptedSessions = RequestSession.objects.filter(tutor_id=request.user.id, is_accepted=True)
     context = {'AcceptedSessions': tutorAcceptedSessions}
     return render(request, 'home/tutorLocateSessions.html', context)
+
 
 class tutorProfile(generic.TemplateView):
     model = User
     template_name = 'home/tutorProfile.html'
     context_object_name = 'thisTutor'
 
+
 def tutorProfileAvailability(request):
-    userObject = User.objects.get(username = request.user.username)
+    userObject = User.objects.get(username=request.user.username)
     template_name = 'home/tutorProfileAvailability.html'
     avails = Available.objects.all()
     if request.method == "POST":
@@ -84,13 +88,14 @@ def tutorProfileAvailability(request):
 
     return render(request, template_name, {"avails": avails})
 
+
 def editTPA(request):
-    userObject = User.objects.get(username = request.user.username)
-    if request.method=="POST":
+    userObject = User.objects.get(username=request.user.username)
+    if request.method == "POST":
         tpaform = TutorProfileAvailabilityForm(request.POST)
         if tpaform.is_valid():
-            post=tpaform.save(commit=False)
-            post.available=tpaform.cleaned_data['available']
+            post = tpaform.save(commit=False)
+            post.available = tpaform.cleaned_data['available']
             userObject.tutorAvailability.append(tpaform.cleaned_data['available'])
             post.save()
             userObject.save()
@@ -99,8 +104,8 @@ def editTPA(request):
         tpaform = TutorProfileAvailabilityForm()
     return render(request, 'home/editTPA.html', {'tpaform': tpaform})
 
+
 def editTP(request):
-    
     file_data = request.FILES or None
 
     if request.method == "POST":
@@ -127,13 +132,15 @@ def default_map(request):
     # tutorRequestedSessions = RequestSession.objects.filter(tutor_id=request.user.id)
     # context = {'sessions': tutorRequestedSessions}
     # tutorRequestedSessions = RequestSession.objects.filter(tutor_id=request.user.id)
-    tutorAcceptedSessions =  RequestSession.objects.filter(is_accepted=True)
+    tutorAcceptedSessions = RequestSession.objects.filter(is_accepted=True)
     context = {'tutorAcceptedSessions': tutorAcceptedSessions}
     mapbox_access_token = 'pk.my_mapbox_access_token'
 
     return render(request, 'locateSessions.html',
                   {
-                      'mapbox_access_token': 'pk.eyJ1IjoiZXJpY3Nha215c3RlciIsImEiOiJjazhiMXlxZmUwMWN0M2VxZWp2cGIwcGE3In0.LOR2DgUVncLrbVuaPtD5QA'},context)
+                      'mapbox_access_token': 'pk.eyJ1IjoiZXJpY3Nha215c3RlciIsImEiOiJjazhiMXlxZmUwMWN0M2VxZWp2cGIwcGE3In0.LOR2DgUVncLrbVuaPtD5QA'},
+                  context)
+
 
 '''
 def index(request):  # the index view
@@ -155,21 +162,29 @@ def index(request):  # the index view
                 todo.delete()  # deleting todo
     return render(request, "home/studentSchedule.html", {"todos": todos, "categories": categories})
 '''
+
+
 def allTutors(request):
     if request.method == "POST":
         srform = SessionRequestForm(request.POST, instance=request.user)
         if srform.is_valid():
             post = srform.save(commit=False)
+            if request.POST["category_select"] == "":
+                return redirect('allTutors')
             post.chosen_time = request.POST["category_select"]
             post.course = srform.cleaned_data['course']
             post.description = srform.cleaned_data['description']
-            tu=srform.cleaned_data['tutor_username']
+            tu = srform.cleaned_data['tutor_username']
             post.tutor_username = tu
             # post.location = srform.cleaned_data['building']
-
             post.save()
-            
-            request = RequestSession(chosen_time=request.POST["category_select"], course=srform.cleaned_data['course'], description=srform.cleaned_data['description'], tutor_username=tu, student=User.objects.get(username = request.user.username), tutor =User.objects.get(username = tu), is_accepted=False, building=srform.cleaned_data['building'])
+
+            request = RequestSession(chosen_time=request.POST["category_select"],
+                                     course=srform.cleaned_data['course'],
+                                     description=srform.cleaned_data['description'], tutor_username=tu,
+                                     student=User.objects.get(username=request.user.username),
+                                     tutor=User.objects.get(username=tu), is_accepted=False,
+                                     building=srform.cleaned_data['building'])
             request.save()
             # if request.is_accepted:
             #     request.tutor.location = request.building
@@ -179,6 +194,7 @@ def allTutors(request):
     tutors = get_user_model().objects.all()
     context = {'tutors': tutors, 'srform': srform}
     return render(request, 'home/allTutors.html', context)
+
 
 def studentSchedule(request):
     studentRequestedSessions = RequestSession.objects.filter(student_id=request.user.id)
@@ -191,26 +207,28 @@ def studentSchedule(request):
             return redirect(str(id) + '/student/delete')
     return render(request, 'home/studentSchedule.html', context)
 
+
 class studentSessionDelete(DeleteView):
     model = RequestSession
 
     success_url = reverse_lazy('schedule')
+
 
 class tutorSessionDelete(DeleteView):
     model = RequestSession
 
     success_url = reverse_lazy('tutorSchedule')
 
-def tutorSchedule(request):
 
+def tutorSchedule(request):
     tutorRequestedSessions = RequestSession.objects.filter(tutor_id=request.user.id)
     tutorAcceptedSessions = tutorRequestedSessions.filter(is_accepted=True)
     tutorRequestedSessions = tutorRequestedSessions.filter(is_accepted=False)
     context = {'tutorRequestedSessions': tutorRequestedSessions, 'tutorAcceptedSessions': tutorAcceptedSessions}
-    if request.method=="POST":
+    if request.method == "POST":
         if "Accept" in request.POST:
-            acceptedSession=RequestSession.objects.get(id=request.POST["id"])
-            acceptedSession.is_accepted=True
+            acceptedSession = RequestSession.objects.get(id=request.POST["id"])
+            acceptedSession.is_accepted = True
             acceptedSession.save()
 
         if "Decline" in request.POST:

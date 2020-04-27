@@ -33,7 +33,7 @@
 <body>
 {% if user.is_authenticated %}
 {% if user.tutorAvailability %}
-<div style = "position:absolute; left:30px; top:100px;">
+<div style = "position:absolute; top:35vh;">
 <form action="." method="POST">{% csrf_token %}
     <h3>Are you sure you want to cancel your {{ object.course }} session with {{ object.student }} at {{ object.chosen_time }}?</h3>
     <div style = "position:absolute; left:600px; top:120px;">
@@ -45,7 +45,7 @@
 </form>
 </div>
 {% else %}
-<div style = "position:absolute; left:30px; top:100px;">
+<div style = "position:absolute; top:35vh;">
 <form action="." method="POST">{% csrf_token %}
     <h3>Are you sure you want to cancel your {{ object.course }} session with {{ object.tutor }} at {{ object.chosen_time }}?</h3>
     <div style = "position:absolute; left:600px; top:120px;">
