@@ -9,7 +9,7 @@ class TutorProfileForm(forms.ModelForm):
         model = User
         fields = ['phone', 'major', 'tsubjects', 'texp', 'hourlyRate', 'pfp']
         widgets = {
-            'phone': forms.TextInput(attrs={'class': "form-control", 'placeholder': "+9999999999"}),
+            'phone': forms.TextInput(attrs={'class': "form-control", 'placeholder': "ex) 703-542-0000"}),
             'major': forms.TextInput(attrs={'class': "form-control", 'placeholder': "ex) Math, Chemistry"}),
             'tsubjects': forms.TextInput(attrs={'class': "form-control", 'placeholder': "ex) Math, English"}),
             'texp': forms.TextInput(attrs={'class': "form-control", 'placeholder': "ex) Calc teacher 3 years"}),
@@ -23,7 +23,8 @@ class TutorProfileAvailabilityForm(forms.ModelForm):
         model = Available
         fields = ['available']
         widgets = {
-            'available': forms.DateTimeInput(attrs={'class': 'form-control datetimepicker-input', 'data-target': '#datetimepicker1'}),
+            #'available': forms.HiddenInput(),
+           'available': forms.DateTimeInput(attrs={'class': 'form-control datetimepicker-input', 'data-target': '#datetimepicker1', 'placeholder': "Please select date and time on the right"}),
         }
 class StudentProfileForm(forms.ModelForm):
 
@@ -32,7 +33,7 @@ class StudentProfileForm(forms.ModelForm):
         fields = ['year','phone', 'classes', 'major', 'pfp']
         widgets={
             'year': forms.NumberInput(attrs={'class':"form-control", 'placeholder': "1,2,3,or 4"}),
-            'phone': forms.TextInput(attrs={'class':"form-control", 'placeholder': "+9999999999"}),
+            'phone': forms.TextInput(attrs={'class':"form-control", 'placeholder': "ex) 703-542-0000"}),
             'classes': forms.TextInput(attrs={'class':"form-control", 'placeholder': "ex) Math, English"}),
             'major': forms.TextInput(attrs={'class':"form-control", 'placeholder': "ex) Math, Chemistry"}),
             'pfp': forms.FileInput(),
